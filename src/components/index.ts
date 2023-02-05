@@ -1,1 +1,1 @@
-export { HelloWorld } from './HelloWorld'
+export { Prompt } from './Prompt/Prompt'
