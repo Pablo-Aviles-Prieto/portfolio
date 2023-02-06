@@ -3,8 +3,10 @@ import styled, { ThemeProvider } from 'styled-components'
 import { Prompt } from './components'
 import { LIGHT_THEME, DARK_THEME } from './themes'
 
-const PromptContainer = styled.div`
+const PromptContainer = styled.div<{ introState: boolean }>`
   margin-top: 10px;
+  opacity: ${({ introState }) => (introState ? 1 : 0)};
+  transition: all 3s ease-in;
 `
 
 const App: React.FC = () => {
@@ -15,13 +17,15 @@ const App: React.FC = () => {
     setLightTheme(prevState => !prevState)
   }
 
+  const switchIntroState = () => {
+    setIntroState(false)
+  }
+
   return (
     <ThemeProvider theme={lightTheme ? LIGHT_THEME : DARK_THEME}>
-      {introState && (
-        <PromptContainer>
-          <Prompt introStateHandler={setIntroState} />
-        </PromptContainer>
-      )}
+      <PromptContainer introState={introState}>
+        <Prompt switchIntroState={switchIntroState} />
+      </PromptContainer>
     </ThemeProvider>
   )
 }

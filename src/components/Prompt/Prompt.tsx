@@ -6,7 +6,7 @@ import { TypeLineAnimation, TypeInstallationInfo } from './TypeAnimations'
 import { TypeInstallationInfoFast } from './FastTypeAnimations'
 
 interface IProps {
-  introStateHandler: (value: React.SetStateAction<boolean>) => void
+  switchIntroState: () => void
 }
 
 const PromptContainer = styled.div`
@@ -141,7 +141,7 @@ const PromptContainer = styled.div`
 
 const maxLinesOnPrompt = 18
 
-export const Prompt: React.FC<IProps> = ({ introStateHandler }: IProps) => {
+export const Prompt: React.FC<IProps> = ({ switchIntroState }: IProps) => {
   const [typingLine, setTypingLine] = useState<number>(0)
 
   const nextLineHandler = () => {
@@ -251,7 +251,7 @@ export const Prompt: React.FC<IProps> = ({ introStateHandler }: IProps) => {
                 <span className="Prompt__location">~</span>
                 <span className="Prompt__dollar">$</span>
                 <span className="Prompt__cursor" />
-                <TypeLineAnimation sequence={[` `, 1000, () => introStateHandler(false)]} />
+                <TypeLineAnimation sequence={[` `, 1000, switchIntroState]} />
               </div>
             )}
           </div>
