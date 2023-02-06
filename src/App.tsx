@@ -10,8 +10,6 @@ const App: React.FC = () => {
     setLightTheme(prevState => !prevState)
   }
 
-  console.log('lightTheme', lightTheme)
-
   return (
     <ThemeProvider theme={lightTheme ? LIGHT_THEME : DARK_THEME}>
       <div>

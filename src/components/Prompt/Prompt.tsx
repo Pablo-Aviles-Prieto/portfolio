@@ -136,7 +136,7 @@ const PromptContainer = styled.div`
 
 export const Prompt: React.FC = () => {
   const [typingLine, setTypingLine] = useState<number>(0)
-  console.log('typingLine', typingLine)
+
   return (
     <PromptContainer>
       <div className="container">
