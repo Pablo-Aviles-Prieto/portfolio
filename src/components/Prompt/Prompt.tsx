@@ -195,7 +195,30 @@ export const Prompt: React.FC = () => {
             {typingLine >= 6 && (
               <TypeInstallationInfo packageName="JavaScript ECMAScript 2022" cbFunction={nextLineHandler} />
             )}
-            {typingLine >= 7 && <TypeInstallationInfoFast packageName="HTML5 & CSS3" cbFunction={nextLineHandler} />}
+            {typingLine >= 7 && <TypeInstallationInfo packageName="TypeScript v.4.9.5" cbFunction={nextLineHandler} />}
+            {typingLine >= 8 && <TypeInstallationInfoFast packageName="HTML5 & CSS3" cbFunction={nextLineHandler} />}
+            {typingLine >= 9 && (
+              <InstallationBlock installingData="Installing backend knowledge:" cbFunction={nextLineHandler} />
+            )}
+            {typingLine >= 10 && <TypeInstallationInfo packageName="NodeJS v.18.14.0" cbFunction={nextLineHandler} />}
+            {typingLine >= 11 && (
+              <TypeInstallationInfoFast packageName="ExpressJS v.4.18.2" cbFunction={nextLineHandler} />
+            )}
+            {typingLine >= 12 && (
+              <TypeInstallationInfoFast packageName="MongoDB v.6.0 & Mongoose v.6.9.0" cbFunction={nextLineHandler} />
+            )}
+            {typingLine >= 13 && <TypeInstallationInfoFast packageName="MySQL v.8.0.32" cbFunction={nextLineHandler} />}
+            {typingLine >= 14 && (
+              <InstallationBlock installingData="Installing miscellaneous knowledge:" cbFunction={nextLineHandler} />
+            )}
+            {typingLine >= 15 && <TypeInstallationInfoFast packageName="Git v.2.39.1" cbFunction={nextLineHandler} />}
+            {typingLine >= 16 && <TypeInstallationInfoFast packageName="Jest v.29.4.1" cbFunction={nextLineHandler} />}
+            {typingLine >= 17 && (
+              <TypeInstallationInfoFast packageName="Cypress v.12.5.1" cbFunction={nextLineHandler} />
+            )}
+            {typingLine >= 18 && (
+              <TypeInstallationInfoFast packageName="Playwright v.1.30" cbFunction={nextLineHandler} />
+            )}
           </div>
         </div>
       </div>
