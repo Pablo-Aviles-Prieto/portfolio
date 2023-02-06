@@ -1,10 +1,15 @@
 import { useState } from 'react'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import { Prompt } from './components'
 import { LIGHT_THEME, DARK_THEME } from './themes'
 
+const PromptContainer = styled.div`
+  margin-top: 10px;
+`
+
 const App: React.FC = () => {
   const [lightTheme, setLightTheme] = useState<boolean>(false)
+  const [introState, setIntroState] = useState<boolean>(true)
 
   const switchThemeHandler = () => {
     setLightTheme(prevState => !prevState)
@@ -12,12 +17,11 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={lightTheme ? LIGHT_THEME : DARK_THEME}>
-      <div>
-        <button type="button" onClick={switchThemeHandler}>
-          Change theme
-        </button>
-      </div>
-      <Prompt />
+      {introState && (
+        <PromptContainer>
+          <Prompt introStateHandler={setIntroState} />
+        </PromptContainer>
+      )}
     </ThemeProvider>
   )
 }

@@ -5,6 +5,10 @@ import { InstallationBlock } from './Components/InstallationBlock'
 import { TypeLineAnimation, TypeInstallationInfo } from './TypeAnimations'
 import { TypeInstallationInfoFast } from './FastTypeAnimations'
 
+interface IProps {
+  introStateHandler: (value: React.SetStateAction<boolean>) => void
+}
+
 const PromptContainer = styled.div`
   font-family: 'Ubuntu';
   .container {
@@ -135,7 +139,9 @@ const PromptContainer = styled.div`
   }
 `
 
-export const Prompt: React.FC = () => {
+const maxLinesOnPrompt = 18
+
+export const Prompt: React.FC<IProps> = ({ introStateHandler }: IProps) => {
   const [typingLine, setTypingLine] = useState<number>(0)
 
   const nextLineHandler = () => {
@@ -148,36 +154,42 @@ export const Prompt: React.FC = () => {
         <div className="Terminal">
           <TerminalToolbar />
           <div className="Terminal__body">
-            <div className="Terminal__text" id="main-prompt-text">
-              Welcome to Ubuntu v22.Pablo
-            </div>
-            <div className="Terminal__Prompt">
-              <span className="Prompt__user">aviles@ubuntu:</span>
-              <span className="Prompt__location">~</span>
-              <span className="Prompt__dollar">$</span>
-              <TypeLineAnimation
-                styleClass="Terminal__text"
-                sequence={[1000, `sudo apt-get install full-stack developer`, nextLineHandler]}
-              />
-              {typingLine === 0 && <span className="Prompt__cursor" />}
-              {typingLine >= 1 && (
-                <>
-                  <TypeLineAnimation
-                    styleClass="Terminal__text--flag Terminal__text--separator"
-                    sequence={[`--stack-MERN`, nextLineHandler]}
-                  />
-                  {typingLine === 1 && <span className="Prompt__cursor" />}
-                </>
-              )}
-            </div>
-            {typingLine >= 2 && (
-              <div className="Terminal__Prompt">
-                <TypeLineAnimation
-                  styleClass="Terminal__text--flag"
-                  sequence={[`--teamworker --resolutive`, nextLineHandler]}
-                />
-                {typingLine === 2 && <span className="Prompt__cursor" />}
+            {typingLine <= maxLinesOnPrompt && (
+              <div className="Terminal__text" id="main-prompt-text">
+                Welcome to Ubuntu v22.Pablo
               </div>
+            )}
+            {typingLine <= maxLinesOnPrompt + 1 && (
+              <>
+                <div className="Terminal__Prompt">
+                  <span className="Prompt__user">aviles@ubuntu:</span>
+                  <span className="Prompt__location">~</span>
+                  <span className="Prompt__dollar">$</span>
+                  <TypeLineAnimation
+                    styleClass="Terminal__text"
+                    sequence={[1000, `sudo apt-get install full-stack developer`, nextLineHandler]}
+                  />
+                  {typingLine === 0 && <span className="Prompt__cursor" />}
+                  {typingLine >= 1 && (
+                    <>
+                      <TypeLineAnimation
+                        styleClass="Terminal__text--flag Terminal__text--separator"
+                        sequence={[`--stack-MERN`, nextLineHandler]}
+                      />
+                      {typingLine === 1 && <span className="Prompt__cursor" />}
+                    </>
+                  )}
+                </div>
+                {typingLine >= 2 && (
+                  <div className="Terminal__Prompt">
+                    <TypeLineAnimation
+                      styleClass="Terminal__text--flag"
+                      sequence={[`--teamworker --resolutive`, 200, nextLineHandler]}
+                    />
+                    {typingLine === 2 && <span className="Prompt__cursor" />}
+                  </div>
+                )}
+              </>
             )}
             {typingLine >= 3 && (
               <div className="Terminal__Prompt">
@@ -195,22 +207,22 @@ export const Prompt: React.FC = () => {
             {typingLine >= 6 && (
               <TypeInstallationInfo packageName="JavaScript ECMAScript 2022" cbFunction={nextLineHandler} />
             )}
-            {typingLine >= 7 && <TypeInstallationInfo packageName="TypeScript v.4.9.5" cbFunction={nextLineHandler} />}
-            {typingLine >= 8 && <TypeInstallationInfoFast packageName="HTML5 & CSS3" cbFunction={nextLineHandler} />}
-            {typingLine >= 9 && (
+            {typingLine >= 7 && <TypeInstallationInfoFast packageName="HTML5 & CSS3" cbFunction={nextLineHandler} />}
+            {typingLine >= 8 && (
               <InstallationBlock installingData="Installing backend knowledge:" cbFunction={nextLineHandler} />
             )}
-            {typingLine >= 10 && <TypeInstallationInfo packageName="NodeJS v.18.14.0" cbFunction={nextLineHandler} />}
-            {typingLine >= 11 && (
+            {typingLine >= 9 && <TypeInstallationInfo packageName="NodeJS v.18.14.0" cbFunction={nextLineHandler} />}
+            {typingLine >= 10 && (
               <TypeInstallationInfoFast packageName="ExpressJS v.4.18.2" cbFunction={nextLineHandler} />
             )}
-            {typingLine >= 12 && (
+            {typingLine >= 11 && (
               <TypeInstallationInfoFast packageName="MongoDB v.6.0 & Mongoose v.6.9.0" cbFunction={nextLineHandler} />
             )}
-            {typingLine >= 13 && <TypeInstallationInfoFast packageName="MySQL v.8.0.32" cbFunction={nextLineHandler} />}
-            {typingLine >= 14 && (
-              <InstallationBlock installingData="Installing miscellaneous knowledge:" cbFunction={nextLineHandler} />
+            {typingLine >= 12 && <TypeInstallationInfoFast packageName="MySQL v.8.0.32" cbFunction={nextLineHandler} />}
+            {typingLine >= 13 && (
+              <InstallationBlock installingData="Installing dependencies:" cbFunction={nextLineHandler} />
             )}
+            {typingLine >= 14 && <TypeInstallationInfo packageName="TypeScript v.4.9.5" cbFunction={nextLineHandler} />}
             {typingLine >= 15 && <TypeInstallationInfoFast packageName="Git v.2.39.1" cbFunction={nextLineHandler} />}
             {typingLine >= 16 && <TypeInstallationInfoFast packageName="Jest v.29.4.1" cbFunction={nextLineHandler} />}
             {typingLine >= 17 && (
@@ -218,6 +230,29 @@ export const Prompt: React.FC = () => {
             )}
             {typingLine >= 18 && (
               <TypeInstallationInfoFast packageName="Playwright v.1.30" cbFunction={nextLineHandler} />
+            )}
+            {typingLine >= 19 && (
+              <InstallationBlock
+                installingData="All packages has been installed successfully"
+                cbFunction={nextLineHandler}
+              />
+            )}
+            {typingLine >= 20 && (
+              <div className="Terminal__Prompt">
+                <span className="Terminal__text">
+                  Loading developer <span className="Prompt__user">Pablo Avilés</span>
+                </span>
+                <TypeLineAnimation sequence={[` `, 500, nextLineHandler]} />
+              </div>
+            )}
+            {typingLine === 21 && (
+              <div className="Terminal__Prompt">
+                <span className="Prompt__user">aviles@ubuntu:</span>
+                <span className="Prompt__location">~</span>
+                <span className="Prompt__dollar">$</span>
+                <span className="Prompt__cursor" />
+                <TypeLineAnimation sequence={[` `, 500, () => introStateHandler(false)]} />
+              </div>
             )}
           </div>
         </div>
