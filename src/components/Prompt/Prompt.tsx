@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import styled from 'styled-components'
+import { TypeLineAnimation } from './TypeLineAnimation'
 
 const PromptContainer = styled.div`
   font-family: 'Ubuntu';
@@ -6,6 +8,9 @@ const PromptContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    #main-prompt-text {
+      margin-bottom: 10px;
+    }
     .Terminal {
       width: 600px;
       height: 360px;
@@ -70,25 +75,25 @@ const PromptContainer = styled.div`
         }
 
         .Terminal__Prompt {
-          margin-top: 10px;
           display: flex;
-          .Prompt__user {
-            color: #87d441;
-          }
-          .Prompt__location {
-            color: #6d85a9;
-          }
-          .Prompt__dollar {
-            color: #ddd;
-          }
-          .Prompt__cursor {
-            height: 17px;
-            width: 8px;
-            background: white;
-            display: block;
-            margin-left: 8px;
-            animation: blink 2s ease-in-out infinite;
-          }
+        }
+        .Prompt__user {
+          color: #87d441;
+        }
+        .Prompt__location {
+          color: #6d85a9;
+        }
+        .Prompt__dollar {
+          color: #ddd;
+          margin-right: 8px;
+        }
+        .Prompt__cursor {
+          height: 17px;
+          width: 8px;
+          margin-left: 1px;
+          background: white;
+          display: block;
+          animation: blink 2s ease-in-out infinite;
         }
       }
     }
@@ -118,6 +123,7 @@ const PromptContainer = styled.div`
 `
 
 export const Prompt: React.FC = () => {
+  const [typingLine, setTypingLine] = useState<number>(1)
   return (
     <PromptContainer>
       <div className="container">
@@ -134,16 +140,27 @@ export const Prompt: React.FC = () => {
                 &#9723;
               </button>
             </div>
-            <p className="Toolbar__user">PabloAviles@ubuntu:~</p>
+            <p className="Toolbar__user">aviles@ubuntu:~</p>
           </div>
           <div className="Terminal__body">
-            <div className="Terminal__text">Welcome to Ubuntu!</div>
+            <div className="Terminal__text" id="main-prompt-text">
+              Welcome to Ubuntu v22.Pablo
+            </div>
             <div className="Terminal__Prompt">
-              <span className="Prompt__user">PabloAviles@ubuntu:</span>
+              <span className="Prompt__user">aviles@ubuntu:</span>
               <span className="Prompt__location">~</span>
               <span className="Prompt__dollar">$</span>
-              <span className="Prompt__cursor" />
+              <TypeLineAnimation
+                sequence={[1000, `sudo apt-get install full-stack developer --stack-MERN`, () => setTypingLine(2)]}
+              />
+              {typingLine === 1 && <span className="Prompt__cursor" />}
             </div>
+            {typingLine >= 2 && (
+              <div className="Terminal__Prompt">
+                <TypeLineAnimation sequence={[`--teamworker --resolutive`, () => setTypingLine(3)]} />
+                {typingLine === 2 && <span className="Prompt__cursor" />}
+              </div>
+            )}
           </div>
         </div>
       </div>
