@@ -251,7 +251,7 @@ export const Prompt: React.FC<IProps> = ({ introStateHandler }: IProps) => {
                 <span className="Prompt__location">~</span>
                 <span className="Prompt__dollar">$</span>
                 <span className="Prompt__cursor" />
-                <TypeLineAnimation sequence={[` `, 500, () => introStateHandler(false)]} />
+                <TypeLineAnimation sequence={[` `, 1000, () => introStateHandler(false)]} />
               </div>
             )}
           </div>
