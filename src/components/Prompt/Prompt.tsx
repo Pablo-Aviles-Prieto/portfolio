@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { TypeLineAnimation } from './TypeLineAnimation'
+import { TerminalToolbar } from './TerminalToolbar'
+import { TypeInstallationInfo } from './TypeInstallationInfo'
 
 const PromptContainer = styled.div`
   font-family: 'Ubuntu';
@@ -73,9 +75,19 @@ const PromptContainer = styled.div`
         .Terminal__text {
           color: #ddd;
         }
+        .Terminal__text--flag {
+          color: #9c9a9a;
+        }
+        .Terminal__text--separator {
+          margin-left: 7px;
+        }
 
         .Terminal__Prompt {
           display: flex;
+          margin-top: 1px;
+          &--spacer {
+            width: 30px;
+          }
         }
         .Prompt__user {
           color: #87d441;
@@ -123,25 +135,13 @@ const PromptContainer = styled.div`
 `
 
 export const Prompt: React.FC = () => {
-  const [typingLine, setTypingLine] = useState<number>(1)
+  const [typingLine, setTypingLine] = useState<number>(0)
+  console.log('typingLine', typingLine)
   return (
     <PromptContainer>
       <div className="container">
         <div className="Terminal">
-          <div className="Terminal__Toolbar">
-            <div className="Toolbar__buttons">
-              <button type="button" className="Toolbar__button Toolbar__button--exit">
-                &#10005;
-              </button>
-              <button type="button" className="Toolbar__button">
-                &#9472;
-              </button>
-              <button type="button" className="Toolbar__button">
-                &#9723;
-              </button>
-            </div>
-            <p className="Toolbar__user">aviles@ubuntu:~</p>
-          </div>
+          <TerminalToolbar />
           <div className="Terminal__body">
             <div className="Terminal__text" id="main-prompt-text">
               Welcome to Ubuntu v22.Pablo
@@ -151,16 +151,50 @@ export const Prompt: React.FC = () => {
               <span className="Prompt__location">~</span>
               <span className="Prompt__dollar">$</span>
               <TypeLineAnimation
-                sequence={[1000, `sudo apt-get install full-stack developer --stack-MERN`, () => setTypingLine(2)]}
+                styleClass="Terminal__text"
+                sequence={[1000, `sudo apt-get install full-stack developer`, () => setTypingLine(1)]}
               />
-              {typingLine === 1 && <span className="Prompt__cursor" />}
+              {typingLine === 0 && <span className="Prompt__cursor" />}
+              {typingLine >= 1 && (
+                <>
+                  <TypeLineAnimation
+                    styleClass="Terminal__text--flag Terminal__text--separator"
+                    sequence={[`--stack-MERN`, () => setTypingLine(2)]}
+                  />
+                  {typingLine === 1 && <span className="Prompt__cursor" />}
+                </>
+              )}
             </div>
             {typingLine >= 2 && (
               <div className="Terminal__Prompt">
-                <TypeLineAnimation sequence={[`--teamworker --resolutive`, () => setTypingLine(3)]} />
+                <TypeLineAnimation
+                  styleClass="Terminal__text--flag"
+                  sequence={[`--teamworker --resolutive`, () => setTypingLine(3)]}
+                />
                 {typingLine === 2 && <span className="Prompt__cursor" />}
               </div>
             )}
+            {typingLine >= 3 && (
+              <div className="Terminal__Prompt">
+                <span className="Terminal__text" style={{ marginRight: '2px' }}>
+                  [sudo] password for aviles:
+                </span>
+                <TypeLineAnimation sequence={[`*****`, () => setTypingLine(4)]} />
+                {typingLine === 3 && <span className="Prompt__cursor" />}
+              </div>
+            )}
+            {typingLine >= 4 && (
+              <div className="Terminal__Prompt">
+                <span className="Terminal__text" style={{ marginRight: '2px' }}>
+                  Installing frontend knowledge:
+                </span>
+                <TypeLineAnimation sequence={[` `, () => setTypingLine(5)]} />
+              </div>
+            )}
+            {typingLine >= 5 && (
+              <TypeInstallationInfo cbFunction={() => setTypingLine(6)} packageName="ReactJS v.18.2.0" />
+            )}
+            {typingLine >= 6 && <TypeInstallationInfo cbFunction={() => setTypingLine(7)} packageName="NodeJS " />}
           </div>
         </div>
       </div>
