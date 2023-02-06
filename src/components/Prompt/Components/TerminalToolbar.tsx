@@ -1,4 +1,4 @@
-export const TerminalToolbar = () => {
+export const TerminalToolbar: React.FC = () => {
   return (
     <div className="Terminal__Toolbar">
       <div className="Toolbar__buttons">

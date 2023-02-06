@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { TypeLineAnimation } from './TypeLineAnimation'
-import { TerminalToolbar } from './TerminalToolbar'
-import { TypeInstallationInfo } from './TypeInstallationInfo'
+import { TerminalToolbar } from './Components/TerminalToolbar'
+import { InstallationBlock } from './Components/InstallationBlock'
+import { TypeLineAnimation, TypeInstallationInfo } from './TypeAnimations'
+import { TypeInstallationInfoFast } from './FastTypeAnimations'
 
 const PromptContainer = styled.div`
   font-family: 'Ubuntu';
@@ -137,6 +138,10 @@ const PromptContainer = styled.div`
 export const Prompt: React.FC = () => {
   const [typingLine, setTypingLine] = useState<number>(0)
 
+  const nextLineHandler = () => {
+    setTypingLine(prevState => prevState + 1)
+  }
+
   return (
     <PromptContainer>
       <div className="container">
@@ -152,14 +157,14 @@ export const Prompt: React.FC = () => {
               <span className="Prompt__dollar">$</span>
               <TypeLineAnimation
                 styleClass="Terminal__text"
-                sequence={[1000, `sudo apt-get install full-stack developer`, () => setTypingLine(1)]}
+                sequence={[1000, `sudo apt-get install full-stack developer`, nextLineHandler]}
               />
               {typingLine === 0 && <span className="Prompt__cursor" />}
               {typingLine >= 1 && (
                 <>
                   <TypeLineAnimation
                     styleClass="Terminal__text--flag Terminal__text--separator"
-                    sequence={[`--stack-MERN`, () => setTypingLine(2)]}
+                    sequence={[`--stack-MERN`, nextLineHandler]}
                   />
                   {typingLine === 1 && <span className="Prompt__cursor" />}
                 </>
@@ -169,7 +174,7 @@ export const Prompt: React.FC = () => {
               <div className="Terminal__Prompt">
                 <TypeLineAnimation
                   styleClass="Terminal__text--flag"
-                  sequence={[`--teamworker --resolutive`, () => setTypingLine(3)]}
+                  sequence={[`--teamworker --resolutive`, nextLineHandler]}
                 />
                 {typingLine === 2 && <span className="Prompt__cursor" />}
               </div>
@@ -179,22 +184,18 @@ export const Prompt: React.FC = () => {
                 <span className="Terminal__text" style={{ marginRight: '2px' }}>
                   [sudo] password for aviles:
                 </span>
-                <TypeLineAnimation sequence={[`*****`, () => setTypingLine(4)]} />
+                <TypeLineAnimation sequence={[400, `*****`, 500, nextLineHandler]} />
                 {typingLine === 3 && <span className="Prompt__cursor" />}
               </div>
             )}
             {typingLine >= 4 && (
-              <div className="Terminal__Prompt">
-                <span className="Terminal__text" style={{ marginRight: '2px' }}>
-                  Installing frontend knowledge:
-                </span>
-                <TypeLineAnimation sequence={[` `, () => setTypingLine(5)]} />
-              </div>
+              <InstallationBlock installingData="Installing frontend knowledge:" cbFunction={nextLineHandler} />
             )}
-            {typingLine >= 5 && (
-              <TypeInstallationInfo cbFunction={() => setTypingLine(6)} packageName="ReactJS v.18.2.0" />
+            {typingLine >= 5 && <TypeInstallationInfo packageName="ReactJS v.18.2.0" cbFunction={nextLineHandler} />}
+            {typingLine >= 6 && (
+              <TypeInstallationInfo packageName="JavaScript ECMAScript 2022" cbFunction={nextLineHandler} />
             )}
-            {typingLine >= 6 && <TypeInstallationInfo cbFunction={() => setTypingLine(7)} packageName="NodeJS " />}
+            {typingLine >= 7 && <TypeInstallationInfoFast packageName="HTML5 & CSS3" cbFunction={nextLineHandler} />}
           </div>
         </div>
       </div>

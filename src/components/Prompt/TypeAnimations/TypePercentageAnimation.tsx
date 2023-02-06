@@ -27,7 +27,7 @@ export const TypePercentageAnimation: React.FC<IProps> = ({ cbFunction }: IProps
         cbFunction
       ]}
       className="Terminal__text"
-      speed={90}
+      speed={88}
       wrapper="span"
       cursor={false}
       repeat={0}
