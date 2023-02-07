@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { ImgContainer } from '../Styles'
 
-const HeaderContainer = styled.div`
-  margin-top: 200px;
+const ProfileContainer = styled.div`
+  margin-top: 50px;
 `
 
 const PhotoContainer = styled(ImgContainer)<{ introState: boolean }>`
@@ -20,12 +20,12 @@ type IProps = {
 
 export const ProfileHeader: React.FC<IProps> = ({ introState }: IProps) => {
   return (
-    <HeaderContainer>
+    <ProfileContainer>
       <PhotoContainer introState={introState} width="300px" height="300px">
         <img src={`${PUBLIC_URI}/images/profile-photo.jpg`} alt="Pablo Avilés Prieto" />
       </PhotoContainer>
       <h3>Full stack web developer</h3>
       <p>Tech enthusiast </p>
-    </HeaderContainer>
+    </ProfileContainer>
   )
 }

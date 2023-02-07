@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { Prompt, ProfileHeader, Header } from './components'
 import { LIGHT_THEME, DARK_THEME } from './themes'
-import { IThemeProps } from './interfaces'
 
 const PromptContainer = styled.div<{ introState: boolean }>`
   margin-top: 10px;
@@ -22,7 +21,7 @@ const PromptContainer = styled.div<{ introState: boolean }>`
   }
 `
 
-const GlobalStyle = createGlobalStyle<IThemeProps>`
+const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
     margin: 0;
