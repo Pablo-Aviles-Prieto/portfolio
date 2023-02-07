@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react'
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { Prompt, ProfileHeader } from './components'
 import { LIGHT_THEME, DARK_THEME } from './themes'
+
+interface GlobalStyleProps {
+  theme: typeof LIGHT_THEME | typeof DARK_THEME
+}
 
 const PromptContainer = styled.div<{ introState: boolean }>`
   margin-top: 10px;
@@ -18,6 +22,26 @@ const PromptContainer = styled.div<{ introState: boolean }>`
       transform-origin: 50% 100%;
       opacity: 1;
     }
+  }
+`
+
+const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono');
+  @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+  }
+  body {
+    background-color: ${({ theme }) => theme.mainBground};
+    color: ${({ theme }) => theme.mainColor};
   }
 `
 
@@ -39,6 +63,7 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={lightTheme ? LIGHT_THEME : DARK_THEME}>
+      <GlobalStyle />
       <PromptContainer introState={introState}>
         <Prompt switchIntroState={switchIntroState} />
       </PromptContainer>

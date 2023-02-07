@@ -1,25 +1,5 @@
 export const DARK_THEME = {
   mainBground: '#202020',
   secondBground: '#171717',
-  mainColor: '#fff',
-  smallDivShadow: '#0000006E',
-  menuGrey: '#686868',
-  menuNavbarItems: '#686868',
-  buttonSidebarBground: '#135846',
-  buttonSidebarColor: '#ffffff',
-  buttonGreenBground: '#135846',
-  buttonGreenColor: '#fff',
-  borderColor: '#3D3D3D',
-  bgroundSVGMiniCard: '#E234281C',
-  borderCardSeparator: '#3D3D3D',
-  greyToWhite: '#fff',
-  darkGreyToLightGrey: '#686868',
-  blackToWhite: '#E8F2EF',
-  lightGreenToGrey: '#3D3D3D',
-  greyToGreen: '#135846',
-  greener: '#5AD07A26',
-  reder: '#E2342826',
-  yellower: '#64630140',
-  calendarColor: 'dark',
-  calendarPicker: 'invert(0.1)'
+  mainColor: '#fff'
 }

@@ -1,25 +1,5 @@
 export const LIGHT_THEME = {
   mainBground: '#fff',
   secondBground: '#F8F8F8',
-  mainColor: '#000',
-  smallDivShadow: '#00000005',
-  menuGrey: '#5d5449',
-  menuNavbarItems: '#799283',
-  buttonSidebarBground: '#EBF1EF',
-  buttonSidebarColor: '#135846',
-  buttonGreenBground: '#135846',
-  buttonGreenColor: '#fff',
-  borderColor: '#f5f5f5',
-  bgroundSVGMiniCard: '#FFEDEC',
-  borderCardSeparator: '#EBEBEB',
-  greyToWhite: '#4E4E4E',
-  darkGreyToLightGrey: '#6E6E6E',
-  blackToWhite: '#212121',
-  lightGreenToGrey: '#EEF9F2',
-  greyToGreen: '#799283',
-  greener: '#E8FFEE',
-  reder: '#FFEDEC',
-  yellower: '#f8f7ac',
-  calendarColor: 'inherit',
-  calendarPicker: 'invert(0.3)'
+  mainColor: '#000'
 }
