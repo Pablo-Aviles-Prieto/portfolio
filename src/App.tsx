@@ -26,9 +26,6 @@ const PromptContainer = styled.div<{ introState: boolean }>`
 `
 
 const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-  @import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono');
-  @import url('https://fonts.googleapis.com/css?family=Ubuntu');
   * {
     box-sizing: border-box;
     margin: 0;
