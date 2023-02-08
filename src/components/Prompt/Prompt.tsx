@@ -1,17 +1,15 @@
 import { useState, useMemo, useEffect } from 'react'
 import styled from 'styled-components'
 import { TerminalToolbar } from './Components/TerminalToolbar'
-// import { InstallationBlock } from './Components/InstallationBlock'
 import { TypeLineAnimation } from './TypeAnimations'
-// import { TypeInstallationInfoFast } from './FastTypeAnimations'
 import { renderLinePropHelper, IRenderLines } from '../../utils/renderLinePropHelper'
 
 interface IProps {
   switchIntroState: () => void
 }
 
-interface ILineObj {
-  sequence: Array<string | number | (() => void)> | string
+interface IRenderLinesObj extends IRenderLines {
+  line?: boolean
 }
 
 const CONTAINER_PROMPT_WIDTH = 600
@@ -84,7 +82,7 @@ const PromptContainer = styled.div<{ containerPromptWidth: number }>`
         background: rgba(56, 4, 40, 0.9);
         height: calc(100% - 25px);
         margin-top: -1px;
-        padding-top: 2px;
+        padding: 2px 0 0 2px;
         font-family: 'Ubuntu mono';
         .Terminal__text {
           color: #ddd;
@@ -155,7 +153,7 @@ export const Prompt: React.FC<IProps> = ({ switchIntroState }: IProps) => {
   const [arrayToRender, setArrayToRender] = useState<(JSX.Element | undefined)[]>([])
 
   useEffect(() => {
-    if (typingLine < 4 || typingLine > 19) return
+    if (typingLine < 4) return
     arrayToRenderHelper(typingLine)
   }, [typingLine])
 
@@ -163,13 +161,14 @@ export const Prompt: React.FC<IProps> = ({ switchIntroState }: IProps) => {
     setTypingLine(prevState => prevState + 1)
   }
 
-  const renderLineObjs: (IRenderLines | undefined)[] = useMemo(
+  const renderLineObjs: (IRenderLinesObj | undefined)[] = useMemo(
     // eslint-disable-next-line no-sparse-arrays
     () => [
       ,
       ,
       ,
       ,
+      // { type: 'passwordBlock', name: '[sudo] password for aviles:', typingLine, cb: nextLineHandler },
       { type: 'installation', name: 'Installing frontend knowledge:', cb: nextLineHandler },
       { type: 'installationInfo', name: 'ReactJS v.18.2.0', cb: nextLineHandler },
       { type: 'installationInfo', name: 'JavaScript ECMAScript 2022', cb: nextLineHandler },
@@ -185,9 +184,11 @@ export const Prompt: React.FC<IProps> = ({ switchIntroState }: IProps) => {
       { type: 'installationInfoFast', name: 'Jest v.29.4.1', cb: nextLineHandler },
       { type: 'installationInfoFast', name: 'Cypress v.12.5.1', cb: nextLineHandler },
       { type: 'installationInfoFast', name: 'Playwright v.1.30', cb: nextLineHandler },
-      { type: 'installation', name: 'All packages has been installed successfully', cb: nextLineHandler }
+      { type: 'installation', name: 'All packages has been installed successfully', cb: nextLineHandler },
+      { type: 'loadingDevBlock', name: 'loading block', cb: nextLineHandler },
+      { type: 'promptLine', name: 'last block', cb: () => '' }
     ],
-    []
+    [typingLine]
   )
 
   const arrayToRenderHelper = (line: number) => {
@@ -250,15 +251,15 @@ export const Prompt: React.FC<IProps> = ({ switchIntroState }: IProps) => {
               </div>
             )}
             {arrayToRender}
-            {typingLine >= 20 && (
+            {/* {typingLine >= 20 && (
               <div className="Terminal__Prompt">
                 <span className="Terminal__text">
                   Loading developer <span className="Prompt__user">Pablo Avilés</span>
                 </span>
                 <TypeLineAnimation sequence={[` `, 500, nextLineHandler]} />
               </div>
-            )}
-            {typingLine === 21 && (
+            )} */}
+            {/* {typingLine === 21 && (
               <div className="Terminal__Prompt">
                 <span className="Prompt__user">aviles@ubuntu:</span>
                 <span className="Prompt__location">~</span>
@@ -266,7 +267,7 @@ export const Prompt: React.FC<IProps> = ({ switchIntroState }: IProps) => {
                 <span className="Prompt__cursor" />
                 <TypeLineAnimation sequence={[` `, 1000, switchIntroState]} />
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
