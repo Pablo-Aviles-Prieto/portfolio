@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { Prompt, ProfileHeader, Header } from './components'
 import { LIGHT_THEME, DARK_THEME } from './themes'
@@ -29,7 +29,6 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
-    font-family: 'Poppins', sans-serif;
     list-style: none;
   }
   body {
@@ -42,9 +41,9 @@ const App: React.FC = () => {
   const [lightTheme, setLightTheme] = useState<boolean>(false)
   const [introState, setIntroState] = useState<boolean>(true)
 
-  useEffect(() => {
-    setIntroState(false)
-  }, [])
+  // useEffect(() => {
+  //   setIntroState(false)
+  // }, [])
 
   const switchThemeHandler = () => {
     setLightTheme(prevState => !prevState)
