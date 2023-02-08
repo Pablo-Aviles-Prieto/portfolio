@@ -1,21 +1,17 @@
 import styled from 'styled-components'
 import { TypeLineAnimationFast } from './TypeLineAnimationFast'
 import { TypePercentageAnimationFast } from './TypePercentageAnimationFast'
+import { IPropsElements } from '../../../interfaces/IPropsElements'
 
 const TerminalText = styled.span`
   margin-right: 10px;
 `
 
-interface IProps {
-  cbFunction: (element: HTMLElement | null) => void | Promise<void>
-  packageName: string
-}
-
-export const TypeInstallationInfoFast: React.FC<IProps> = ({ cbFunction, packageName }: IProps) => {
+export const TypeInstallationInfoFast: React.FC<IPropsElements> = ({ cbFunction, installingData }: IPropsElements) => {
   return (
     <div className="Terminal__Prompt">
       <span className="Terminal__Prompt--spacer" />
-      <TerminalText className="Terminal__text">{packageName}</TerminalText>
+      <TerminalText className="Terminal__text">{installingData}</TerminalText>
       <span style={{ width: '152px' }}>
         <TypeLineAnimationFast sequence={[`[=================>`]} />
       </span>

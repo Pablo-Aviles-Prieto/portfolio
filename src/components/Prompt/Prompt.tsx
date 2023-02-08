@@ -1,12 +1,15 @@
-import { useState } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import styled from 'styled-components'
 import { TerminalToolbar } from './Components/TerminalToolbar'
-import { InstallationBlock } from './Components/InstallationBlock'
-import { TypeLineAnimation, TypeInstallationInfo } from './TypeAnimations'
-import { TypeInstallationInfoFast } from './FastTypeAnimations'
+import { TypeLineAnimation } from './TypeAnimations'
+import { renderLinePropHelper, IRenderLines } from '../../utils/renderLinePropHelper'
 
 interface IProps {
   switchIntroState: () => void
+}
+
+interface IRenderLinesObj extends IRenderLines {
+  line?: boolean
 }
 
 const CONTAINER_PROMPT_WIDTH = 600
@@ -79,7 +82,7 @@ const PromptContainer = styled.div<{ containerPromptWidth: number }>`
         background: rgba(56, 4, 40, 0.9);
         height: calc(100% - 25px);
         margin-top: -1px;
-        padding-top: 2px;
+        padding: 2px 0 0 2px;
         font-family: 'Ubuntu mono';
         .Terminal__text {
           color: #ddd;
@@ -147,9 +150,52 @@ const maxLinesOnPrompt = 18
 
 export const Prompt: React.FC<IProps> = ({ switchIntroState }: IProps) => {
   const [typingLine, setTypingLine] = useState<number>(0)
+  const [arrayToRender, setArrayToRender] = useState<(JSX.Element | undefined)[]>([])
+
+  useEffect(() => {
+    if (typingLine < 4) return
+    arrayToRenderHelper(typingLine)
+  }, [typingLine])
 
   const nextLineHandler = () => {
     setTypingLine(prevState => prevState + 1)
+  }
+
+  const renderLineObjs: (IRenderLinesObj | undefined)[] = useMemo(
+    // eslint-disable-next-line no-sparse-arrays
+    () => [
+      ,
+      ,
+      ,
+      ,
+      // { type: 'passwordBlock', name: '[sudo] password for aviles:', typingLine, cb: nextLineHandler },
+      { type: 'installation', name: 'Installing frontend knowledge:', cb: nextLineHandler },
+      { type: 'installationInfo', name: 'ReactJS v.18.2.0', cb: nextLineHandler },
+      { type: 'installationInfo', name: 'JavaScript ECMAScript 2022', cb: nextLineHandler },
+      { type: 'installationInfoFast', name: 'HTML5 & CSS3', cb: nextLineHandler },
+      { type: 'installation', name: 'Installing backend knowledge:', cb: nextLineHandler },
+      { type: 'installationInfo', name: 'NodeJS v.18.14.0', cb: nextLineHandler },
+      { type: 'installationInfoFast', name: 'ExpressJS v.4.18.2', cb: nextLineHandler },
+      { type: 'installationInfoFast', name: 'MongoDB v.6.0 & Mongoose v.6.9.0', cb: nextLineHandler },
+      { type: 'installationInfoFast', name: 'MySQL v.8.0.32', cb: nextLineHandler },
+      { type: 'installation', name: 'Installing dependencies:', cb: nextLineHandler },
+      { type: 'installationInfo', name: 'TypeScript v.4.9.5', cb: nextLineHandler },
+      { type: 'installationInfoFast', name: 'Git v.2.39.1', cb: nextLineHandler },
+      { type: 'installationInfoFast', name: 'Jest v.29.4.1', cb: nextLineHandler },
+      { type: 'installationInfoFast', name: 'Cypress v.12.5.1', cb: nextLineHandler },
+      { type: 'installationInfoFast', name: 'Playwright v.1.30', cb: nextLineHandler },
+      { type: 'installation', name: 'All packages has been installed successfully', cb: nextLineHandler },
+      { type: 'loadingDevBlock', name: 'loading block', cb: nextLineHandler },
+      { type: 'promptLine', name: 'last block', cb: switchIntroState }
+    ],
+    []
+  )
+
+  const arrayToRenderHelper = (line: number) => {
+    const elementToRender = renderLineObjs[line]
+    if (elementToRender === undefined) return
+    const element = renderLinePropHelper(elementToRender)
+    setArrayToRender(prevState => [...prevState, element])
   }
 
   return (
@@ -204,60 +250,7 @@ export const Prompt: React.FC<IProps> = ({ switchIntroState }: IProps) => {
                 {typingLine === 3 && <span className="Prompt__cursor" />}
               </div>
             )}
-            {typingLine >= 4 && (
-              <InstallationBlock installingData="Installing frontend knowledge:" cbFunction={nextLineHandler} />
-            )}
-            {typingLine >= 5 && <TypeInstallationInfo packageName="ReactJS v.18.2.0" cbFunction={nextLineHandler} />}
-            {typingLine >= 6 && (
-              <TypeInstallationInfo packageName="JavaScript ECMAScript 2022" cbFunction={nextLineHandler} />
-            )}
-            {typingLine >= 7 && <TypeInstallationInfoFast packageName="HTML5 & CSS3" cbFunction={nextLineHandler} />}
-            {typingLine >= 8 && (
-              <InstallationBlock installingData="Installing backend knowledge:" cbFunction={nextLineHandler} />
-            )}
-            {typingLine >= 9 && <TypeInstallationInfo packageName="NodeJS v.18.14.0" cbFunction={nextLineHandler} />}
-            {typingLine >= 10 && (
-              <TypeInstallationInfoFast packageName="ExpressJS v.4.18.2" cbFunction={nextLineHandler} />
-            )}
-            {typingLine >= 11 && (
-              <TypeInstallationInfoFast packageName="MongoDB v.6.0 & Mongoose v.6.9.0" cbFunction={nextLineHandler} />
-            )}
-            {typingLine >= 12 && <TypeInstallationInfoFast packageName="MySQL v.8.0.32" cbFunction={nextLineHandler} />}
-            {typingLine >= 13 && (
-              <InstallationBlock installingData="Installing dependencies:" cbFunction={nextLineHandler} />
-            )}
-            {typingLine >= 14 && <TypeInstallationInfo packageName="TypeScript v.4.9.5" cbFunction={nextLineHandler} />}
-            {typingLine >= 15 && <TypeInstallationInfoFast packageName="Git v.2.39.1" cbFunction={nextLineHandler} />}
-            {typingLine >= 16 && <TypeInstallationInfoFast packageName="Jest v.29.4.1" cbFunction={nextLineHandler} />}
-            {typingLine >= 17 && (
-              <TypeInstallationInfoFast packageName="Cypress v.12.5.1" cbFunction={nextLineHandler} />
-            )}
-            {typingLine >= 18 && (
-              <TypeInstallationInfoFast packageName="Playwright v.1.30" cbFunction={nextLineHandler} />
-            )}
-            {typingLine >= 19 && (
-              <InstallationBlock
-                installingData="All packages has been installed successfully"
-                cbFunction={nextLineHandler}
-              />
-            )}
-            {typingLine >= 20 && (
-              <div className="Terminal__Prompt">
-                <span className="Terminal__text">
-                  Loading developer <span className="Prompt__user">Pablo Avilés</span>
-                </span>
-                <TypeLineAnimation sequence={[` `, 500, nextLineHandler]} />
-              </div>
-            )}
-            {typingLine === 21 && (
-              <div className="Terminal__Prompt">
-                <span className="Prompt__user">aviles@ubuntu:</span>
-                <span className="Prompt__location">~</span>
-                <span className="Prompt__dollar">$</span>
-                <span className="Prompt__cursor" />
-                <TypeLineAnimation sequence={[` `, 1000, switchIntroState]} />
-              </div>
-            )}
+            {arrayToRender}
           </div>
         </div>
       </div>
