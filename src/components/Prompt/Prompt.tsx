@@ -9,8 +9,12 @@ interface IProps {
   switchIntroState: () => void
 }
 
-const PromptContainer = styled.div`
+const CONTAINER_PROMPT_WIDTH = 600
+
+const PromptContainer = styled.div<{ containerPromptWidth: number }>`
   font-family: 'Ubuntu';
+  position: absolute;
+  left: ${({ containerPromptWidth }) => `calc(50% - ${containerPromptWidth / 2}px)`};
   .container {
     display: flex;
     justify-content: center;
@@ -19,7 +23,7 @@ const PromptContainer = styled.div`
       margin-bottom: 10px;
     }
     .Terminal {
-      width: 600px;
+      width: ${({ containerPromptWidth }) => `${containerPromptWidth}px`};
       height: 360px;
       box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
       &__Toolbar {
@@ -149,7 +153,7 @@ export const Prompt: React.FC<IProps> = ({ switchIntroState }: IProps) => {
   }
 
   return (
-    <PromptContainer>
+    <PromptContainer containerPromptWidth={CONTAINER_PROMPT_WIDTH}>
       <div className="container">
         <div className="Terminal">
           <TerminalToolbar />
