@@ -8,14 +8,14 @@ const TerminalText = styled.span`
 
 interface IProps {
   cbFunction: (element: HTMLElement | null) => void | Promise<void>
-  packageName: string
+  installingData: string
 }
 
-export const TypeInstallationInfo: React.FC<IProps> = ({ cbFunction, packageName }: IProps) => {
+export const TypeInstallationInfo: React.FC<IProps> = ({ cbFunction, installingData }: IProps) => {
   return (
     <div className="Terminal__Prompt">
       <span className="Terminal__Prompt--spacer" />
-      <TerminalText className="Terminal__text">{packageName}</TerminalText>
+      <TerminalText className="Terminal__text">{installingData}</TerminalText>
       <span style={{ width: '152px' }}>
         <TypeLineAnimation sequence={[`[=================>`]} />
       </span>
