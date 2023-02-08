@@ -134,12 +134,12 @@ const PromptContainer = styled.div<{ containerPromptWidth: number }>`
       }
     }
 
-    @media (max-width: 600px) {
+    /* @media (max-width: 600px) {
       .Terminal {
         max-height: 90%;
         width: 95%;
       }
-    }
+    } */
   }
 `
 

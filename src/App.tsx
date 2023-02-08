@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { Prompt, ProfileHeader, Header } from './components'
+import { LeftBlockContainer, RightBlockContainer, BottomBlockContainer } from './components/Styles'
 import { LIGHT_THEME, DARK_THEME } from './themes'
 
 const PromptContainer = styled.div<{ introState: boolean }>`
@@ -21,7 +22,7 @@ const PromptContainer = styled.div<{ introState: boolean }>`
   }
 `
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle<{ introState: boolean }>`
   * {
     box-sizing: border-box;
     margin: 0;
@@ -32,8 +33,10 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
   body {
-    background-color: ${({ theme }) => theme.mainBground};
+    background-color: white;
+    /* background-color: ${({ theme }) => theme.mainBground}; */
     color: ${({ theme }) => theme.mainColor};
+    overflow-x: hidden;
   }
 `
 
@@ -41,9 +44,9 @@ const App: React.FC = () => {
   const [lightTheme, setLightTheme] = useState<boolean>(false)
   const [introState, setIntroState] = useState<boolean>(true)
 
-  // useEffect(() => {
-  //   setIntroState(false)
-  // }, [])
+  useEffect(() => {
+    setIntroState(true)
+  }, [])
 
   const switchThemeHandler = () => {
     setLightTheme(prevState => !prevState)
@@ -55,12 +58,20 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={lightTheme ? LIGHT_THEME : DARK_THEME}>
-      <Header />
-      <GlobalStyle />
-      <PromptContainer introState={introState}>
-        <Prompt switchIntroState={switchIntroState} />
-      </PromptContainer>
-      <ProfileHeader introState={introState} />
+      <GlobalStyle introState={introState} />
+      <Header introState={introState} />
+      <LeftBlockContainer introState={introState} />
+      <RightBlockContainer introState={introState}>
+        {introState && (
+          <PromptContainer introState={introState}>
+            <Prompt switchIntroState={switchIntroState} />
+          </PromptContainer>
+        )}
+        <ProfileHeader introState={introState} />
+      </RightBlockContainer>
+      <BottomBlockContainer introState={introState}>
+        <h1 style={{ paddingTop: '160px', textAlign: 'center' }}>Test</h1>
+      </BottomBlockContainer>
     </ThemeProvider>
   )
 }
