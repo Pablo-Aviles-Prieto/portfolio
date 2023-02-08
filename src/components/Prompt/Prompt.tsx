@@ -186,7 +186,7 @@ export const Prompt: React.FC<IProps> = ({ switchIntroState }: IProps) => {
       { type: 'installationInfoFast', name: 'Playwright v.1.30', cb: nextLineHandler },
       { type: 'installation', name: 'All packages has been installed successfully', cb: nextLineHandler },
       { type: 'loadingDevBlock', name: 'loading block', cb: nextLineHandler },
-      { type: 'promptLine', name: 'last block', cb: () => '' }
+      { type: 'promptLine', name: 'last block', cb: switchIntroState }
     ],
     []
   )
