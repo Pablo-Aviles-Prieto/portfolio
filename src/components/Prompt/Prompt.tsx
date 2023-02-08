@@ -188,7 +188,7 @@ export const Prompt: React.FC<IProps> = ({ switchIntroState }: IProps) => {
       { type: 'loadingDevBlock', name: 'loading block', cb: nextLineHandler },
       { type: 'promptLine', name: 'last block', cb: () => '' }
     ],
-    [typingLine]
+    []
   )
 
   const arrayToRenderHelper = (line: number) => {
@@ -251,23 +251,6 @@ export const Prompt: React.FC<IProps> = ({ switchIntroState }: IProps) => {
               </div>
             )}
             {arrayToRender}
-            {/* {typingLine >= 20 && (
-              <div className="Terminal__Prompt">
-                <span className="Terminal__text">
-                  Loading developer <span className="Prompt__user">Pablo Avilés</span>
-                </span>
-                <TypeLineAnimation sequence={[` `, 500, nextLineHandler]} />
-              </div>
-            )} */}
-            {/* {typingLine === 21 && (
-              <div className="Terminal__Prompt">
-                <span className="Prompt__user">aviles@ubuntu:</span>
-                <span className="Prompt__location">~</span>
-                <span className="Prompt__dollar">$</span>
-                <span className="Prompt__cursor" />
-                <TypeLineAnimation sequence={[` `, 1000, switchIntroState]} />
-              </div>
-            )} */}
           </div>
         </div>
       </div>

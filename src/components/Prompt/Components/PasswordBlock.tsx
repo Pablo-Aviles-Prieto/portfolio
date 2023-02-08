@@ -2,7 +2,6 @@ import { TypeLineAnimation } from '../TypeAnimations'
 import { IPropsElements } from '../../../interfaces/IPropsElements'
 
 export const PasswordBlock: React.FC<IPropsElements> = ({ installingData, cbFunction, typingLine }: IPropsElements) => {
-  console.log('typingLine', typingLine)
   return (
     <div className="Terminal__Prompt">
       <span className="Terminal__text" style={{ marginRight: '2px' }}>
