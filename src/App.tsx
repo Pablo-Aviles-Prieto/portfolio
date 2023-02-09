@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
-import { Prompt, ProfileHeader, Header } from './components'
-import { LeftBlockContainer, RightBlockContainer, BottomBlockContainer } from './components/Styles'
+import { Prompt, UbuntuContainer } from './components'
 import { LIGHT_THEME, DARK_THEME } from './themes'
 
 const PromptContainer = styled.div<{ introState: boolean }>`
@@ -53,13 +52,13 @@ const App: React.FC = () => {
   }
 
   const switchIntroState = () => {
-    setIntroState(false)
+    setIntroState(true)
   }
 
   return (
     <ThemeProvider theme={lightTheme ? LIGHT_THEME : DARK_THEME}>
       <GlobalStyle introState={introState} />
-      <Header introState={introState} />
+      {/* <Header introState={introState} />
       <LeftBlockContainer introState={introState} />
       <RightBlockContainer introState={introState}>
         {introState && (
@@ -71,7 +70,12 @@ const App: React.FC = () => {
       </RightBlockContainer>
       <BottomBlockContainer introState={introState}>
         <h1 style={{ paddingTop: '160px', textAlign: 'center' }}>Test</h1>
-      </BottomBlockContainer>
+      </BottomBlockContainer> */}
+      <UbuntuContainer>
+        <PromptContainer introState={introState}>
+          <Prompt switchIntroState={switchIntroState} />
+        </PromptContainer>
+      </UbuntuContainer>
     </ThemeProvider>
   )
 }
