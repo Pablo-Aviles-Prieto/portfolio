@@ -15,6 +15,8 @@ const WindowContainer = styled.div`
   /* TODO check on mobile version  */
   position: absolute;
   left: calc(50% - (950px / 2));
+  /* transform: translate(0, 0); */
+  animation: closeFile 1s ease-in reverse;
   .left-section,
   .right-section {
     &-header {
@@ -86,6 +88,20 @@ const WindowContainer = styled.div`
           font-weight: 700;
         }
       }
+    }
+  }
+  @keyframes closeFile {
+    0% {
+      width: 85%;
+      height: 97%;
+      left: calc(50% - (950px / 2));
+      top: 0;
+    }
+    100% {
+      width: 0;
+      height: 0;
+      left: 0;
+      top: 200px;
     }
   }
 `

@@ -39,9 +39,19 @@ const GlobalStyle = createGlobalStyle<{ introState: boolean }>`
   }
 `
 
+const possibleFiles = {
+  profileInfo: 'profileInfo',
+  projects: 'projects',
+  contacts: 'contact',
+  none: 'none'
+}
+
+type IOpenFile = keyof typeof possibleFiles
+
 const App: React.FC = () => {
   const [lightTheme, setLightTheme] = useState<boolean>(false)
   const [introState, setIntroState] = useState<boolean>(true)
+  const [openFile, setOpenFile] = useState<IOpenFile>('none')
 
   useEffect(() => {
     setIntroState(false)
