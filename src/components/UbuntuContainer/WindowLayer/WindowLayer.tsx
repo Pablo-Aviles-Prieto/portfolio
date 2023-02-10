@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Hamburger } from '../../Icons'
 
-const WindowContainer = styled.div<{ isAnimating: boolean }>`
+const WindowContainer = styled.div`
   display: flex;
   width: 0;
   height: 0;
@@ -106,7 +106,7 @@ export const WindowLayer: React.FC<IProps> = ({ isOpen, switchOpenFileState }: I
   console.log('isOpen', isOpen)
 
   return (
-    <WindowContainer className={isOpen ? 'page__open' : ''} isAnimating={isOpen}>
+    <WindowContainer className={isOpen ? 'page__open' : ''}>
       <div className="left-section">
         <div className="left-section-header">
           <div />
