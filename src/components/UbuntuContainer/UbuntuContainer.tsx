@@ -186,11 +186,6 @@ const UbuntuContainerDiv = styled.div`
         }
       }
 
-      .language-select,
-      .sound-settings {
-        padding-right: 10px;
-      }
-
       .open-application {
         position: relative;
 
@@ -225,7 +220,6 @@ const UbuntuContainerDiv = styled.div`
       position: absolute;
       top: 20%;
       width: 60px;
-      height: 450px;
       background-color: rgba(0, 0, 0, 0.7);
       border-top-right-radius: 1em;
       border-bottom-right-radius: 1em;
@@ -300,10 +294,11 @@ const UbuntuContainerDiv = styled.div`
 `
 
 interface IProps {
+  switchOpenFileState: React.Dispatch<React.SetStateAction<'none' | 'profileInfo' | 'projects' | 'contacts'>>
   children: JSX.Element
 }
 
-export const UbuntuContainer: React.FC<IProps> = ({ children }: IProps) => {
+export const UbuntuContainer: React.FC<IProps> = ({ switchOpenFileState, children }: IProps) => {
   return (
     <UbuntuContainerDiv>
       <div className="grid-layer" style={{ opacity: 0, display: 'none' }}>
@@ -313,13 +308,10 @@ export const UbuntuContainer: React.FC<IProps> = ({ children }: IProps) => {
         <div className="calculator-app" />
         <div className="software-center-app" />
       </div>
-      <div className="windows-layer">
-        {children}
-        <h1>test</h1>
-      </div>
+      <div className="windows-layer">{children}</div>
       <div className="desktop">
         <div className="action-bar">
-          <span className="activities">
+          <span className="activities" onClick={() => switchOpenFileState('profileInfo')}>
             <div className="hot-spot" />
             Activities
           </span>
@@ -332,14 +324,6 @@ export const UbuntuContainer: React.FC<IProps> = ({ children }: IProps) => {
           </span>
           <span className="time float-center">{getDayAndHourHelper()}</span>
           <span className="float-right" />
-          <span className="language-select">
-            en
-            <span className="entypo-down-dir font-icon" />
-          </span>
-          <span className="sound-settings fontawesome-volume-up" />
-          <span className="power-button fontawesome-off font-icon">
-            <span className="entypo-down-dir font-icon" />
-          </span>
         </div>
         <div className="dock">
           <div className="nautilus icon">
@@ -353,9 +337,6 @@ export const UbuntuContainer: React.FC<IProps> = ({ children }: IProps) => {
           </div>
           <div className="terminal icon">
             <div className="tooltip">Terminal</div>
-          </div>
-          <div className="gedit icon">
-            <div className="tooltip">gedit</div>
           </div>
           <div className="calculator icon">
             <div className="tooltip">calc</div>

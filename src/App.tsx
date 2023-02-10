@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
-import { Prompt, UbuntuContainer } from './components'
+import { Prompt, UbuntuContainer, ProfileHeader } from './components'
 import { LIGHT_THEME, DARK_THEME } from './themes'
+import { WindowLayer } from './components/UbuntuContainer/WindowLayer/WindowLayer'
 
 const PromptContainer = styled.div<{ introState: boolean }>`
   margin-top: 10px;
@@ -32,16 +33,25 @@ const GlobalStyle = createGlobalStyle<{ introState: boolean }>`
     list-style: none;
   }
   body {
-    background-color: white;
     /* background-color: ${({ theme }) => theme.mainBground}; */
     color: ${({ theme }) => theme.mainColor};
     overflow-x: hidden;
   }
 `
 
+const possibleFiles = {
+  profileInfo: 'profileInfo',
+  projects: 'projects',
+  contacts: 'contact',
+  none: 'none'
+}
+
+type IOpenFile = keyof typeof possibleFiles
+
 const App: React.FC = () => {
   const [lightTheme, setLightTheme] = useState<boolean>(false)
   const [introState, setIntroState] = useState<boolean>(true)
+  const [openFile, setOpenFile] = useState<IOpenFile>('none')
 
   useEffect(() => {
     setIntroState(true)
@@ -52,29 +62,24 @@ const App: React.FC = () => {
   }
 
   const switchIntroState = () => {
-    setIntroState(true)
+    setIntroState(false)
   }
 
   return (
     <ThemeProvider theme={lightTheme ? LIGHT_THEME : DARK_THEME}>
       <GlobalStyle introState={introState} />
-      {/* <Header introState={introState} />
-      <LeftBlockContainer introState={introState} />
-      <RightBlockContainer introState={introState}>
-        {introState && (
+      <UbuntuContainer switchOpenFileState={setOpenFile}>
+        <>
           <PromptContainer introState={introState}>
             <Prompt switchIntroState={switchIntroState} />
           </PromptContainer>
-        )}
-        <ProfileHeader introState={introState} />
-      </RightBlockContainer>
-      <BottomBlockContainer introState={introState}>
-        <h1 style={{ paddingTop: '160px', textAlign: 'center' }}>Test</h1>
-      </BottomBlockContainer> */}
-      <UbuntuContainer>
-        <PromptContainer introState={introState}>
-          <Prompt switchIntroState={switchIntroState} />
-        </PromptContainer>
+          <WindowLayer isOpen={openFile === 'profileInfo'} switchOpenFileState={setOpenFile}>
+            <>
+              <p>Test Content</p>
+              <ProfileHeader introState={introState} />
+            </>
+          </WindowLayer>
+        </>
       </UbuntuContainer>
     </ThemeProvider>
   )
