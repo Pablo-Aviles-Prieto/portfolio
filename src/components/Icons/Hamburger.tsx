@@ -1,6 +1,6 @@
 import { SVGProps } from 'react'
 
-export const Hamburguer = (props: SVGProps<SVGSVGElement>) => (
+export const Hamburger: React.FC<SVGProps<SVGSVGElement>> = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className="icon icon-tabler icon-tabler-menu-2"

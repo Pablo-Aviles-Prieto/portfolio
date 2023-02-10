@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Hamburger } from '../../Icons'
 
 const WindowContainer = styled.div`
   display: flex;
@@ -11,6 +12,9 @@ const WindowContainer = styled.div`
   overflow: hidden;
   box-shadow: 2px 4px 10px rgb(0 0 0 / 50%);
   font-family: 'Poppins';
+  /* TODO check on mobile version  */
+  position: absolute;
+  left: calc(50% - (950px / 2));
   .left-section,
   .right-section {
     &-header {
@@ -31,6 +35,8 @@ const WindowContainer = styled.div`
     &-header {
       justify-content: space-between;
       &__menu {
+        display: flex;
+        cursor: pointer;
       }
     }
   }
@@ -68,16 +74,15 @@ const WindowContainer = styled.div`
           position: absolute;
           font-size: 20px;
           bottom: -3px;
-          left: 6px;
+          left: 5px;
         }
         .button__maximize {
           font-size: 21px;
           position: absolute;
           bottom: -2px;
-          left: 4px;
+          left: 3px;
         }
         .button__exit {
-          font-size: 14px;
           font-weight: 700;
         }
       }
@@ -92,16 +97,18 @@ export const WindowLayer = () => {
         <div className="left-section-header">
           <div />
           <p>Menu</p>
-          <div className="left-section-header__menu">T</div>
+          <div className="left-section-header__menu">
+            <Hamburger width={25} height={25} />
+          </div>
         </div>
         <div className="left-section-content">
-          <h1>Test left</h1>
+          <p>Menu bar options</p>
         </div>
       </div>
       <div className="right-section">
         <div className="right-section-header">
           <div />
-          <p>Header1</p>
+          <p>Content title</p>
           <div className="right-section-header__buttons">
             <button type="button">
               <span className="button__minimize">&#9472;</span>
@@ -115,7 +122,7 @@ export const WindowLayer = () => {
           </div>
         </div>
         <div className="right-section-content">
-          <h1>Test right</h1>
+          <p>Content</p>
         </div>
       </div>
     </WindowContainer>
