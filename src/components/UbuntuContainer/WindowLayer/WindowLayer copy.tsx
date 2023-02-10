@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Hamburger } from '../../Icons'
 
@@ -5,8 +6,8 @@ const WindowContainer = styled.div<{ isAnimating: boolean }>`
   display: flex;
   width: 0;
   height: 0;
-  left: 20px;
-  top: 160px;
+  /* width: 85%; */
+  /* height: 97%; */
   background-color: ${({ theme }) => theme.mainBground};
   margin: 0 auto;
   max-width: 950px;
@@ -15,12 +16,14 @@ const WindowContainer = styled.div<{ isAnimating: boolean }>`
   box-shadow: 2px 4px 10px rgb(0 0 0 / 50%);
   font-family: 'Poppins';
   position: absolute;
-  transition: all 1s ease-in;
+  /* TODO check on mobile version the left */
+  /* left: calc(50% - (950px / 2)); */
+  &.page__close {
+    animation: ${({ isAnimating }) => (isAnimating ? 'closeFile 1s ease-in forwards' : 'none')};
+  }
   &.page__open {
-    width: 85%;
-    height: 97%;
-    left: calc(50% - (950px / 2));
-    top: 0;
+    animation: closeFile 1s ease-in reverse forwards;
+    /* animation: ${({ isAnimating }) => isAnimating && 'closeFile 1s ease-in reverse forwards'}; */
   }
   .left-section,
   .right-section {
@@ -95,6 +98,20 @@ const WindowContainer = styled.div<{ isAnimating: boolean }>`
       }
     }
   }
+  @keyframes closeFile {
+    0% {
+      width: 85%;
+      height: 97%;
+      left: calc(50% - (950px / 2));
+      top: 0;
+    }
+    100% {
+      width: 0;
+      height: 0;
+      left: 0;
+      top: 200px;
+    }
+  }
 `
 
 interface IProps {
@@ -103,10 +120,37 @@ interface IProps {
 }
 
 export const WindowLayer: React.FC<IProps> = ({ isOpen, switchOpenFileState }: IProps) => {
+  const [isAnimating, setIsAnimating] = useState(false)
+
+  useEffect(() => {
+    setIsAnimating(true)
+  }, [isOpen])
+
+  useEffect(() => {
+    if (!isAnimating) {
+      return
+    }
+
+    const animationEndHandler = () => {
+      setIsAnimating(false)
+    }
+
+    const element = document.querySelector('.animated-element')
+    element!.addEventListener('animationend', animationEndHandler)
+
+    return () => {
+      element!.removeEventListener('animationend', animationEndHandler)
+    }
+  }, [isAnimating])
+
+  console.log('isAnimating', isAnimating)
   console.log('isOpen', isOpen)
 
   return (
-    <WindowContainer className={isOpen ? 'page__open' : ''} isAnimating={isOpen}>
+    <WindowContainer
+      className={isOpen ? 'page__open animated-element' : 'page__close animated-element'}
+      isAnimating={isAnimating}
+    >
       <div className="left-section">
         <div className="left-section-header">
           <div />
