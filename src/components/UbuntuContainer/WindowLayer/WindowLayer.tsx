@@ -1,10 +1,13 @@
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Hamburger } from '../../Icons'
 
-const WindowContainer = styled.div`
+const WindowContainer = styled.div<{ isAnimating: boolean }>`
   display: flex;
-  width: 85%;
-  height: 97%;
+  width: 0;
+  height: 0;
+  /* width: 85%; */
+  /* height: 97%; */
   background-color: ${({ theme }) => theme.mainBground};
   margin: 0 auto;
   max-width: 950px;
@@ -12,11 +15,16 @@ const WindowContainer = styled.div`
   overflow: hidden;
   box-shadow: 2px 4px 10px rgb(0 0 0 / 50%);
   font-family: 'Poppins';
-  /* TODO check on mobile version  */
   position: absolute;
-  left: calc(50% - (950px / 2));
-  /* transform: translate(0, 0); */
-  animation: closeFile 1s ease-in reverse;
+  /* TODO check on mobile version the left */
+  /* left: calc(50% - (950px / 2)); */
+  &.page__close {
+    animation: ${({ isAnimating }) => (isAnimating ? 'closeFile 1s ease-in forwards' : 'none')};
+  }
+  &.page__open {
+    animation: closeFile 1s ease-in reverse forwards;
+    /* animation: ${({ isAnimating }) => isAnimating && 'closeFile 1s ease-in reverse forwards'}; */
+  }
   .left-section,
   .right-section {
     &-header {
@@ -106,9 +114,43 @@ const WindowContainer = styled.div`
   }
 `
 
-export const WindowLayer = () => {
+interface IProps {
+  isOpen: boolean
+  switchOpenFileState: React.Dispatch<React.SetStateAction<'none' | 'profileInfo' | 'projects' | 'contacts'>>
+}
+
+export const WindowLayer: React.FC<IProps> = ({ isOpen, switchOpenFileState }: IProps) => {
+  const [isAnimating, setIsAnimating] = useState(false)
+
+  useEffect(() => {
+    setIsAnimating(true)
+  }, [isOpen])
+
+  useEffect(() => {
+    if (!isAnimating) {
+      return
+    }
+
+    const animationEndHandler = () => {
+      setIsAnimating(false)
+    }
+
+    const element = document.querySelector('.animated-element')
+    element!.addEventListener('animationend', animationEndHandler)
+
+    return () => {
+      element!.removeEventListener('animationend', animationEndHandler)
+    }
+  }, [isAnimating])
+
+  console.log('isAnimating', isAnimating)
+  console.log('isOpen', isOpen)
+
   return (
-    <WindowContainer>
+    <WindowContainer
+      className={isOpen ? 'page__open animated-element' : 'page__close animated-element'}
+      isAnimating={isAnimating}
+    >
       <div className="left-section">
         <div className="left-section-header">
           <div />
@@ -133,7 +175,9 @@ export const WindowLayer = () => {
               <span className="button__maximize">&#9723;</span>
             </button>
             <button type="button">
-              <span className="button__exit">&#10005;</span>
+              <span className="button__exit" onClick={() => switchOpenFileState('none')}>
+                &#10005;
+              </span>
             </button>
           </div>
         </div>

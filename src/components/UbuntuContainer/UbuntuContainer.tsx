@@ -294,10 +294,11 @@ const UbuntuContainerDiv = styled.div`
 `
 
 interface IProps {
+  switchOpenFileState: React.Dispatch<React.SetStateAction<'none' | 'profileInfo' | 'projects' | 'contacts'>>
   children: JSX.Element
 }
 
-export const UbuntuContainer: React.FC<IProps> = ({ children }: IProps) => {
+export const UbuntuContainer: React.FC<IProps> = ({ switchOpenFileState, children }: IProps) => {
   return (
     <UbuntuContainerDiv>
       <div className="grid-layer" style={{ opacity: 0, display: 'none' }}>
@@ -310,7 +311,7 @@ export const UbuntuContainer: React.FC<IProps> = ({ children }: IProps) => {
       <div className="windows-layer">{children}</div>
       <div className="desktop">
         <div className="action-bar">
-          <span className="activities">
+          <span className="activities" onClick={() => switchOpenFileState('profileInfo')}>
             <div className="hot-spot" />
             Activities
           </span>

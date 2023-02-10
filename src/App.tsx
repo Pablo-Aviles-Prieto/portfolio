@@ -52,6 +52,7 @@ const App: React.FC = () => {
   const [lightTheme, setLightTheme] = useState<boolean>(false)
   const [introState, setIntroState] = useState<boolean>(true)
   const [openFile, setOpenFile] = useState<IOpenFile>('none')
+  console.log('openFile', openFile)
 
   useEffect(() => {
     setIntroState(false)
@@ -81,12 +82,12 @@ const App: React.FC = () => {
       <BottomBlockContainer introState={introState}>
         <h1 style={{ paddingTop: '160px', textAlign: 'center' }}>Test</h1>
       </BottomBlockContainer> */}
-      <UbuntuContainer>
+      <UbuntuContainer switchOpenFileState={setOpenFile}>
         <>
           <PromptContainer introState={introState}>
             <Prompt switchIntroState={switchIntroState} />
           </PromptContainer>
-          <WindowLayer />
+          <WindowLayer isOpen={openFile === 'profileInfo'} switchOpenFileState={setOpenFile} />
         </>
       </UbuntuContainer>
     </ThemeProvider>
