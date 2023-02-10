@@ -5,6 +5,7 @@ const WindowContainer = styled.div`
   display: flex;
   width: 0;
   height: 0;
+  opacity: 0;
   left: 20px;
   top: 160px;
   background-color: ${({ theme }) => theme.mainBground};
@@ -15,12 +16,13 @@ const WindowContainer = styled.div`
   box-shadow: 2px 4px 10px rgb(0 0 0 / 50%);
   font-family: 'Poppins';
   position: absolute;
-  transition: all 1s ease-in;
+  transition: all 0.5s ease-in;
   &.page__open {
     width: 85%;
     height: 97%;
     left: calc(50% - (950px / 2));
     top: 0;
+    opacity: 1;
   }
   .left-section,
   .right-section {
@@ -100,9 +102,10 @@ const WindowContainer = styled.div`
 interface IProps {
   isOpen: boolean
   switchOpenFileState: React.Dispatch<React.SetStateAction<'none' | 'profileInfo' | 'projects' | 'contacts'>>
+  children: JSX.Element
 }
 
-export const WindowLayer: React.FC<IProps> = ({ isOpen, switchOpenFileState }: IProps) => {
+export const WindowLayer: React.FC<IProps> = ({ isOpen, switchOpenFileState, children }: IProps) => {
   console.log('isOpen', isOpen)
 
   return (
@@ -137,9 +140,7 @@ export const WindowLayer: React.FC<IProps> = ({ isOpen, switchOpenFileState }: I
             </button>
           </div>
         </div>
-        <div className="right-section-content">
-          <p>Content</p>
-        </div>
+        <div className="right-section-content">{children}</div>
       </div>
     </WindowContainer>
   )

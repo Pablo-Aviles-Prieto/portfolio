@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
-import { Prompt, UbuntuContainer } from './components'
+import { Prompt, UbuntuContainer, ProfileHeader } from './components'
 import { LIGHT_THEME, DARK_THEME } from './themes'
 import { WindowLayer } from './components/UbuntuContainer/WindowLayer/WindowLayer'
 
@@ -52,10 +52,9 @@ const App: React.FC = () => {
   const [lightTheme, setLightTheme] = useState<boolean>(false)
   const [introState, setIntroState] = useState<boolean>(true)
   const [openFile, setOpenFile] = useState<IOpenFile>('none')
-  console.log('openFile', openFile)
 
   useEffect(() => {
-    setIntroState(false)
+    setIntroState(true)
   }, [])
 
   const switchThemeHandler = () => {
@@ -69,25 +68,17 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={lightTheme ? LIGHT_THEME : DARK_THEME}>
       <GlobalStyle introState={introState} />
-      {/* <Header introState={introState} />
-      <LeftBlockContainer introState={introState} />
-      <RightBlockContainer introState={introState}>
-        {introState && (
-          <PromptContainer introState={introState}>
-            <Prompt switchIntroState={switchIntroState} />
-          </PromptContainer>
-        )}
-        <ProfileHeader introState={introState} />
-      </RightBlockContainer>
-      <BottomBlockContainer introState={introState}>
-        <h1 style={{ paddingTop: '160px', textAlign: 'center' }}>Test</h1>
-      </BottomBlockContainer> */}
       <UbuntuContainer switchOpenFileState={setOpenFile}>
         <>
           <PromptContainer introState={introState}>
             <Prompt switchIntroState={switchIntroState} />
           </PromptContainer>
-          <WindowLayer isOpen={openFile === 'profileInfo'} switchOpenFileState={setOpenFile} />
+          <WindowLayer isOpen={openFile === 'profileInfo'} switchOpenFileState={setOpenFile}>
+            <>
+              <p>Test Content</p>
+              <ProfileHeader introState={introState} />
+            </>
+          </WindowLayer>
         </>
       </UbuntuContainer>
     </ThemeProvider>
