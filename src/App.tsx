@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { Prompt, UbuntuContainer } from './components'
 import { LIGHT_THEME, DARK_THEME } from './themes'
+import { WindowLayer } from './components/UbuntuContainer/WindowLayer/WindowLayer'
 
 const PromptContainer = styled.div<{ introState: boolean }>`
   margin-top: 10px;
@@ -32,7 +33,6 @@ const GlobalStyle = createGlobalStyle<{ introState: boolean }>`
     list-style: none;
   }
   body {
-    background-color: white;
     /* background-color: ${({ theme }) => theme.mainBground}; */
     color: ${({ theme }) => theme.mainColor};
     overflow-x: hidden;
@@ -44,7 +44,7 @@ const App: React.FC = () => {
   const [introState, setIntroState] = useState<boolean>(true)
 
   useEffect(() => {
-    setIntroState(true)
+    setIntroState(false)
   }, [])
 
   const switchThemeHandler = () => {
@@ -52,7 +52,7 @@ const App: React.FC = () => {
   }
 
   const switchIntroState = () => {
-    setIntroState(true)
+    setIntroState(false)
   }
 
   return (
@@ -72,9 +72,12 @@ const App: React.FC = () => {
         <h1 style={{ paddingTop: '160px', textAlign: 'center' }}>Test</h1>
       </BottomBlockContainer> */}
       <UbuntuContainer>
-        <PromptContainer introState={introState}>
-          <Prompt switchIntroState={switchIntroState} />
-        </PromptContainer>
+        <>
+          <PromptContainer introState={introState}>
+            <Prompt switchIntroState={switchIntroState} />
+          </PromptContainer>
+          <WindowLayer />
+        </>
       </UbuntuContainer>
     </ThemeProvider>
   )
