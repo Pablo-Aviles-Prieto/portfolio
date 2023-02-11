@@ -67,11 +67,6 @@ const UbuntuContainerDiv = styled.div`
     }
   }
 
-  img {
-    width: 100%;
-    height: auto;
-  }
-
   .gedit-app {
     background-image: url('http://img01.deviantart.net/57f0/i/2010/203/7/6/dcrdarkclassic___gedit_theme_by_drankinatty.jpg');
   }
@@ -110,23 +105,6 @@ const UbuntuContainerDiv = styled.div`
     right: 0;
     z-index: 2;
     overflow: hidden;
-
-    /* > div {
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      display: inline-block;
-      margin: 0;
-      padding: 0;
-      width: 960px;
-      height: 878px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: right top;
-      &calculator-app {
-        zoom: 50%;
-      }
-    } */
   }
 
   /*************************

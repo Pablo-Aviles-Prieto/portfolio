@@ -8,13 +8,11 @@ const ProfileContainer = styled.div`
   gap: 15px;
 `
 
-const PhotoContainer = styled(ImgContainer)<{ introState: boolean }>`
-  opacity: ${({ introState }) => (introState ? 0 : 1)};
-  transition: opacity 2s ease-in;
+const PhotoContainer = styled(ImgContainer)`
   border-radius: 100%;
 `
 
-const DetailsContainer = styled.div<{ introState: boolean }>`
+const DetailsContainer = styled.div`
   position: relative;
   width: 400px;
   height: 250px;
@@ -24,15 +22,13 @@ const DetailsContainer = styled.div<{ introState: boolean }>`
     font-size: 53px;
     line-height: 37px;
     position: absolute;
-    top: ${({ introState }) => (introState ? '-300px' : '20px')};
-    transition: top 1.2s ease-in;
+    top: 20px;
   }
   .description-block {
     position: absolute;
     max-width: 380px;
     bottom: 35px;
-    right: ${({ introState }) => (introState ? '-1700px' : '20px')};
-    transition: right 1.2s ease-in;
+    right: 20px;
     .emphasize-text {
       color: ${({ theme }) => theme.emphasizeColor};
     }
@@ -46,55 +42,12 @@ const DetailsContainer = styled.div<{ introState: boolean }>`
     font-size: 53px;
     line-height: 37px;
     position: absolute;
-    top: ${({ introState }) => (introState ? '-300px' : '62px')};
-    animation: ${({ introState }) => (introState ? 'none' : `bounce-in-top 2.6s both`)};
+    top: 62px;
   }
   .developer-animation span:nth-child(even) {
     display: inline-block;
-    animation: ${({ introState }) => (introState ? 'none' : `rotate-letters 2.8s ease-in-out`)};
+    animation: rotate-letters 2.8s ease-in-out;
     animation-fill-mode: forwards;
-  }
-
-  @keyframes bounce-in-top {
-    0% {
-      transform: translateY(-500px);
-      animation-timing-function: ease-in;
-      opacity: 0;
-    }
-    50% {
-      transform: translateY(-500px);
-      animation-timing-function: ease-in;
-      opacity: 0;
-    }
-    60% {
-      transform: translateY(0);
-      animation-timing-function: ease-out;
-      opacity: 1;
-    }
-    66% {
-      transform: translateY(-65px);
-      animation-timing-function: ease-in;
-    }
-    76% {
-      transform: translateY(0);
-      animation-timing-function: ease-out;
-    }
-    83% {
-      transform: translateY(-20px);
-      animation-timing-function: ease-in;
-    }
-    90% {
-      transform: translateY(0);
-      animation-timing-function: ease-out;
-    }
-    95% {
-      transform: translateY(-8px);
-      animation-timing-function: ease-in;
-    }
-    100% {
-      transform: translateY(0);
-      animation-timing-function: ease-out;
-    }
   }
 
   @keyframes rotate-letters {
@@ -119,10 +72,10 @@ type IProps = {
 export const ProfileHeader: React.FC<IProps> = ({ introState }: IProps) => {
   return (
     <ProfileContainer>
-      <PhotoContainer introState={introState} width="250px" height="250px">
+      <PhotoContainer width="250px" height="250px">
         <img src={`${PUBLIC_URI}/images/profile-photo.jpg`} alt="Pablo Avilés Prieto" />
       </PhotoContainer>
-      <DetailsContainer introState={introState}>
+      <DetailsContainer>
         <h1>Full stack web</h1>
         <h1 className="developer-animation">
           <span>d</span>

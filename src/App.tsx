@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { Prompt, UbuntuContainer, ProfileHeader } from './components'
 import { LIGHT_THEME, DARK_THEME } from './themes'
+import { GenericButton } from './components/Styles'
 import { WindowLayer } from './components/UbuntuContainer/WindowLayer/WindowLayer'
 
 const PromptContainer = styled.div<{ introState: boolean }>`
@@ -19,6 +20,15 @@ const PromptContainer = styled.div<{ introState: boolean }>`
       transform-origin: 50% 100%;
       opacity: 1;
     }
+  }
+`
+
+const IntroContainer = styled.div<{ introState: boolean }>`
+  text-align: center;
+  button {
+    margin: 60px;
+    opacity: ${({ introState }) => (introState ? 1 : 0)};
+    transition: opacity 0.3s ease-out;
   }
 `
 
@@ -71,13 +81,13 @@ const App: React.FC = () => {
       <UbuntuContainer switchOpenFileState={setOpenFile}>
         <>
           <PromptContainer introState={introState}>
-            <Prompt switchIntroState={switchIntroState} />
+            <IntroContainer introState={introState}>
+              <GenericButton onClick={switchIntroState}>Skip introduction</GenericButton>
+              <Prompt switchIntroState={switchIntroState} />
+            </IntroContainer>
           </PromptContainer>
           <WindowLayer isOpen={openFile === 'profileInfo'} switchOpenFileState={setOpenFile}>
-            <>
-              <p>Test Content</p>
-              <ProfileHeader introState={introState} />
-            </>
+            <ProfileHeader introState={introState} />
           </WindowLayer>
         </>
       </UbuntuContainer>

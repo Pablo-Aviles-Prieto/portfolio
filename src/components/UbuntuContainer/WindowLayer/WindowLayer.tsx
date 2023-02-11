@@ -72,9 +72,6 @@ const WindowContainer = styled.div`
           border: none;
           margin-right: 6px;
           color: white;
-          &:hover {
-            cursor: pointer;
-          }
           &:focus {
             outline: none;
           }
@@ -93,6 +90,7 @@ const WindowContainer = styled.div`
         }
         .button__exit {
           font-weight: 700;
+          cursor: pointer;
         }
       }
     }

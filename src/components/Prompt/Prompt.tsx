@@ -16,16 +16,12 @@ const CONTAINER_PROMPT_WIDTH = 600
 
 const PromptContainer = styled.div<{ containerPromptWidth: number }>`
   font-family: 'Ubuntu';
-  position: absolute;
-  left: ${({ containerPromptWidth }) => `calc(50% - ${containerPromptWidth / 2}px)`};
   .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     #main-prompt-text {
       margin-bottom: 10px;
     }
     .Terminal {
+      margin: 0 auto;
       width: ${({ containerPromptWidth }) => `${containerPromptWidth}px`};
       height: 360px;
       box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
