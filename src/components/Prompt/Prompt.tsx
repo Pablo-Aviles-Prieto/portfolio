@@ -22,6 +22,7 @@ const PromptContainer = styled.div<{ containerPromptWidth: number }>`
       margin-bottom: 10px;
     }
     .Terminal {
+      text-align: left;
       margin: 0 auto;
       width: ${({ containerPromptWidth }) => `${containerPromptWidth}px`};
       height: 360px;
