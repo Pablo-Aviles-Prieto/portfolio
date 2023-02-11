@@ -25,48 +25,6 @@ const UbuntuContainerDiv = styled.div`
   /* Layer 2: grid lvl */
   /* Layer 3: tooltips lvl */
 
-  /**************************
-****** SWITCHER LAYER *****
-**************************/
-
-  .grid-layer {
-    display: -webkit-box;
-    display: flex;
-    -webkit-flex-flow: row wrap;
-    flex-flow: row wrap;
-    position: absolute;
-    top: 36px;
-    bottom: 0;
-    right: 0;
-    left: 80px;
-    z-index: 3;
-    > div {
-      -webkit-box-flex: auto;
-      flex: auto;
-      width: 20%;
-      height: auto;
-      margin: 20px;
-      background-size: contain;
-      position: relative;
-      background-repeat: no-repeat;
-      background-position: right top;
-    }
-
-    .close {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background-color: white;
-      width: 17px;
-      height: 18px;
-      margin: 0;
-      padding-left: 2px;
-      line-height: 18px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-  }
-
   .gedit-app {
     background-image: url('http://img01.deviantart.net/57f0/i/2010/203/7/6/dcrdarkclassic___gedit_theme_by_drankinatty.jpg');
   }
@@ -279,13 +237,6 @@ interface IProps {
 export const UbuntuContainer: React.FC<IProps> = ({ switchOpenFileState, children }: IProps) => {
   return (
     <UbuntuContainerDiv>
-      {/* <div className="grid-layer" style={{ opacity: 0, display: 'none' }}>
-        <div className="gedit-app" />
-        <div className="nautilus-app" />
-        <div className="chrome-app" />
-        <div className="calculator-app" />
-        <div className="software-center-app" />
-      </div> */}
       <div className="windows-layer">{children}</div>
       <div className="desktop">
         <div className="action-bar">
@@ -312,12 +263,6 @@ export const UbuntuContainer: React.FC<IProps> = ({ switchOpenFileState, childre
           </div>
           <div className="software-center icon">
             <div className="tooltip">Ubuntu Software Center</div>
-          </div>
-          <div className="terminal icon">
-            <div className="tooltip">Terminal</div>
-          </div>
-          <div className="calculator icon">
-            <div className="tooltip">calc</div>
           </div>
         </div>
         <div className="background-image">

@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
-import { Prompt, UbuntuContainer, ProfileHeader } from './components'
+import { Prompt, UbuntuContainer, ProfileHeader, WindowLayer, FolderBlock } from './components'
 import { LIGHT_THEME, DARK_THEME } from './themes'
 import { GenericButton } from './components/Styles'
-import { Code } from './components/Icons'
-import { WindowLayer } from './components/UbuntuContainer/WindowLayer/WindowLayer'
 
 const IntroContainer = styled.div<{ introState: boolean }>`
   text-align: center;
@@ -24,26 +22,6 @@ const IntroContainer = styled.div<{ introState: boolean }>`
       transform: translateY(600px) rotateX(30deg) scale(0);
       transform-origin: 50% 100%;
       opacity: 1;
-    }
-  }
-`
-
-const FolderBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: 'Ubuntu mono';
-  font-size: 16px;
-  .folder {
-    position: relative;
-    img {
-      width: 60px;
-    }
-    svg {
-      position: absolute;
-      top: 23px;
-      left: 17px;
-      color: #b85c01;
     }
   }
 `
@@ -98,13 +76,7 @@ const App: React.FC = () => {
       <GlobalStyle introState={introState} />
       <UbuntuContainer switchOpenFileState={setOpenFile}>
         <>
-          <FolderBlock>
-            <div className="folder">
-              <img src={`${PUBLIC_URI}/images/ubuntu-folder.png`} alt="Ubuntu folder" />
-              <Code width={25} height={25} />
-            </div>
-            <span>Pablo Avilés</span>
-          </FolderBlock>
+          <FolderBlock />
           <IntroContainer introState={introState}>
             <Prompt switchIntroState={switchIntroState} />
             <GenericButton onClick={switchIntroState}>Skip introduction</GenericButton>
