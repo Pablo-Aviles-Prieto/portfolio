@@ -279,13 +279,13 @@ interface IProps {
 export const UbuntuContainer: React.FC<IProps> = ({ switchOpenFileState, children }: IProps) => {
   return (
     <UbuntuContainerDiv>
-      <div className="grid-layer" style={{ opacity: 0, display: 'none' }}>
+      {/* <div className="grid-layer" style={{ opacity: 0, display: 'none' }}>
         <div className="gedit-app" />
         <div className="nautilus-app" />
         <div className="chrome-app" />
         <div className="calculator-app" />
         <div className="software-center-app" />
-      </div>
+      </div> */}
       <div className="windows-layer">{children}</div>
       <div className="desktop">
         <div className="action-bar">

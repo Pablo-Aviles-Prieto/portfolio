@@ -1,2 +1,5 @@
 export { Hamburger } from './Hamburger'
 export { Code } from './Code'
+export { MalePerson } from './MalePerson'
+export { CodingPC } from './CodingPC'
+export { Chat } from './Chat'
