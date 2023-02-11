@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import styled from 'styled-components'
 import { getDayAndHourHelper } from '../../utils'
+import { Dock } from './Dock/Dock'
 
 const UbuntuContainerDiv = styled.div`
   @import url(https://fonts.googleapis.com/css?family=Cantarell:700);
@@ -24,68 +25,6 @@ const UbuntuContainerDiv = styled.div`
   /* Layer 1: Windows lvl */
   /* Layer 2: grid lvl */
   /* Layer 3: tooltips lvl */
-
-  /**************************
-****** SWITCHER LAYER *****
-**************************/
-
-  .grid-layer {
-    display: -webkit-box;
-    display: flex;
-    -webkit-flex-flow: row wrap;
-    flex-flow: row wrap;
-    position: absolute;
-    top: 36px;
-    bottom: 0;
-    right: 0;
-    left: 80px;
-    z-index: 3;
-    > div {
-      -webkit-box-flex: auto;
-      flex: auto;
-      width: 20%;
-      height: auto;
-      margin: 20px;
-      background-size: contain;
-      position: relative;
-      background-repeat: no-repeat;
-      background-position: right top;
-    }
-
-    .close {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background-color: white;
-      width: 17px;
-      height: 18px;
-      margin: 0;
-      padding-left: 2px;
-      line-height: 18px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-  }
-
-  .gedit-app {
-    background-image: url('http://img01.deviantart.net/57f0/i/2010/203/7/6/dcrdarkclassic___gedit_theme_by_drankinatty.jpg');
-  }
-
-  .nautilus-app {
-    background-image: url('https://lh3.googleusercontent.com/AwObblGoJgCi0XvEG6c8HRTYFO4krwvV9WYgIK76v8aa=w960-h878-no');
-  }
-
-  .chrome-app {
-    background-image: url('http://makegooglemyhomepage.org/wp-content/uploads/2014/06/How-To-Make-Google-Your-Homepage-With-Google-Chrome.png');
-  }
-
-  .software-center-app {
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7a/Ubuntu_Software_Center_en_Ubuntu_12.04.png');
-  }
-
-  .calculator-app {
-    background-image: url('http://screenshots.ubuntu.com/screenshots/g/gcalctool/9099_large.png');
-  }
 
   .app {
     display: inline-block;
@@ -196,23 +135,21 @@ const UbuntuContainerDiv = styled.div`
 
     .dock {
       position: absolute;
-      top: 20%;
-      width: 60px;
+      top: calc(50% - (202px / 2));
+      width: 90px;
       background-color: rgba(0, 0, 0, 0.7);
       border-top-right-radius: 1em;
       border-bottom-right-radius: 1em;
       border: 1px solid #4c4c4c;
       border-left: 0px;
-      padding-left: 10px;
-      padding-top: 10px;
+      padding: 20px;
       z-index: 3;
 
-      .icon {
-        height: 48px;
-        width: 80%;
-        background-size: contain;
-        margin-bottom: 10px;
+      .icon-container {
+        cursor: pointer;
         position: relative;
+        display: flex;
+        justify-content: center;
 
         .tooltip {
           position: absolute;
@@ -227,47 +164,23 @@ const UbuntuContainerDiv = styled.div`
           white-space: nowrap;
           opacity: 0;
           transition: opacity 0.25s ease-in-out;
-          -moz-transition: opacity 0.25s ease-in-out;
-          -webkit-transition: opacity 0.25s ease-in-out;
           z-index: 4;
         }
-        &:hover .tooltip {
-          opacity: 1;
-          transition-delay: 0.5s;
+
+        &:hover {
+          color: ${({ theme }) => theme.emphasizeColor};
         }
 
-        &.nautilus {
-          background-image: url('https://1.bp.blogspot.com/-Y4Vlex9DiRk/ULTb8KXaBQI/AAAAAAAABTE/rdgxKtAio5Q/s400/nautilus.png');
+        &:hover .tooltip {
+          opacity: 1;
+          transition-delay: 0.2s;
         }
-        &.chrome {
-          background-image: url('http://icons.iconarchive.com/icons/google/chrome/128/Google-Chrome-icon.png');
-        }
-        &.software-center {
-          background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ubuntu_Software_Center_icon_v3.svg/100px-Ubuntu_Software_Center_icon_v3.svg.png');
-        }
-        &.terminal {
-          background-image: url('http://www.linuxbrigade.com/wp-content/uploads/2013/06/terminal.png');
-        }
-        &.gedit {
-          background-image: url('https://linuxtidbits.files.wordpress.com/2012/02/accessories-text-editor-150.png');
-        }
-        &.calculator {
-          background-image: url('http://www.iconattitude.com/icons/open_icon_library/apps/png/256/accessories-calculator-3.png');
+
+        &:not(:first-child) {
+          margin-top: 20px;
         }
       }
     }
-  }
-
-  /****************************
-****** EXPERIMENT LAYER *****
-****************************/
-
-  .hot-spot {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 10px;
-    height: 10px;
   }
 `
 
@@ -279,20 +192,10 @@ interface IProps {
 export const UbuntuContainer: React.FC<IProps> = ({ switchOpenFileState, children }: IProps) => {
   return (
     <UbuntuContainerDiv>
-      {/* <div className="grid-layer" style={{ opacity: 0, display: 'none' }}>
-        <div className="gedit-app" />
-        <div className="nautilus-app" />
-        <div className="chrome-app" />
-        <div className="calculator-app" />
-        <div className="software-center-app" />
-      </div> */}
       <div className="windows-layer">{children}</div>
       <div className="desktop">
         <div className="action-bar">
-          <span className="activities" onClick={() => switchOpenFileState('profileInfo')}>
-            <div className="hot-spot" />
-            Activities
-          </span>
+          <span className="activities">Activities</span>
           <span className="open-application">
             <div className="app-name">
               Google Chrome
@@ -303,23 +206,7 @@ export const UbuntuContainer: React.FC<IProps> = ({ switchOpenFileState, childre
           <span className="time float-center">{getDayAndHourHelper()}</span>
           <span className="float-right" />
         </div>
-        <div className="dock">
-          <div className="nautilus icon">
-            <div className="tooltip">Files</div>
-          </div>
-          <div className="chrome icon">
-            <div className="tooltip">Google Chrome</div>
-          </div>
-          <div className="software-center icon">
-            <div className="tooltip">Ubuntu Software Center</div>
-          </div>
-          <div className="terminal icon">
-            <div className="tooltip">Terminal</div>
-          </div>
-          <div className="calculator icon">
-            <div className="tooltip">calc</div>
-          </div>
-        </div>
+        <Dock switchOpenFileState={switchOpenFileState} />
         <div className="background-image">
           <div className="overlay" style={{ opacity: 0 }} />
         </div>
