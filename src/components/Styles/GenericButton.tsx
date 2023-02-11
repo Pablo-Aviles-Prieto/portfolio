@@ -8,6 +8,7 @@ export const GenericButton = styled.button`
   font-weight: 700;
   border-radius: 8px;
   border: none;
+  box-shadow: 2px 4px 10px rgb(0 0 0 / 50%);
   &:hover {
     background-color: ${({ theme }) => theme.lightEmphasize};
   }

@@ -16,6 +16,7 @@ const CONTAINER_PROMPT_WIDTH = 600
 
 const PromptContainer = styled.div<{ containerPromptWidth: number }>`
   font-family: 'Ubuntu';
+  margin: 50px auto;
   .container {
     #main-prompt-text {
       margin-bottom: 10px;

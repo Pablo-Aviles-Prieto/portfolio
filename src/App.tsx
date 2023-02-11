@@ -26,9 +26,19 @@ const PromptContainer = styled.div<{ introState: boolean }>`
 const IntroContainer = styled.div<{ introState: boolean }>`
   text-align: center;
   button {
-    margin: 60px;
     opacity: ${({ introState }) => (introState ? 1 : 0)};
     transition: opacity 0.3s ease-out;
+  }
+`
+
+const FolderBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Ubuntu mono';
+  font-size: 16px;
+  img {
+    width: 60px;
   }
 `
 
@@ -58,6 +68,8 @@ const possibleFiles = {
 
 type IOpenFile = keyof typeof possibleFiles
 
+const PUBLIC_URI = process.env.PUBLIC_URL || ''
+
 const App: React.FC = () => {
   const [lightTheme, setLightTheme] = useState<boolean>(false)
   const [introState, setIntroState] = useState<boolean>(true)
@@ -82,8 +94,12 @@ const App: React.FC = () => {
         <>
           <PromptContainer introState={introState}>
             <IntroContainer introState={introState}>
-              <GenericButton onClick={switchIntroState}>Skip introduction</GenericButton>
+              <FolderBlock>
+                <img src={`${PUBLIC_URI}/images/ubuntu-folder.png`} alt="Ubuntu folder" />
+                <span>Pablo Avilés</span>
+              </FolderBlock>
               <Prompt switchIntroState={switchIntroState} />
+              <GenericButton onClick={switchIntroState}>Skip introduction</GenericButton>
             </IntroContainer>
           </PromptContainer>
           <WindowLayer isOpen={openFile === 'profileInfo'} switchOpenFileState={setOpenFile}>
