@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Hamburger } from '../../Icons'
+import { Hamburger, Square, Close, Minimize } from '../../Icons'
 
 const WindowContainer = styled.div`
   display: flex;
@@ -126,14 +126,18 @@ export const WindowLayer: React.FC<IProps> = ({ isOpen, switchOpenFileState, chi
           <p>Content title</p>
           <div className="right-section-header__buttons">
             <button type="button">
-              <span className="button__minimize">&#9472;</span>
+              <span className="button__minimize">
+                <Minimize width={25} height={25} />
+              </span>
             </button>
             <button type="button">
-              <span className="button__maximize">&#9723;</span>
+              <span className="button__maximize">
+                <Square width={18} height={18} />
+              </span>
             </button>
             <button type="button">
               <span className="button__exit" onClick={() => switchOpenFileState('none')}>
-                &#10005;
+                <Close width={22} height={22} />
               </span>
             </button>
           </div>

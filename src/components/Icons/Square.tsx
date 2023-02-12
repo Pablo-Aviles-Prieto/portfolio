@@ -1,10 +1,8 @@
 /* eslint-disable max-len */
 import { SVGProps } from 'react'
 
-export const Chat: React.FC<SVGProps<SVGSVGElement>> = (props: SVGProps<SVGSVGElement>) => (
+export const Square: React.FC<SVGProps<SVGSVGElement>> = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    width={800}
-    height={800}
     viewBox="0 0 64 64"
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
