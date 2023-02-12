@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Hamburger, Square, Close, Minimize } from '../../Icons'
+import { IOpenFile } from '../../../interfaces'
 
 const WindowContainer = styled.div`
   display: flex;
@@ -99,13 +100,11 @@ const WindowContainer = styled.div`
 
 interface IProps {
   isOpen: boolean
-  switchOpenFileState: React.Dispatch<React.SetStateAction<'none' | 'profileInfo' | 'projects' | 'contacts'>>
+  switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
   children: JSX.Element
 }
 
 export const WindowLayer: React.FC<IProps> = ({ isOpen, switchOpenFileState, children }: IProps) => {
-  console.log('isOpen', isOpen)
-
   return (
     <WindowContainer className={isOpen ? 'page__open' : ''}>
       <div className="left-section">

@@ -2,6 +2,7 @@
 import styled from 'styled-components'
 import { getDayAndHourHelper } from '../../utils'
 import { Dock } from './Dock/Dock'
+import { IOpenFile } from '../../interfaces'
 
 const UbuntuContainerDiv = styled.div`
   @import url(https://fonts.googleapis.com/css?family=Cantarell:700);
@@ -185,7 +186,7 @@ const UbuntuContainerDiv = styled.div`
 `
 
 interface IProps {
-  switchOpenFileState: React.Dispatch<React.SetStateAction<'none' | 'profileInfo' | 'projects' | 'contacts'>>
+  switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
   children: JSX.Element
 }
 

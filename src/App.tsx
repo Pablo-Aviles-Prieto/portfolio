@@ -3,6 +3,7 @@ import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { Prompt, UbuntuContainer, ProfileHeader, WindowLayer, FolderBlock } from './components'
 import { LIGHT_THEME, DARK_THEME } from './themes'
 import { GenericButton } from './components/Styles'
+import { IOpenFile } from './interfaces'
 
 const IntroContainer = styled.div<{ introState: boolean }>`
   text-align: center;
@@ -43,21 +44,13 @@ const GlobalStyle = createGlobalStyle<{ introState: boolean }>`
   }
 `
 
-const possibleFiles = {
-  profileInfo: 'profileInfo',
-  projects: 'projects',
-  contacts: 'contact',
-  none: 'none'
-}
-
-type IOpenFile = keyof typeof possibleFiles
-
 const PUBLIC_URI = process.env.PUBLIC_URL || ''
 
 const App: React.FC = () => {
   const [lightTheme, setLightTheme] = useState<boolean>(false)
   const [introState, setIntroState] = useState<boolean>(true)
   const [openFile, setOpenFile] = useState<IOpenFile>('none')
+  console.log('openFile', openFile)
 
   useEffect(() => {
     setIntroState(true)
@@ -81,7 +74,7 @@ const App: React.FC = () => {
             <Prompt switchIntroState={switchIntroState} />
             <GenericButton onClick={switchIntroState}>Skip introduction</GenericButton>
           </IntroContainer>
-          <WindowLayer isOpen={openFile === 'profileInfo'} switchOpenFileState={setOpenFile}>
+          <WindowLayer isOpen={openFile !== 'none'} switchOpenFileState={setOpenFile}>
             <ProfileHeader introState={introState} />
           </WindowLayer>
         </>
