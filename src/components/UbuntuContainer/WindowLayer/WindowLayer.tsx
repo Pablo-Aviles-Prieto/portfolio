@@ -7,7 +7,7 @@ const WindowContainer = styled.div`
   height: 0;
   opacity: 0;
   left: 20px;
-  top: 160px;
+  top: 270px;
   background-color: ${({ theme }) => theme.mainBground};
   margin: 0 auto;
   max-width: 950px;
@@ -78,18 +78,18 @@ const WindowContainer = styled.div`
         }
         .button__minimize {
           position: absolute;
-          font-size: 20px;
-          bottom: -3px;
-          left: 5px;
+          bottom: -6px;
+          left: 0px;
         }
         .button__maximize {
-          font-size: 21px;
           position: absolute;
-          bottom: -2px;
+          bottom: 2px;
           left: 3px;
         }
         .button__exit {
-          font-weight: 700;
+          position: absolute;
+          bottom: 1px;
+          left: 1px;
           cursor: pointer;
         }
       }
@@ -126,19 +126,13 @@ export const WindowLayer: React.FC<IProps> = ({ isOpen, switchOpenFileState, chi
           <p>Content title</p>
           <div className="right-section-header__buttons">
             <button type="button">
-              <span className="button__minimize">
-                <Minimize width={25} height={25} />
-              </span>
+              <Minimize className="button__minimize" width={25} height={25} />
             </button>
             <button type="button">
-              <span className="button__maximize">
-                <Square width={18} height={18} />
-              </span>
+              <Square className="button__maximize" width={19} height={19} />
             </button>
             <button type="button">
-              <span className="button__exit" onClick={() => switchOpenFileState('none')}>
-                <Close width={22} height={22} />
-              </span>
+              <Close className="button__exit" onClick={() => switchOpenFileState('none')} width={22} height={22} />
             </button>
           </div>
         </div>
