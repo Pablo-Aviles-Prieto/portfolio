@@ -48,7 +48,7 @@ const App: React.FC = () => {
   const [lightTheme, setLightTheme] = useState<boolean>(false)
   const [introState, setIntroState] = useState<boolean>(true)
   const [openFile, setOpenFile] = useState<IOpenFile>('none')
-  console.log('openFile', openFile)
+  console.log('openFile app', openFile)
 
   const switchThemeHandler = () => {
     setLightTheme(prevState => !prevState)

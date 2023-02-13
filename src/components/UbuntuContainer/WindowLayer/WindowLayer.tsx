@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Hamburger, Square, Close, Minimize } from '../../Icons'
 import { IOpenFile, ISubMenuObj, IProfileInfoSubPages, IProjectsSubPages, IContactSubPages } from '../../../interfaces'
@@ -25,12 +24,6 @@ const WindowContainer = styled.div`
     left: calc(50% - (950px / 2));
     top: 0;
     opacity: 1;
-    /* .left-section,
-    .right-section {
-      &-content {
-        opacity: 1;
-      }
-    } */
   }
   .left-section,
   .right-section {
@@ -41,10 +34,6 @@ const WindowContainer = styled.div`
       align-items: center;
       padding: 0 15px;
     }
-    /* &-content {
-      opacity: 0;
-      transition: opacity 0.2s ease-in;
-    } */
   }
   .left-section {
     width: 25%;
@@ -128,8 +117,7 @@ type ISubPage = IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
 
 interface IProps {
   switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
-  openedFile: IOpenFile
-  introState: boolean
+  isOpen: boolean
   subMenuData: ISubMenuObj[]
   subPage: ISubPage
   setSubPage: React.Dispatch<React.SetStateAction<ISubPage>>
@@ -139,40 +127,11 @@ interface IProps {
 export const WindowLayer: React.FC<IProps> = ({
   switchOpenFileState,
   subMenuData,
-  openedFile,
-  introState,
+  isOpen,
   subPage,
   setSubPage,
   children
 }: IProps) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-
-  useEffect(() => {
-    if (introState) return
-
-    // If its closed, we want to open it immediately
-    if (!isOpen) {
-      setIsOpen(true)
-      return
-    }
-
-    // If its not immediately opened, we close it anyway.
-    setIsOpen(false)
-
-    if (openedFile === 'none') return
-
-    // Reopen it after the .5s transition
-    const timerId = setTimeout(() => {
-      setIsOpen(true)
-    }, 600)
-
-    return () => {
-      clearTimeout(timerId)
-    }
-  }, [openedFile])
-
-  console.log('isOpen windowLayer', isOpen)
-
   return (
     <WindowContainer className={isOpen ? 'page__open' : ''}>
       <div className="left-section">
