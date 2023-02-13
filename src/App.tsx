@@ -65,7 +65,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={lightTheme ? LIGHT_THEME : DARK_THEME}>
       <GlobalStyle introState={introState} />
-      <UbuntuContainer switchOpenFileState={setOpenFile}>
+      <UbuntuContainer openFile={openFile} switchOpenFileState={setOpenFile}>
         <>
           <FolderBlock />
           <IntroContainer introState={introState}>
