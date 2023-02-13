@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
-import { Prompt, UbuntuContainer, ProfileHeader, WindowLayer, FolderBlock } from './components'
+import { Prompt, UbuntuContainer, FolderBlock, WindowLayerHandler } from './components'
 import { LIGHT_THEME, DARK_THEME } from './themes'
 import { GenericButton } from './components/Styles'
 import { IOpenFile } from './interfaces'
@@ -72,9 +72,7 @@ const App: React.FC = () => {
             <Prompt switchIntroState={switchIntroState} />
             <GenericButton onClick={switchIntroState}>Skip introduction</GenericButton>
           </IntroContainer>
-          <WindowLayer openedFile={openFile} switchOpenFileState={setOpenFile}>
-            <ProfileHeader />
-          </WindowLayer>
+          <WindowLayerHandler introState={introState} openedFile={openFile} switchOpenFileState={setOpenFile} />
         </>
       </UbuntuContainer>
     </ThemeProvider>

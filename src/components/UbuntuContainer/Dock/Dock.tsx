@@ -33,10 +33,10 @@ export const Dock: React.FC<IProps> = ({ switchOpenFileState, openFile }: IProps
       </div>
       <div className="icon-container">
         <Chat
-          className={openFile === 'contacts' ? 'selected__page' : ''}
+          className={openFile === 'contact' ? 'selected__page' : ''}
           width={50}
           height={50}
-          onClick={() => openFileSetter('contacts')}
+          onClick={() => openFileSetter('contact')}
         />
         <div className="tooltip">Contact me</div>
       </div>

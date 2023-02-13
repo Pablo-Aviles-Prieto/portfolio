@@ -1,7 +1,7 @@
 const possibleFiles = {
   profileInfo: 'profileInfo',
   projects: 'projects',
-  contacts: 'contact',
+  contact: 'contact',
   none: 'none'
 }
 

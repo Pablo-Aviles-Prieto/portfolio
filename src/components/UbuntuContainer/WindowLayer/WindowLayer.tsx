@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Hamburger, Square, Close, Minimize } from '../../Icons'
-import { IOpenFile } from '../../../interfaces'
+import { IOpenFile, ISubMenuObj, IProfileInfoSubPages } from '../../../interfaces'
 
 const WindowContainer = styled.div`
   display: flex;
@@ -35,9 +35,6 @@ const WindowContainer = styled.div`
       align-items: center;
       padding: 0 15px;
     }
-    &-content {
-      padding: 15px;
-    }
   }
   .left-section {
     width: 25%;
@@ -48,6 +45,22 @@ const WindowContainer = styled.div`
       &__menu {
         display: flex;
         cursor: pointer;
+      }
+    }
+    &-content {
+      &-submenu {
+        cursor: pointer;
+        padding: 5px 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        &.menu__selected {
+          background-color: ${({ theme }) => theme.emphasizeColor};
+        }
+        &:hover {
+          background-color: ${({ theme }) => theme.lightEmphasize};
+        }
       }
     }
   }
@@ -96,19 +109,36 @@ const WindowContainer = styled.div`
         }
       }
     }
+    &-content {
+      padding: 15px;
+    }
   }
 `
 
 interface IProps {
-  openedFile: IOpenFile
   switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
+  openedFile: IOpenFile
+  introState: boolean
+  subMenuData: ISubMenuObj[]
+  subPage: IProfileInfoSubPages
+  setSubPage: React.Dispatch<React.SetStateAction<IProfileInfoSubPages>>
   children: JSX.Element
 }
 
-export const WindowLayer: React.FC<IProps> = ({ openedFile, switchOpenFileState, children }: IProps) => {
+export const WindowLayer: React.FC<IProps> = ({
+  switchOpenFileState,
+  subMenuData,
+  openedFile,
+  introState,
+  subPage,
+  setSubPage,
+  children
+}: IProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   useEffect(() => {
+    if (introState) return
+
     // If its closed, we want to open it immediately
     if (!isOpen) {
       setIsOpen(true)
@@ -118,9 +148,7 @@ export const WindowLayer: React.FC<IProps> = ({ openedFile, switchOpenFileState,
     // If its not immediately opened, we close it anyway.
     setIsOpen(false)
 
-    if (openedFile === 'none') {
-      return
-    }
+    if (openedFile === 'none') return
 
     // Reopen it after the .5s transition
     const timerId = setTimeout(() => {
@@ -143,7 +171,24 @@ export const WindowLayer: React.FC<IProps> = ({ openedFile, switchOpenFileState,
           </div>
         </div>
         <div className="left-section-content">
-          <p>Menu bar options</p>
+          {subMenuData.map(menuLine => {
+            return (
+              <div
+                key={menuLine.title}
+                className={
+                  subPage === menuLine.title
+                    ? 'left-section-content-submenu menu__selected'
+                    : 'left-section-content-submenu'
+                }
+                onClick={() => {
+                  setSubPage(menuLine.title)
+                }}
+              >
+                <menuLine.SVG width={15} height={15} />
+                <p>{menuLine.title}</p>
+              </div>
+            )
+          })}
         </div>
       </div>
       <div className="right-section">
