@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Hamburger, Square, Close, Minimize } from '../../Icons'
-import { IOpenFile, ISubMenuObj, IProfileInfoSubPages } from '../../../interfaces'
+import { IOpenFile, ISubMenuObj, IProfileInfoSubPages, IProjectsSubPages, IContactSubPages } from '../../../interfaces'
 
 const WindowContainer = styled.div`
   display: flex;
@@ -50,11 +50,10 @@ const WindowContainer = styled.div`
     &-content {
       &-submenu {
         cursor: pointer;
-        padding: 5px 15px;
+        padding: 10px 15px;
         display: flex;
         align-items: center;
         gap: 10px;
-        margin-bottom: 10px;
         &.menu__selected {
           background-color: ${({ theme }) => theme.emphasizeColor};
         }
@@ -115,13 +114,15 @@ const WindowContainer = styled.div`
   }
 `
 
+type ISubPage = IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
+
 interface IProps {
   switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
   openedFile: IOpenFile
   introState: boolean
   subMenuData: ISubMenuObj[]
-  subPage: IProfileInfoSubPages
-  setSubPage: React.Dispatch<React.SetStateAction<IProfileInfoSubPages>>
+  subPage: ISubPage
+  setSubPage: React.Dispatch<React.SetStateAction<ISubPage>>
   children: JSX.Element
 }
 

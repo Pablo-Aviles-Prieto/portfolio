@@ -1,8 +1,8 @@
 import { SVGProps } from 'react'
-import { IProfileInfoSubPages } from './ISubPages'
+import { IProfileInfoSubPages, IProjectsSubPages, IContactSubPages } from './ISubPages'
 
 export interface ISubMenuObj {
   SVG: React.FC<SVGProps<SVGSVGElement>>
-  title: IProfileInfoSubPages
+  title: IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
   cbFun?: () => void
 }

@@ -1,8 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
 import { WindowLayer } from './WindowLayer'
-import { ProfileHeader } from '../../ProfileHeader/ProfileHeader'
-import { IOpenFile, IProfileInfoSubPages } from '../../../interfaces'
+import { ProfileInfoPage } from '../../ProfileInfo/ProfileInfoPage'
+import { ProjectsPage } from '../../ProjectsPage/ProjectsPage'
+import { IOpenFile, IProfileInfoSubPages, IProjectsSubPages, IContactSubPages } from '../../../interfaces'
 import { profileSubMenu, projectsSubMenu, contactSubMenu } from '../../../utils'
+import { ContactPage } from '../../ContactPage/ContactPage'
 
 interface IProps {
   switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
@@ -10,8 +12,10 @@ interface IProps {
   introState: boolean
 }
 
+type ISubPage = IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
+
 export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, switchOpenFileState }: IProps) => {
-  const [subPage, setSubPage] = useState<IProfileInfoSubPages>('introduction')
+  const [subPage, setSubPage] = useState<ISubPage>('introduction')
 
   useEffect(() => {
     setSubPage('introduction')
@@ -34,13 +38,12 @@ export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, s
       setSubPage={setSubPage}
       switchOpenFileState={switchOpenFileState}
     >
-      {subPage === 'introduction' ? (
-        <ProfileHeader />
-      ) : subPage === 'education' ? (
-        <h1>Education</h1>
-      ) : (
-        <h1>Experience</h1>
-      )}
+      <>
+        {openedFile === 'profileInfo' && <ProfileInfoPage subPage={subPage} />}
+        {openedFile === 'projects' && <ProjectsPage subPage={subPage} />}
+        {openedFile === 'contact' && <ContactPage subPage={subPage} />}
+        {openedFile === 'none' && <div />}
+      </>
     </WindowLayer>
   )
 }
