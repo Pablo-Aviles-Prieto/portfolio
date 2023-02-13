@@ -11,6 +11,16 @@ export const Dock: React.FC<IProps> = ({ switchOpenFileState, openFile }: IProps
     switchOpenFileState(prevState => (prevState === fileType ? 'none' : fileType))
   }
 
+  // const openFileHandler = (fileType: IOpenFile) => {
+  //   switchOpenFileState(prevState => {
+  //     if (prevState === fileType) {
+  //       return 'none'
+  //     } else {
+  //       return fileType
+  //     }
+  //   })
+  // }
+
   return (
     <div className="dock">
       <div className="icon-container">

@@ -4,5 +4,5 @@ import { IProfileInfoSubPages, IProjectsSubPages, IContactSubPages } from './ISu
 export interface ISubMenuObj {
   SVG: React.FC<SVGProps<SVGSVGElement>>
   title: IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
-  cbFun?: () => void
+  content: string
 }

@@ -1,17 +1,4 @@
-const profileInfoSubPages = {
-  introduction: 'introduction',
-  experience: 'experience',
-  education: 'education'
-}
-
-const projectsSubPages = {
-  introduction: 'introduction',
-  technologies: 'technologies'
-}
-
-const contactSubPages = {
-  introduction: 'introduction'
-}
+import { projectsSubPages, contactSubPages, profileInfoSubPages } from '../enums'
 
 export type IProfileInfoSubPages = keyof typeof profileInfoSubPages
 export type IProjectsSubPages = keyof typeof projectsSubPages
