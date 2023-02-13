@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Hamburger, Square, Close, Minimize } from '../../Icons'
 import { IOpenFile } from '../../../interfaces'
@@ -99,12 +100,38 @@ const WindowContainer = styled.div`
 `
 
 interface IProps {
-  isOpen: boolean
+  openedFile: IOpenFile
   switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
   children: JSX.Element
 }
 
-export const WindowLayer: React.FC<IProps> = ({ isOpen, switchOpenFileState, children }: IProps) => {
+export const WindowLayer: React.FC<IProps> = ({ openedFile, switchOpenFileState, children }: IProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  useEffect(() => {
+    // If its closed, we want to open it immediately
+    if (!isOpen) {
+      setIsOpen(true)
+      return
+    }
+
+    // If its not immediately opened, we close it anyway.
+    setIsOpen(false)
+
+    if (openedFile === 'none') {
+      return
+    }
+
+    // Reopen it after the .5s transition
+    const timerId = setTimeout(() => {
+      setIsOpen(true)
+    }, 600)
+
+    return () => {
+      clearTimeout(timerId)
+    }
+  }, [openedFile])
+
   return (
     <WindowContainer className={isOpen ? 'page__open' : ''}>
       <div className="left-section">

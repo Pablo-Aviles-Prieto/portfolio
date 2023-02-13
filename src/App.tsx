@@ -44,8 +44,6 @@ const GlobalStyle = createGlobalStyle<{ introState: boolean }>`
   }
 `
 
-const PUBLIC_URI = process.env.PUBLIC_URL || ''
-
 const App: React.FC = () => {
   const [lightTheme, setLightTheme] = useState<boolean>(false)
   const [introState, setIntroState] = useState<boolean>(true)
@@ -74,8 +72,8 @@ const App: React.FC = () => {
             <Prompt switchIntroState={switchIntroState} />
             <GenericButton onClick={switchIntroState}>Skip introduction</GenericButton>
           </IntroContainer>
-          <WindowLayer isOpen={openFile !== 'none'} switchOpenFileState={setOpenFile}>
-            <ProfileHeader introState={introState} />
+          <WindowLayer openedFile={openFile} switchOpenFileState={setOpenFile}>
+            <ProfileHeader />
           </WindowLayer>
         </>
       </UbuntuContainer>
