@@ -1,26 +1,43 @@
 import { MalePerson, CodingPC, Chat } from '../../Icons'
+import { IOpenFile } from '../../../interfaces'
 
 interface IProps {
-  switchOpenFileState: React.Dispatch<React.SetStateAction<'none' | 'profileInfo' | 'projects' | 'contacts'>>
+  switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
+  openFile: IOpenFile
 }
 
-export const Dock: React.FC<IProps> = ({ switchOpenFileState }: IProps) => {
+export const Dock: React.FC<IProps> = ({ switchOpenFileState, openFile }: IProps) => {
+  const openFileSetter = (fileType: IOpenFile) => {
+    switchOpenFileState(prevState => (prevState === fileType ? 'none' : fileType))
+  }
+
   return (
     <div className="dock">
       <div className="icon-container">
         <MalePerson
+          className={openFile === 'profileInfo' ? 'selected__page' : ''}
           width={50}
           height={50}
-          onClick={() => switchOpenFileState(prevState => (prevState === 'profileInfo' ? 'none' : 'profileInfo'))}
+          onClick={() => openFileSetter('profileInfo')}
         />
         <div className="tooltip">About me</div>
       </div>
       <div className="icon-container">
-        <CodingPC width={50} height={50} />
+        <CodingPC
+          className={openFile === 'projects' ? 'selected__page' : ''}
+          width={50}
+          height={50}
+          onClick={() => openFileSetter('projects')}
+        />
         <div className="tooltip">Previous works</div>
       </div>
       <div className="icon-container">
-        <Chat width={50} height={50} />
+        <Chat
+          className={openFile === 'contacts' ? 'selected__page' : ''}
+          width={50}
+          height={50}
+          onClick={() => openFileSetter('contacts')}
+        />
         <div className="tooltip">Contact me</div>
       </div>
     </div>

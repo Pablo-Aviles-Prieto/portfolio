@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Hamburger } from '../../Icons'
+import { Hamburger, Square, Close, Minimize } from '../../Icons'
+import { IOpenFile } from '../../../interfaces'
 
 const WindowContainer = styled.div`
   display: flex;
@@ -7,7 +9,7 @@ const WindowContainer = styled.div`
   height: 0;
   opacity: 0;
   left: 20px;
-  top: 160px;
+  top: 270px;
   background-color: ${({ theme }) => theme.mainBground};
   margin: 0 auto;
   max-width: 950px;
@@ -78,18 +80,18 @@ const WindowContainer = styled.div`
         }
         .button__minimize {
           position: absolute;
-          font-size: 20px;
-          bottom: -3px;
-          left: 5px;
+          bottom: -6px;
+          left: 0px;
         }
         .button__maximize {
-          font-size: 21px;
           position: absolute;
-          bottom: -2px;
+          bottom: 2px;
           left: 3px;
         }
         .button__exit {
-          font-weight: 700;
+          position: absolute;
+          bottom: 1px;
+          left: 1px;
           cursor: pointer;
         }
       }
@@ -98,13 +100,37 @@ const WindowContainer = styled.div`
 `
 
 interface IProps {
-  isOpen: boolean
-  switchOpenFileState: React.Dispatch<React.SetStateAction<'none' | 'profileInfo' | 'projects' | 'contacts'>>
+  openedFile: IOpenFile
+  switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
   children: JSX.Element
 }
 
-export const WindowLayer: React.FC<IProps> = ({ isOpen, switchOpenFileState, children }: IProps) => {
-  console.log('isOpen', isOpen)
+export const WindowLayer: React.FC<IProps> = ({ openedFile, switchOpenFileState, children }: IProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  useEffect(() => {
+    // If its closed, we want to open it immediately
+    if (!isOpen) {
+      setIsOpen(true)
+      return
+    }
+
+    // If its not immediately opened, we close it anyway.
+    setIsOpen(false)
+
+    if (openedFile === 'none') {
+      return
+    }
+
+    // Reopen it after the .5s transition
+    const timerId = setTimeout(() => {
+      setIsOpen(true)
+    }, 600)
+
+    return () => {
+      clearTimeout(timerId)
+    }
+  }, [openedFile])
 
   return (
     <WindowContainer className={isOpen ? 'page__open' : ''}>
@@ -126,15 +152,13 @@ export const WindowLayer: React.FC<IProps> = ({ isOpen, switchOpenFileState, chi
           <p>Content title</p>
           <div className="right-section-header__buttons">
             <button type="button">
-              <span className="button__minimize">&#9472;</span>
+              <Minimize className="button__minimize" width={25} height={25} />
             </button>
             <button type="button">
-              <span className="button__maximize">&#9723;</span>
+              <Square className="button__maximize" width={19} height={19} />
             </button>
             <button type="button">
-              <span className="button__exit" onClick={() => switchOpenFileState('none')}>
-                &#10005;
-              </span>
+              <Close className="button__exit" onClick={() => switchOpenFileState('none')} width={22} height={22} />
             </button>
           </div>
         </div>

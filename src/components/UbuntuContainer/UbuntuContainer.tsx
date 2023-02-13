@@ -2,6 +2,7 @@
 import styled from 'styled-components'
 import { getDayAndHourHelper } from '../../utils'
 import { Dock } from './Dock/Dock'
+import { IOpenFile } from '../../interfaces'
 
 const UbuntuContainerDiv = styled.div`
   @import url(https://fonts.googleapis.com/css?family=Cantarell:700);
@@ -167,8 +168,15 @@ const UbuntuContainerDiv = styled.div`
           z-index: 4;
         }
 
-        &:hover {
+        .selected__page {
           color: ${({ theme }) => theme.emphasizeColor};
+          &:hover {
+            color: ${({ theme }) => theme.lightEmphasize};
+          }
+        }
+
+        &:hover {
+          color: ${({ theme }) => theme.lightEmphasize};
         }
 
         &:hover .tooltip {
@@ -185,11 +193,12 @@ const UbuntuContainerDiv = styled.div`
 `
 
 interface IProps {
-  switchOpenFileState: React.Dispatch<React.SetStateAction<'none' | 'profileInfo' | 'projects' | 'contacts'>>
+  switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
+  openFile: IOpenFile
   children: JSX.Element
 }
 
-export const UbuntuContainer: React.FC<IProps> = ({ switchOpenFileState, children }: IProps) => {
+export const UbuntuContainer: React.FC<IProps> = ({ switchOpenFileState, openFile, children }: IProps) => {
   return (
     <UbuntuContainerDiv>
       <div className="windows-layer">{children}</div>
@@ -206,7 +215,7 @@ export const UbuntuContainer: React.FC<IProps> = ({ switchOpenFileState, childre
           <span className="time float-center">{getDayAndHourHelper()}</span>
           <span className="float-right" />
         </div>
-        <Dock switchOpenFileState={switchOpenFileState} />
+        <Dock openFile={openFile} switchOpenFileState={switchOpenFileState} />
         <div className="background-image">
           <div className="overlay" style={{ opacity: 0 }} />
         </div>

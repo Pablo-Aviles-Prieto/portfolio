@@ -65,11 +65,7 @@ const DetailsContainer = styled.div`
 
 const PUBLIC_URI = process.env.PUBLIC_URL || ''
 
-type IProps = {
-  introState: boolean
-}
-
-export const ProfileHeader: React.FC<IProps> = ({ introState }: IProps) => {
+export const ProfileHeader: React.FC = () => {
   return (
     <ProfileContainer>
       <PhotoContainer width="250px" height="250px">
