@@ -1,8 +1,3 @@
-const possibleFiles = {
-  profileInfo: 'profileInfo',
-  projects: 'projects',
-  contact: 'contact',
-  none: 'none'
-}
+import { possibleFiles } from '../enums'
 
 export type IOpenFile = keyof typeof possibleFiles

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { MalePerson, CodingPC, Chat } from '../../Icons'
 import { IOpenFile } from '../../../interfaces'
 
@@ -7,19 +8,28 @@ interface IProps {
 }
 
 export const Dock: React.FC<IProps> = ({ switchOpenFileState, openFile }: IProps) => {
-  const openFileSetter = (fileType: IOpenFile) => {
-    switchOpenFileState(prevState => (prevState === fileType ? 'none' : fileType))
-  }
+  const [timeoutEntryPage, setTimeoutEntryPage] = useState<NodeJS.Timeout | undefined>(undefined)
 
-  // const openFileHandler = (fileType: IOpenFile) => {
-  //   switchOpenFileState(prevState => {
-  //     if (prevState === fileType) {
-  //       return 'none'
-  //     } else {
-  //       return fileType
-  //     }
-  //   })
-  // }
+  const openFileHandler = (fileType: IOpenFile) => {
+    if (timeoutEntryPage) clearTimeout(timeoutEntryPage)
+
+    if (openFile === fileType) {
+      switchOpenFileState('none')
+      return
+    }
+
+    if (openFile === 'none') {
+      switchOpenFileState(fileType)
+      return
+    }
+
+    const idTimeout = setTimeout(() => {
+      switchOpenFileState(fileType)
+    }, 500)
+
+    setTimeoutEntryPage(idTimeout)
+    switchOpenFileState('none')
+  }
 
   return (
     <div className="dock">
@@ -28,7 +38,7 @@ export const Dock: React.FC<IProps> = ({ switchOpenFileState, openFile }: IProps
           className={openFile === 'profileInfo' ? 'selected__page' : ''}
           width={50}
           height={50}
-          onClick={() => openFileSetter('profileInfo')}
+          onClick={() => openFileHandler('profileInfo')}
         />
         <div className="tooltip">About me</div>
       </div>
@@ -37,7 +47,7 @@ export const Dock: React.FC<IProps> = ({ switchOpenFileState, openFile }: IProps
           className={openFile === 'projects' ? 'selected__page' : ''}
           width={50}
           height={50}
-          onClick={() => openFileSetter('projects')}
+          onClick={() => openFileHandler('projects')}
         />
         <div className="tooltip">Previous works</div>
       </div>
@@ -46,7 +56,7 @@ export const Dock: React.FC<IProps> = ({ switchOpenFileState, openFile }: IProps
           className={openFile === 'contact' ? 'selected__page' : ''}
           width={50}
           height={50}
-          onClick={() => openFileSetter('contact')}
+          onClick={() => openFileHandler('contact')}
         />
         <div className="tooltip">Contact me</div>
       </div>

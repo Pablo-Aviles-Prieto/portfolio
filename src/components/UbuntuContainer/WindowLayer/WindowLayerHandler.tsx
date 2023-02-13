@@ -23,29 +23,13 @@ export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, s
 
     setSubPage('introduction')
 
-    // If its closed, we want to open it immediately
-    if (!isOpen) {
-      setIsOpen(true)
+    if (openedFile === 'none') {
+      setIsOpen(false)
       return
     }
 
-    // If its not immediately opened, we close it anyway.
-    setIsOpen(false)
-
-    if (openedFile === 'none') return
-
-    // Reopen it after the .5s transition
-    const timerId = setTimeout(() => {
-      setIsOpen(true)
-    }, 600)
-
-    return () => {
-      clearTimeout(timerId)
-    }
+    setIsOpen(true)
   }, [openedFile])
-
-  console.log('isOpen window layer handler', isOpen)
-  console.log('subPage window layer handler', subPage)
 
   const subMenu = useCallback(() => {
     if (openedFile === 'none') return []

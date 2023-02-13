@@ -17,7 +17,7 @@ const WindowContainer = styled.div`
   box-shadow: 2px 4px 10px rgb(0 0 0 / 50%);
   font-family: 'Poppins';
   position: absolute;
-  transition: all 0.5s ease-in;
+  transition: all 0.4s ease-in;
   &.page__open {
     width: 85%;
     height: 97%;
@@ -116,19 +116,19 @@ const WindowContainer = styled.div`
 type ISubPage = IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
 
 interface IProps {
-  switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
   isOpen: boolean
   subMenuData: ISubMenuObj[]
   subPage: ISubPage
+  switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
   setSubPage: React.Dispatch<React.SetStateAction<ISubPage>>
   children: JSX.Element
 }
 
 export const WindowLayer: React.FC<IProps> = ({
-  switchOpenFileState,
   subMenuData,
   isOpen,
   subPage,
+  switchOpenFileState,
   setSubPage,
   children
 }: IProps) => {
