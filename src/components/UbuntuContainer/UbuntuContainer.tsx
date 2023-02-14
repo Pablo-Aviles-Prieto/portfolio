@@ -5,9 +5,6 @@ import { Dock } from './Dock/Dock'
 import { IOpenFile } from '../../interfaces'
 
 const UbuntuContainerDiv = styled.div`
-  @import url(https://fonts.googleapis.com/css?family=Cantarell:700);
-  @import url(http://weloveiconfonts.com/api/?family=entypo|fontawesome);
-
   /* entypo */
   [class*='entypo-']:before {
     font-family: 'entypo', sans-serif;

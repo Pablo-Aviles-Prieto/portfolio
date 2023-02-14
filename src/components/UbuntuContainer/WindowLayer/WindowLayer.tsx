@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Hamburger, Square, Close, Minimize } from '../../Icons'
-import { IOpenFile } from '../../../interfaces'
+import { IOpenFile, ISubMenuObj, IProfileInfoSubPages, IProjectsSubPages, IContactSubPages } from '../../../interfaces'
 
 const WindowContainer = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const WindowContainer = styled.div`
   box-shadow: 2px 4px 10px rgb(0 0 0 / 50%);
   font-family: 'Poppins';
   position: absolute;
-  transition: all 0.5s ease-in;
+  transition: all 0.4s ease-in;
   &.page__open {
     width: 85%;
     height: 97%;
@@ -35,9 +35,6 @@ const WindowContainer = styled.div`
       align-items: center;
       padding: 0 15px;
     }
-    &-content {
-      padding: 15px;
-    }
   }
   .left-section {
     width: 25%;
@@ -48,6 +45,21 @@ const WindowContainer = styled.div`
       &__menu {
         display: flex;
         cursor: pointer;
+      }
+    }
+    &-content {
+      &-submenu {
+        cursor: pointer;
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        &.menu__selected {
+          background-color: ${({ theme }) => theme.emphasizeColor};
+        }
+        &:hover {
+          background-color: ${({ theme }) => theme.lightEmphasize};
+        }
       }
     }
   }
@@ -96,41 +108,49 @@ const WindowContainer = styled.div`
         }
       }
     }
+    &-content {
+      opacity: 0;
+      padding: 2px 15px;
+      &.subpage__open {
+        opacity: 1;
+        transition: opacity 0.4s ease-out;
+      }
+    }
   }
 `
 
+type ISubPage = IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
+
 interface IProps {
-  openedFile: IOpenFile
+  isOpen: boolean
+  subMenuData: ISubMenuObj[]
+  subPage: ISubPage
   switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
+  setSubPage: React.Dispatch<React.SetStateAction<ISubPage>>
   children: JSX.Element
 }
 
-export const WindowLayer: React.FC<IProps> = ({ openedFile, switchOpenFileState, children }: IProps) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+export const WindowLayer: React.FC<IProps> = ({
+  subMenuData,
+  isOpen,
+  subPage,
+  switchOpenFileState,
+  setSubPage,
+  children
+}: IProps) => {
+  const [subPageContentClasses, setSubPageContentClasses] = useState<string>('right-section-content')
 
   useEffect(() => {
-    // If its closed, we want to open it immediately
-    if (!isOpen) {
-      setIsOpen(true)
-      return
-    }
-
-    // If its not immediately opened, we close it anyway.
-    setIsOpen(false)
-
-    if (openedFile === 'none') {
-      return
-    }
-
-    // Reopen it after the .5s transition
-    const timerId = setTimeout(() => {
-      setIsOpen(true)
-    }, 600)
+    const idTimeout = setTimeout(() => {
+      setSubPageContentClasses('right-section-content subpage__open')
+    }, 200)
 
     return () => {
-      clearTimeout(timerId)
+      clearTimeout(idTimeout)
     }
-  }, [openedFile])
+  }, [subPage])
+
+  console.log('isOPen windowlayer', isOpen)
 
   return (
     <WindowContainer className={isOpen ? 'page__open' : ''}>
@@ -143,7 +163,25 @@ export const WindowLayer: React.FC<IProps> = ({ openedFile, switchOpenFileState,
           </div>
         </div>
         <div className="left-section-content">
-          <p>Menu bar options</p>
+          {subMenuData.map(menuLine => {
+            return (
+              <div
+                key={menuLine.title}
+                className={
+                  subPage === menuLine.title
+                    ? 'left-section-content-submenu menu__selected'
+                    : 'left-section-content-submenu'
+                }
+                onClick={() => {
+                  setSubPage(menuLine.title)
+                  setSubPageContentClasses('right-section-content')
+                }}
+              >
+                <menuLine.SVG width={15} height={15} />
+                <p>{menuLine.content}</p>
+              </div>
+            )
+          })}
         </div>
       </div>
       <div className="right-section">
@@ -162,7 +200,7 @@ export const WindowLayer: React.FC<IProps> = ({ openedFile, switchOpenFileState,
             </button>
           </div>
         </div>
-        <div className="right-section-content">{children}</div>
+        <div className={subPageContentClasses}>{children}</div>
       </div>
     </WindowContainer>
   )

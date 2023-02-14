@@ -46,20 +46,7 @@ const DetailsContainer = styled.div`
   }
   .developer-animation span:nth-child(even) {
     display: inline-block;
-    animation: rotate-letters 2.8s ease-in-out;
-    animation-fill-mode: forwards;
-  }
-
-  @keyframes rotate-letters {
-    0% {
-      transform: rotate(0);
-    }
-    98% {
-      transform: rotate(0);
-    }
-    100% {
-      transform: rotate(20deg);
-    }
+    transform: rotate(20deg);
   }
 `
 

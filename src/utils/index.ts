@@ -1,2 +1,5 @@
 export { renderLinePropHelper } from './renderLinePropHelper'
 export { getDayAndHourHelper } from './getDayAndHourHelper'
+export { profileSubMenu } from './pagesSubMenus'
+export { projectsSubMenu } from './pagesSubMenus'
+export { contactSubMenu } from './pagesSubMenus'

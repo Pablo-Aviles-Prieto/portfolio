@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
-import { Prompt, UbuntuContainer, ProfileHeader, WindowLayer, FolderBlock } from './components'
+import { Prompt, UbuntuContainer, FolderBlock, WindowLayerHandler } from './components'
 import { LIGHT_THEME, DARK_THEME } from './themes'
 import { GenericButton } from './components/Styles'
 import { IOpenFile } from './interfaces'
@@ -48,11 +48,7 @@ const App: React.FC = () => {
   const [lightTheme, setLightTheme] = useState<boolean>(false)
   const [introState, setIntroState] = useState<boolean>(true)
   const [openFile, setOpenFile] = useState<IOpenFile>('none')
-  console.log('openFile', openFile)
-
-  useEffect(() => {
-    setIntroState(true)
-  }, [])
+  console.log('openFile app', openFile)
 
   const switchThemeHandler = () => {
     setLightTheme(prevState => !prevState)
@@ -72,9 +68,7 @@ const App: React.FC = () => {
             <Prompt switchIntroState={switchIntroState} />
             <GenericButton onClick={switchIntroState}>Skip introduction</GenericButton>
           </IntroContainer>
-          <WindowLayer openedFile={openFile} switchOpenFileState={setOpenFile}>
-            <ProfileHeader />
-          </WindowLayer>
+          <WindowLayerHandler introState={introState} openedFile={openFile} switchOpenFileState={setOpenFile} />
         </>
       </UbuntuContainer>
     </ThemeProvider>
