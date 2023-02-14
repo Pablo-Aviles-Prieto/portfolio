@@ -61,8 +61,9 @@ export const AboutmeContent: React.FC = () => {
       </div>
       <div className="footer-section">
         <p>
-          Now, after more than 1 year into <span className="emphasize-content">web development</span>. I thrive to be
-          better <span className="emphasize-content">working hard</span> day after day 💪 with all the{' '}
+          <span className="emphasize-content">Now</span>, after more than a year into{' '}
+          <span className="emphasize-content">web development</span>. I thrive to be better{' '}
+          <span className="emphasize-content">working hard</span> day after day 💪 with all the{' '}
           <span className="emphasize-content">passion</span> and <span className="emphasize-content">motivation</span> I
           have for the dev world.
         </p>

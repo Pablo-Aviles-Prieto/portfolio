@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { WindowLayer } from './WindowLayer'
 import { ProfileInfoPage } from '../../ProfileInfo/ProfileInfoPage'
 import { ProjectsPage } from '../../ProjectsPage/ProjectsPage'
@@ -31,16 +31,23 @@ export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, s
     setIsOpen(true)
   }, [openedFile])
 
-  const subMenu = useCallback(() => {
+  const subMenu = useMemo(() => {
     if (openedFile === 'none') return []
     if (openedFile === 'profileInfo') return profileSubMenu
     return openedFile === 'projects' ? projectsSubMenu : contactSubMenu
   }, [openedFile])
 
+  const titleToRender = useMemo(() => {
+    if (openedFile === 'none') return ''
+    if (openedFile === 'profileInfo') return 'Get to know me'
+    return openedFile === 'projects' ? 'Take a look to some previous works' : 'Want to exchange some words?'
+  }, [openedFile])
+
   return (
     <WindowLayer
       isOpen={isOpen}
-      subMenuData={subMenu()}
+      subMenuData={subMenu}
+      titlePage={titleToRender}
       subPage={subPage}
       setSubPage={setSubPage}
       switchOpenFileState={switchOpenFileState}

@@ -125,6 +125,7 @@ type ISubPage = IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
 interface IProps {
   isOpen: boolean
   subMenuData: ISubMenuObj[]
+  titlePage: string
   subPage: ISubPage
   switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
   setSubPage: React.Dispatch<React.SetStateAction<ISubPage>>
@@ -132,8 +133,9 @@ interface IProps {
 }
 
 export const WindowLayer: React.FC<IProps> = ({
-  subMenuData,
   isOpen,
+  subMenuData,
+  titlePage,
   subPage,
   switchOpenFileState,
   setSubPage,
@@ -186,7 +188,7 @@ export const WindowLayer: React.FC<IProps> = ({
       <div className="right-section">
         <div className="right-section-header">
           <div />
-          <p>Content title</p>
+          <p>{titlePage}</p>
           <div className="right-section-header__buttons">
             <button type="button">
               <Minimize className="button__minimize" width={25} height={25} />
