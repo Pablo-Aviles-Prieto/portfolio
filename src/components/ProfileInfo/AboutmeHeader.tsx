@@ -52,11 +52,11 @@ const DetailsContainer = styled.div`
 
 const PUBLIC_URI = process.env.PUBLIC_URL || ''
 
-export const ProfileHeader: React.FC = () => {
+export const AboutmeHeader: React.FC = () => {
   return (
     <ProfileContainer>
       <PhotoContainer width="250px" height="250px">
-        <img src={`${PUBLIC_URI}/images/profile-photo.jpg`} alt="Pablo Avilés Prieto" />
+        <img src={`${PUBLIC_URI}/images/profile-photo2.jpeg`} alt="Pablo Avilés Prieto" />
       </PhotoContainer>
       <DetailsContainer>
         <h1>Full stack web</h1>
@@ -73,7 +73,7 @@ export const ProfileHeader: React.FC = () => {
         </h1>
         <div className="description-block">
           <p>
-            🤗 Hi there, <span className="emphasize-text">I&apos;m Pablo Avilés</span>, Tech enthusiast.
+            🤗 Hi there, <span className="emphasize-text">I&apos;m Pablo Avilés</span>, Tech enthusiast. 👋
           </p>
           <p>Been working in the IT world for more than 4 years. Now completely focused on web development.</p>
         </div>

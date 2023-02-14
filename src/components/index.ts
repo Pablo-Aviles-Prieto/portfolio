@@ -1,5 +1,5 @@
+export { AboutmeHeader } from './ProfileInfo/AboutmeHeader'
 export { Prompt } from './Prompt/Prompt'
-export { ProfileHeader } from './ProfileHeader/ProfileHeader'
 export { UbuntuContainer } from './UbuntuContainer/UbuntuContainer'
 export { WindowLayer } from './UbuntuContainer/WindowLayer/WindowLayer'
 export { FolderBlock } from './UbuntuContainer/FolderBlock/FolderBlock'

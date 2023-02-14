@@ -65,6 +65,7 @@ const WindowContainer = styled.div`
   }
   .right-section {
     width: 75%;
+    overflow: auto;
     &-header {
       justify-content: space-between;
       &__buttons {
@@ -149,8 +150,6 @@ export const WindowLayer: React.FC<IProps> = ({
       clearTimeout(idTimeout)
     }
   }, [subPage])
-
-  console.log('isOPen windowlayer', isOpen)
 
   return (
     <WindowContainer className={isOpen ? 'page__open' : ''}>
