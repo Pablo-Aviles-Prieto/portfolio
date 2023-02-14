@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Hamburger, Square, Close, Minimize } from '../../Icons'
 import { IOpenFile, ISubMenuObj, IProfileInfoSubPages, IProjectsSubPages, IContactSubPages } from '../../../interfaces'
@@ -108,7 +109,12 @@ const WindowContainer = styled.div`
       }
     }
     &-content {
+      opacity: 0;
       padding: 2px 15px;
+      &.subpage__open {
+        opacity: 1;
+        transition: opacity 0.4s ease-out;
+      }
     }
   }
 `
@@ -132,6 +138,20 @@ export const WindowLayer: React.FC<IProps> = ({
   setSubPage,
   children
 }: IProps) => {
+  const [subPageContentClasses, setSubPageContentClasses] = useState<string>('right-section-content')
+
+  useEffect(() => {
+    const idTimeout = setTimeout(() => {
+      setSubPageContentClasses('right-section-content subpage__open')
+    }, 200)
+
+    return () => {
+      clearTimeout(idTimeout)
+    }
+  }, [subPage])
+
+  console.log('isOPen windowlayer', isOpen)
+
   return (
     <WindowContainer className={isOpen ? 'page__open' : ''}>
       <div className="left-section">
@@ -143,25 +163,25 @@ export const WindowLayer: React.FC<IProps> = ({
           </div>
         </div>
         <div className="left-section-content">
-          {isOpen &&
-            subMenuData.map(menuLine => {
-              return (
-                <div
-                  key={menuLine.title}
-                  className={
-                    subPage === menuLine.title
-                      ? 'left-section-content-submenu menu__selected'
-                      : 'left-section-content-submenu'
-                  }
-                  onClick={() => {
-                    setSubPage(menuLine.title)
-                  }}
-                >
-                  <menuLine.SVG width={15} height={15} />
-                  <p>{menuLine.content}</p>
-                </div>
-              )
-            })}
+          {subMenuData.map(menuLine => {
+            return (
+              <div
+                key={menuLine.title}
+                className={
+                  subPage === menuLine.title
+                    ? 'left-section-content-submenu menu__selected'
+                    : 'left-section-content-submenu'
+                }
+                onClick={() => {
+                  setSubPage(menuLine.title)
+                  setSubPageContentClasses('right-section-content')
+                }}
+              >
+                <menuLine.SVG width={15} height={15} />
+                <p>{menuLine.content}</p>
+              </div>
+            )
+          })}
         </div>
       </div>
       <div className="right-section">
@@ -180,7 +200,7 @@ export const WindowLayer: React.FC<IProps> = ({
             </button>
           </div>
         </div>
-        {isOpen && <div className="right-section-content">{children}</div>}
+        <div className={subPageContentClasses}>{children}</div>
       </div>
     </WindowContainer>
   )
