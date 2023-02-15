@@ -4,6 +4,7 @@ export const DARK_THEME = {
   blackBground: '#222222',
   greyBground: '#3c3b3b',
   greyPerma: '#898989',
+  greyLighter: '#bcbcbc',
   mainColor: '#fff',
   emphasizeColor: '#ff8e00',
   lightEmphasize: '#ff9a1c'
