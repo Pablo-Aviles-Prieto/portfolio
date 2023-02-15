@@ -4,7 +4,7 @@ import { getDayAndHourHelper } from '../../utils'
 import { Dock } from './Dock/Dock'
 import { IOpenFile } from '../../interfaces'
 
-const UbuntuContainerDiv = styled.div`
+const UbuntuContainerDiv = styled.div<{ PUBLIC_URI: string }>`
   /* entypo */
   [class*='entypo-']:before {
     font-family: 'entypo', sans-serif;
@@ -54,7 +54,7 @@ const UbuntuContainerDiv = styled.div`
     background-color: rgba(0, 0, 0, 0);
 
     .background-image {
-      background-image: url('https://www.omgubuntu.co.uk/wp-content/uploads/2015/03/suru-desktop-wallpaper-ubuntu-vivid.jpg');
+      background-image: ${({ PUBLIC_URI }) => `url(${PUBLIC_URI}/images/jammy-jellyfish-wallpaper.jpg)`};
       background-size: cover;
       width: 100%;
       height: 100vh;
@@ -189,6 +189,8 @@ const UbuntuContainerDiv = styled.div`
   }
 `
 
+const PUBLIC_URI = process.env.PUBLIC_URL || ''
+
 interface IProps {
   switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
   openFile: IOpenFile
@@ -197,7 +199,7 @@ interface IProps {
 
 export const UbuntuContainer: React.FC<IProps> = ({ switchOpenFileState, openFile, children }: IProps) => {
   return (
-    <UbuntuContainerDiv>
+    <UbuntuContainerDiv PUBLIC_URI={PUBLIC_URI}>
       <div className="windows-layer">{children}</div>
       <div className="desktop">
         <div className="action-bar">

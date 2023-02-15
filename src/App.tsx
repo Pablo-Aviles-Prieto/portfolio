@@ -38,9 +38,11 @@ const GlobalStyle = createGlobalStyle<{ introState: boolean }>`
     list-style: none;
   }
   body {
-    /* background-color: ${({ theme }) => theme.mainBground}; */
     color: ${({ theme }) => theme.mainColor};
     overflow-x: hidden;
+  }
+  .emphasize-content {
+    color: ${({ theme }) => theme.emphasizeColor};
   }
 `
 

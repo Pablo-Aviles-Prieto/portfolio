@@ -19,9 +19,6 @@ const ContentContainer = styled.div`
     }
   }
 
-  .emphasize-content {
-    color: ${({ theme }) => theme.emphasizeColor};
-  }
   .notation {
     display: inline-block;
     margin-top: 25px;
@@ -52,7 +49,7 @@ export const AboutmeContent: React.FC = () => {
           <img src={`${PUBLIC_URI}/images/gaming.jpg`} alt="Myself competing on a gaming tournament" />
         </GamingImg>
         <p>
-          After graduate as Higher Technician in Computer Network Systems Managementand{' '}
+          After graduate as Higher Technician in Computer Network Systems Management and{' '}
           <span className="emphasize-content">work</span> for some years as{' '}
           <span className="emphasize-content">IT Support Specialist</span>, I could work and live from my passion and
           hobbie, competing in <span className="emphasize-content">esports</span> at the top Spanish and European level.
