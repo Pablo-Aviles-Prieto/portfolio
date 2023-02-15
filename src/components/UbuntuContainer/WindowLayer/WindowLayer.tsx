@@ -153,6 +153,12 @@ export const WindowLayer: React.FC<IProps> = ({
     }
   }, [subPage])
 
+  const subPageHandler = (menuLine: ISubMenuObj) => {
+    setSubPage(menuLine.title)
+    if (subPage === menuLine.title) return
+    setSubPageContentClasses('right-section-content')
+  }
+
   return (
     <WindowContainer className={isOpen ? 'page__open' : ''}>
       <div className="left-section">
@@ -173,10 +179,7 @@ export const WindowLayer: React.FC<IProps> = ({
                     ? 'left-section-content-submenu menu__selected'
                     : 'left-section-content-submenu'
                 }
-                onClick={() => {
-                  setSubPage(menuLine.title)
-                  setSubPageContentClasses('right-section-content')
-                }}
+                onClick={() => subPageHandler(menuLine)}
               >
                 <menuLine.SVG width={15} height={15} />
                 <p>{menuLine.content}</p>
