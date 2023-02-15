@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { WindowLayer } from './WindowLayer'
-import { ProfileInfoPage } from '../../ProfileInfo/ProfileInfoPage'
+import { ProfileInfoPage } from '../../ProfileInfoPage/ProfileInfoPage'
 import { ProjectsPage } from '../../ProjectsPage/ProjectsPage'
 import { IOpenFile, IProfileInfoSubPages, IProjectsSubPages, IContactSubPages } from '../../../interfaces'
 import { profileSubMenu, projectsSubMenu, contactSubMenu } from '../../../utils'

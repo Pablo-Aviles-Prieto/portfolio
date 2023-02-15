@@ -36,6 +36,10 @@ const ContentContainer = styled.div`
         font-size: 18px;
       }
     }
+    &:first-of-type {
+      padding-top: 20px;
+      text-align: left;
+    }
     &:last-of-type {
       .block {
         &-left,
@@ -43,10 +47,6 @@ const ContentContainer = styled.div`
           padding-bottom: 0;
         }
       }
-    }
-    &:first-of-type {
-      padding-top: 20px;
-      text-align: left;
     }
   }
   .emphasize-white {
@@ -66,7 +66,7 @@ export const Experience: React.FC = () => {
   return (
     <>
       <HeaderContainer>
-        <h1> Work experience</h1>
+        <h1>Work experience</h1>
       </HeaderContainer>
       <ContentContainer>
         <div className="block">

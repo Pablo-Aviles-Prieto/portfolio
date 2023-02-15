@@ -1,6 +1,6 @@
-import { AboutmeHeader } from './AboutmeHeader'
-import { AboutmeContent } from './AboutmeContent'
+import { Aboutme } from './Aboutme'
 import { Experience } from './Experience'
+import { Education } from './Education'
 import { IProfileInfoSubPages, IProjectsSubPages, IContactSubPages } from '../../interfaces'
 
 interface IProps {
@@ -12,12 +12,7 @@ export const ProfileInfoPage: React.FC<IProps> = ({ subPage }: IProps) => {
     return <Experience />
   }
   if (subPage === 'education') {
-    return <h1>Education page component</h1>
+    return <Education />
   }
-  return (
-    <>
-      <AboutmeHeader />
-      <AboutmeContent />
-    </>
-  )
+  return <Aboutme />
 }
