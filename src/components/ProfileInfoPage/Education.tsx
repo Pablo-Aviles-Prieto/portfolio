@@ -1,4 +1,16 @@
+import { useState } from 'react'
 import styled from 'styled-components'
+import { BigArrowDown } from '../Icons'
+
+type ICloseOpen = 'close' | 'open'
+
+type IOpenedSectionState = {
+  oxygen: ICloseOpen
+  react: ICloseOpen
+  freeCodeCamp: ICloseOpen
+  fullStack: ICloseOpen
+  fp2: ICloseOpen
+}
 
 const HeaderContainer = styled.div`
   text-align: center;
@@ -8,14 +20,42 @@ const HeaderContainer = styled.div`
   }
 `
 
-const ContentContainer = styled.div`
+const ContentContainer = styled.div<{ openedSection: IOpenedSectionState }>`
   margin-top: 20px;
   .block {
-    margin: 30px 0;
+    margin: 40px 0;
+    overflow: hidden;
     &-header {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 20px;
+      .arrow-oxygen {
+        transition: transform 0.5s ease;
+        transform: ${({ openedSection }) => (openedSection.oxygen === 'close' ? 'rotate(0deg)' : 'rotate(180deg)')};
+      }
+      .arrow-react {
+        transition: transform 0.5s ease;
+        transform: ${({ openedSection }) => (openedSection.react === 'close' ? 'rotate(0deg)' : 'rotate(180deg)')};
+      }
+      .arrow-freeCodeCamp {
+        transition: transform 0.5s ease;
+        transform: ${({ openedSection }) =>
+          openedSection.freeCodeCamp === 'close' ? 'rotate(0deg)' : 'rotate(180deg)'};
+      }
+      .arrow-fullStack {
+        transition: transform 0.5s ease;
+        transform: ${({ openedSection }) => (openedSection.fullStack === 'close' ? 'rotate(0deg)' : 'rotate(180deg)')};
+      }
+      .arrow-fp2 {
+        transition: transform 0.5s ease;
+        transform: ${({ openedSection }) => (openedSection.fp2 === 'close' ? 'rotate(0deg)' : 'rotate(180deg)')};
+      }
+      &:hover {
+        cursor: pointer;
+        svg {
+          fill: ${({ theme }) => theme.emphasizeColor};
+        }
+      }
       .subtitle {
         display: flex;
         align-items: center;
@@ -29,10 +69,41 @@ const ContentContainer = styled.div`
     }
     &-content {
       margin-top: 10px;
+      margin-bottom: 30px;
       font-size: 15px;
     }
+    .content__oxygen {
+      transition: all 0.5s;
+      height: ${({ openedSection }) => (openedSection.oxygen === 'close' ? '0' : '110px')};
+      margin-top: ${({ openedSection }) => (openedSection.oxygen === 'close' ? '40px' : '10px')};
+      margin-bottom: ${({ openedSection }) => (openedSection.oxygen === 'close' ? '0' : '40px')};
+    }
+    .content__react {
+      transition: all 0.5s;
+      height: ${({ openedSection }) => (openedSection.react === 'close' ? '0' : '240px')};
+      margin-top: ${({ openedSection }) => (openedSection.react === 'close' ? '40px' : '10px')};
+      margin-bottom: ${({ openedSection }) => (openedSection.react === 'close' ? '0' : '40px')};
+    }
+    .content__freeCodeCamp {
+      transition: all 0.5s;
+      height: ${({ openedSection }) => (openedSection.freeCodeCamp === 'close' ? '0' : '60px')};
+      margin-top: ${({ openedSection }) => (openedSection.freeCodeCamp === 'close' ? '40px' : '10px')};
+      margin-bottom: ${({ openedSection }) => (openedSection.freeCodeCamp === 'close' ? '0' : '40px')};
+    }
+    .content__fullStack {
+      transition: all 0.5s;
+      height: ${({ openedSection }) => (openedSection.fullStack === 'close' ? '0' : '170px')};
+      margin-top: ${({ openedSection }) => (openedSection.fullStack === 'close' ? '40px' : '10px')};
+      margin-bottom: ${({ openedSection }) => (openedSection.fullStack === 'close' ? '0' : '40px')};
+    }
+    .content__fp2 {
+      transition: all 0.5s;
+      height: ${({ openedSection }) => (openedSection.fp2 === 'close' ? '0' : '125px')};
+      margin-top: ${({ openedSection }) => (openedSection.fp2 === 'close' ? '30px' : '10px')};
+      margin-bottom: ${({ openedSection }) => (openedSection.fp2 === 'close' ? '0' : '30px')};
+    }
     &__separator {
-      height: 30px;
+      /* height: 30px; */
       width: 70%;
       border-bottom: 1px solid #ca7100;
       margin-left: calc(50% - (70% / 2));
@@ -58,15 +129,32 @@ const ContentContainer = styled.div`
   }
 `
 
+const openedSectionState: IOpenedSectionState = {
+  oxygen: 'close',
+  react: 'close',
+  freeCodeCamp: 'close',
+  fullStack: 'close',
+  fp2: 'close'
+}
+
 export const Education: React.FC = () => {
+  const [openedSection, setOpenedSection] = useState<IOpenedSectionState>(openedSectionState)
+
+  const switchSectionState = ({ prop }: { prop: keyof IOpenedSectionState }) => {
+    setOpenedSection(prevState => {
+      const prevValue = prevState[prop]
+      return { ...prevState, [prop]: prevValue === 'close' ? 'open' : 'close' }
+    })
+  }
+
   return (
     <>
       <HeaderContainer>
         <h1>Education</h1>
       </HeaderContainer>
-      <ContentContainer>
+      <ContentContainer openedSection={openedSection}>
         <div className="block">
-          <div className="block-header">
+          <div className="block-header" onClick={() => switchSectionState({ prop: 'oxygen' })}>
             <div className="block-header-title">
               <h3 className="emphasize-content">OXYGEN training</h3>
               <p className="emphasize-grey subtitle">
@@ -74,9 +162,9 @@ export const Education: React.FC = () => {
                 <span className="emphasize-dark-grey">Sep 2022</span>
               </p>
             </div>
-            <div className="block-header-arrow">A</div>
+            <BigArrowDown className="arrow-oxygen" width={30} height={30} />
           </div>
-          <div className="block-content">
+          <div className="block-content content__oxygen">
             <p>· Advanced concepts on HTML5, CSS3 and how to structure it</p>
             <p>· Advanced concepts on ReactJS (with Redux), JavaScript and NodeJS (with ExpressJS)</p>
             <p>· Core concepts on Unit and E2E testing using Jest, Cypress, SuperTest and Playwright</p>
@@ -85,14 +173,17 @@ export const Education: React.FC = () => {
           <div className="block__separator" />
         </div>
         <div className="block">
-          <div className="block-header">
-            <h3 className="emphasize-content">React Full Course (49H)</h3>
-            <p className="emphasize-grey subtitle">
-              <span className="organization">Udemy</span>
-              <span className="emphasize-dark-grey datetime">Sep 2022</span>
-            </p>
+          <div className="block-header" onClick={() => switchSectionState({ prop: 'react' })}>
+            <div className="block-header-title">
+              <h3 className="emphasize-content">React Full Course (49H)</h3>
+              <p className="emphasize-grey subtitle">
+                <span className="organization">Udemy</span>
+                <span className="emphasize-dark-grey datetime">Sep 2022</span>
+              </p>
+            </div>
+            <BigArrowDown className="arrow-react" width={30} height={30} />
           </div>
-          <div className="block-content">
+          <div className="block-content content__react">
             <p>
               · Core and advanced concepts about ReactJS (components, props, hooks and custom hooks, life cycle,
               routing...)
@@ -113,14 +204,17 @@ export const Education: React.FC = () => {
           <div className="block__separator" />
         </div>
         <div className="block">
-          <div className="block-header">
-            <h3 className="emphasize-content">JavaScript Algorithms and Data Structures (300H)</h3>
-            <p className="emphasize-grey subtitle">
-              <span className="organization">freeCodeCamp</span>
-              <span className="emphasize-dark-grey datetime">Aug 2022</span>
-            </p>
+          <div className="block-header" onClick={() => switchSectionState({ prop: 'freeCodeCamp' })}>
+            <div className="block-header-title">
+              <h3 className="emphasize-content">JavaScript Algorithms and Data Structures (300H)</h3>
+              <p className="emphasize-grey subtitle">
+                <span className="organization">freeCodeCamp</span>
+                <span className="emphasize-dark-grey datetime">Aug 2022</span>
+              </p>
+            </div>
+            <BigArrowDown className="arrow-freeCodeCamp" width={30} height={30} />
           </div>
-          <div className="block-content">
+          <div className="block-content content__freeCodeCamp">
             <p>
               · Fundamentals of JavaScript along two important programming styles or paradigms: Object Oriented
               Programming (OOP) and Functional Programming (FP)
@@ -129,14 +223,17 @@ export const Education: React.FC = () => {
           <div className="block__separator" />
         </div>
         <div className="block">
-          <div className="block-header">
-            <h3 className="emphasize-content">Web Development Bootcamp (80H)</h3>
-            <p className="emphasize-grey subtitle">
-              <span className="organization">Udemy</span>
-              <span className="emphasize-dark-grey datetime">July 2022</span>
-            </p>
+          <div className="block-header" onClick={() => switchSectionState({ prop: 'fullStack' })}>
+            <div className="block-header-title">
+              <h3 className="emphasize-content">Web Development Bootcamp (80H)</h3>
+              <p className="emphasize-grey subtitle">
+                <span className="organization">Udemy</span>
+                <span className="emphasize-dark-grey datetime">July 2022</span>
+              </p>
+            </div>
+            <BigArrowDown className="arrow-fullStack" width={30} height={30} />
           </div>
-          <div className="block-content">
+          <div className="block-content content__fullStack">
             <p>· Core concepts on HTML5, CSS3, JavaScript ES6+ and how to structure and manage it</p>
             <p>· Backend development using template engines and building REST APIs with NodeJS & ExpressJS</p>
             <p>· Working with MySQL,MongoDB (Mongoose) and Firabase databases</p>
@@ -149,14 +246,17 @@ export const Education: React.FC = () => {
           <div className="block__separator" />
         </div>
         <div className="block">
-          <div className="block-header">
-            <h3 className="emphasize-content">Computer Network Systems Management (FPII)</h3>
-            <p className="emphasize-grey subtitle">
-              <span className="organization">IES Fernando Wirtz</span>
-              <span className="emphasize-dark-grey datetime">2012-2014</span>
-            </p>
+          <div className="block-header" onClick={() => switchSectionState({ prop: 'fp2' })}>
+            <div className="block-header-title">
+              <h3 className="emphasize-content">Computer Network Systems Management (FPII)</h3>
+              <p className="emphasize-grey subtitle">
+                <span className="organization">IES Fernando Wirtz</span>
+                <span className="emphasize-dark-grey datetime">2012-2014</span>
+              </p>
+            </div>
+            <BigArrowDown className="arrow-fp2" width={30} height={30} />
           </div>
-          <div className="block-content">
+          <div className="block-content content__fp2">
             <p>· Operating systems implementation and management</p>
             <p>· Network services and Internet of Things (IoT)</p>
             <p>· Web applications implementation</p>

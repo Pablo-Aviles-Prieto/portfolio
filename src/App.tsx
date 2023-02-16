@@ -36,6 +36,24 @@ const GlobalStyle = createGlobalStyle<{ introState: boolean }>`
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
     list-style: none;
+    scrollbar-color: #eb8100 ${({ theme }) => theme.secondBground};
+    scrollbar-width: auto;
+    ::-webkit-scrollbar-track {
+	    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	    border-radius: 10px;
+	    /* background-color: #F5F5F5; */
+	    background-color: ${({ theme }) => theme.secondBground};
+    }
+    ::-webkit-scrollbar {
+      border-radius: 10px;
+      width: 12px;
+	    background-color: #F5F5F5;
+    }
+    ::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+	    box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	    background-color: #eb8100;
+    }
   }
   body {
     color: ${({ theme }) => theme.mainColor};
