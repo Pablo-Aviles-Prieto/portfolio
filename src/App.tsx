@@ -41,12 +41,11 @@ const GlobalStyle = createGlobalStyle<{ introState: boolean }>`
     ::-webkit-scrollbar-track {
 	    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	    border-radius: 10px;
-	    /* background-color: #F5F5F5; */
 	    background-color: ${({ theme }) => theme.secondBground};
     }
     ::-webkit-scrollbar {
       border-radius: 10px;
-      width: 12px;
+      width: 8px;
 	    background-color: #F5F5F5;
     }
     ::-webkit-scrollbar-thumb {
