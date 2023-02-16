@@ -181,7 +181,7 @@ export const WindowLayer: React.FC<IProps> = ({
                 }
                 onClick={() => subPageHandler(menuLine)}
               >
-                <menuLine.SVG width={15} height={15} />
+                <menuLine.SVG width={16} height={16} />
                 <p>{menuLine.content}</p>
               </div>
             )

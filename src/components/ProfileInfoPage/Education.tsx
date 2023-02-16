@@ -25,6 +25,9 @@ const ContentContainer = styled.div<{ openedSection: IOpenedSectionState }>`
   .block {
     margin: 40px 0;
     overflow: hidden;
+    &__txt-right {
+      text-align: right;
+    }
     &-header {
       display: inline-flex;
       align-items: center;
@@ -59,12 +62,9 @@ const ContentContainer = styled.div<{ openedSection: IOpenedSectionState }>`
       .subtitle {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: end;
         font-size: 14px;
-        .organization {
-          display: inline-block;
-          width: 150px;
-        }
+        gap: 15px;
       }
     }
     &-content {
@@ -74,7 +74,7 @@ const ContentContainer = styled.div<{ openedSection: IOpenedSectionState }>`
     }
     .content__oxygen {
       transition: all 0.5s;
-      height: ${({ openedSection }) => (openedSection.oxygen === 'close' ? '0' : '110px')};
+      height: ${({ openedSection }) => (openedSection.oxygen === 'close' ? '0' : '100px')};
       margin-top: ${({ openedSection }) => (openedSection.oxygen === 'close' ? '40px' : '10px')};
       margin-bottom: ${({ openedSection }) => (openedSection.oxygen === 'close' ? '0' : '40px')};
     }
@@ -154,15 +154,17 @@ export const Education: React.FC = () => {
       </HeaderContainer>
       <ContentContainer openedSection={openedSection}>
         <div className="block">
-          <div className="block-header" onClick={() => switchSectionState({ prop: 'oxygen' })}>
-            <div className="block-header-title">
-              <h3 className="emphasize-content">OXYGEN training</h3>
-              <p className="emphasize-grey subtitle">
-                <span>OXYGEN</span>
-                <span className="emphasize-dark-grey">Sep 2022</span>
-              </p>
+          <div className="block__txt-right">
+            <div className="block-header" onClick={() => switchSectionState({ prop: 'oxygen' })}>
+              <div className="block-header-title">
+                <h3 className="emphasize-content">OXYGEN training</h3>
+                <p className="emphasize-grey subtitle">
+                  <span>OXYGEN</span>
+                  <span className="emphasize-dark-grey">Sep 2022</span>
+                </p>
+              </div>
+              <BigArrowDown className="arrow-oxygen" width={30} height={30} />
             </div>
-            <BigArrowDown className="arrow-oxygen" width={30} height={30} />
           </div>
           <div className="block-content content__oxygen">
             <p>· Advanced concepts on HTML5, CSS3 and how to structure it</p>
@@ -173,15 +175,17 @@ export const Education: React.FC = () => {
           <div className="block__separator" />
         </div>
         <div className="block">
-          <div className="block-header" onClick={() => switchSectionState({ prop: 'react' })}>
-            <div className="block-header-title">
-              <h3 className="emphasize-content">React Full Course (49H)</h3>
-              <p className="emphasize-grey subtitle">
-                <span className="organization">Udemy</span>
-                <span className="emphasize-dark-grey datetime">Sep 2022</span>
-              </p>
+          <div className="block__txt-right">
+            <div className="block-header" onClick={() => switchSectionState({ prop: 'react' })}>
+              <div className="block-header-title">
+                <h3 className="emphasize-content">React Full Course (49H)</h3>
+                <p className="emphasize-grey subtitle">
+                  <span className="organization">Udemy</span>
+                  <span className="emphasize-dark-grey datetime">Sep 2022</span>
+                </p>
+              </div>
+              <BigArrowDown className="arrow-react" width={30} height={30} />
             </div>
-            <BigArrowDown className="arrow-react" width={30} height={30} />
           </div>
           <div className="block-content content__react">
             <p>
@@ -204,15 +208,17 @@ export const Education: React.FC = () => {
           <div className="block__separator" />
         </div>
         <div className="block">
-          <div className="block-header" onClick={() => switchSectionState({ prop: 'freeCodeCamp' })}>
-            <div className="block-header-title">
-              <h3 className="emphasize-content">JavaScript Algorithms and Data Structures (300H)</h3>
-              <p className="emphasize-grey subtitle">
-                <span className="organization">freeCodeCamp</span>
-                <span className="emphasize-dark-grey datetime">Aug 2022</span>
-              </p>
+          <div className="block__txt-right">
+            <div className="block-header" onClick={() => switchSectionState({ prop: 'freeCodeCamp' })}>
+              <div className="block-header-title">
+                <h3 className="emphasize-content">JavaScript Algorithms and Data Structures (300H)</h3>
+                <p className="emphasize-grey subtitle">
+                  <span className="organization">freeCodeCamp</span>
+                  <span className="emphasize-dark-grey datetime">Aug 2022</span>
+                </p>
+              </div>
+              <BigArrowDown className="arrow-freeCodeCamp" width={30} height={30} />
             </div>
-            <BigArrowDown className="arrow-freeCodeCamp" width={30} height={30} />
           </div>
           <div className="block-content content__freeCodeCamp">
             <p>
@@ -223,15 +229,17 @@ export const Education: React.FC = () => {
           <div className="block__separator" />
         </div>
         <div className="block">
-          <div className="block-header" onClick={() => switchSectionState({ prop: 'fullStack' })}>
-            <div className="block-header-title">
-              <h3 className="emphasize-content">Web Development Bootcamp (80H)</h3>
-              <p className="emphasize-grey subtitle">
-                <span className="organization">Udemy</span>
-                <span className="emphasize-dark-grey datetime">July 2022</span>
-              </p>
+          <div className="block__txt-right">
+            <div className="block-header" onClick={() => switchSectionState({ prop: 'fullStack' })}>
+              <div className="block-header-title">
+                <h3 className="emphasize-content">Web Development Bootcamp (80H)</h3>
+                <p className="emphasize-grey subtitle">
+                  <span className="organization">Udemy</span>
+                  <span className="emphasize-dark-grey datetime">July 2022</span>
+                </p>
+              </div>
+              <BigArrowDown className="arrow-fullStack" width={30} height={30} />
             </div>
-            <BigArrowDown className="arrow-fullStack" width={30} height={30} />
           </div>
           <div className="block-content content__fullStack">
             <p>· Core concepts on HTML5, CSS3, JavaScript ES6+ and how to structure and manage it</p>
@@ -246,15 +254,17 @@ export const Education: React.FC = () => {
           <div className="block__separator" />
         </div>
         <div className="block">
-          <div className="block-header" onClick={() => switchSectionState({ prop: 'fp2' })}>
-            <div className="block-header-title">
-              <h3 className="emphasize-content">Computer Network Systems Management (FPII)</h3>
-              <p className="emphasize-grey subtitle">
-                <span className="organization">IES Fernando Wirtz</span>
-                <span className="emphasize-dark-grey datetime">2012-2014</span>
-              </p>
+          <div className="block__txt-right">
+            <div className="block-header" onClick={() => switchSectionState({ prop: 'fp2' })}>
+              <div className="block-header-title">
+                <h3 className="emphasize-content">Computer Network Systems Management (FPII)</h3>
+                <p className="emphasize-grey subtitle">
+                  <span className="organization">IES Fernando Wirtz</span>
+                  <span className="emphasize-dark-grey datetime">2012-2014</span>
+                </p>
+              </div>
+              <BigArrowDown className="arrow-fp2" width={30} height={30} />
             </div>
-            <BigArrowDown className="arrow-fp2" width={30} height={30} />
           </div>
           <div className="block-content content__fp2">
             <p>· Operating systems implementation and management</p>

@@ -1,11 +1,11 @@
-import { MalePerson, Chat, Close } from '../components/Icons'
+import { MalePerson, Chat, Academic, Computer } from '../components/Icons'
 import { profileInfoSubPages, projectsSubPages, contactSubPages } from '../enums'
 import { ISubMenuObj } from '../interfaces'
 
 export const profileSubMenu: ISubMenuObj[] = [
   { SVG: MalePerson, title: 'introduction', content: profileInfoSubPages.introduction },
-  { SVG: Chat, title: 'experience', content: profileInfoSubPages.experience },
-  { SVG: Close, title: 'education', content: profileInfoSubPages.education }
+  { SVG: Computer, title: 'experience', content: profileInfoSubPages.experience },
+  { SVG: Academic, title: 'education', content: profileInfoSubPages.education }
 ]
 export const projectsSubMenu: ISubMenuObj[] = [
   { SVG: MalePerson, title: 'introduction', content: projectsSubPages.introduction },
