@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { InputElement } from '../Form/InputElement'
 import { TextArea } from '../Form/TextArea'
 import { formInputsErrorChecker } from '../../utils'
-import { FlexContainer } from '../Styles'
+import { FlexContainer, GenericButton } from '../Styles'
 import { IErrorInputsState, IInputsData, IHasError } from '../../interfaces'
 
 const FormContainer = styled.form`
@@ -13,6 +13,11 @@ const FormContainer = styled.form`
     width: 100%;
     font-family: inherit;
   }
+`
+
+const SendButton = styled(GenericButton)`
+  box-shadow: 2px 4px 10px rgb(0 0 0 / 20%);
+  width: 30%;
 `
 
 const { REACT_APP_FORMSPREE_ID } = process.env
@@ -29,8 +34,6 @@ export const errorInputsState: IErrorInputsState = {
 export const ContactForm: React.FC = () => {
   const [errorInputs, setErrorInputs] = useState<IErrorInputsState>(errorInputsState)
   const [submitState, handleSubmitPromise] = useForm(formSpreeID)
-  console.log('errorInputs STATE', errorInputs)
-  console.log('state', submitState)
 
   const checkSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -90,9 +93,11 @@ export const ContactForm: React.FC = () => {
           <div className="error-input" />
         )}
       </TextArea>
-      <button type="submit">Enviar</button>
+      <div style={{ textAlign: 'center' }}>
+        <SendButton type="submit">Send</SendButton>
+      </div>
       {submitState.submitting && <p>Submitting (mail img loading?)</p>}
-      {submitState.succeeded && <p>Message sent, I&apos;ll contact you as soon as possible. Thank you so much!!</p>}
+      {submitState.succeeded && <p>Message sent, I&apos;ll be back at you as soon as possible. Thank you so much!!</p>}
     </FormContainer>
   )
 }
