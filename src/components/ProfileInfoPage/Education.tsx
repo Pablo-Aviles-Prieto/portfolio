@@ -60,11 +60,24 @@ const ContentContainer = styled.div<{ openedSection: IOpenedSectionState }>`
         }
       }
       .subtitle {
+        font-size: 14px;
+        span {
+          margin-left: 10px;
+        }
+      }
+      .certificate-block {
         display: flex;
         align-items: center;
-        justify-content: end;
+        justify-content: space-between;
         font-size: 14px;
-        gap: 15px;
+        a {
+          font-weight: 700;
+          text-decoration: none;
+          color: ${({ theme }) => theme.mainColor};
+          &:hover {
+            color: #ca7100;
+          }
+        }
       }
     }
     &-content {
@@ -103,7 +116,6 @@ const ContentContainer = styled.div<{ openedSection: IOpenedSectionState }>`
       margin-bottom: ${({ openedSection }) => (openedSection.fp2 === 'close' ? '0' : '30px')};
     }
     &__separator {
-      /* height: 30px; */
       width: 70%;
       border-bottom: 1px solid #ca7100;
       margin-left: calc(50% - (70% / 2));
@@ -179,10 +191,21 @@ export const Education: React.FC = () => {
             <div className="block-header" onClick={() => switchSectionState({ prop: 'react' })}>
               <div className="block-header-title">
                 <h3 className="emphasize-content">React Full Course (49H)</h3>
-                <p className="emphasize-grey subtitle">
-                  <span className="organization">Udemy</span>
-                  <span className="emphasize-dark-grey datetime">Sep 2022</span>
-                </p>
+                <div className="certificate-block">
+                  <a
+                    href="https://www.udemy.com/certificate/UC-886c1d14-97a6-4638-8a27-089b481d3c12/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="emphasize-content"
+                    onClick={e => e.stopPropagation()}
+                  >
+                    Certificate
+                  </a>
+                  <p className="emphasize-grey subtitle">
+                    <span className="organization">Udemy</span>
+                    <span className="emphasize-dark-grey datetime">Sep 2022</span>
+                  </p>
+                </div>
               </div>
               <BigArrowDown className="arrow-react" width={30} height={30} />
             </div>
@@ -212,10 +235,22 @@ export const Education: React.FC = () => {
             <div className="block-header" onClick={() => switchSectionState({ prop: 'freeCodeCamp' })}>
               <div className="block-header-title">
                 <h3 className="emphasize-content">JavaScript Algorithms and Data Structures (300H)</h3>
-                <p className="emphasize-grey subtitle">
-                  <span className="organization">freeCodeCamp</span>
-                  <span className="emphasize-dark-grey datetime">Aug 2022</span>
-                </p>
+                <div className="certificate-block">
+                  <a
+                    // eslint-disable-next-line max-len
+                    href="https://www.freecodecamp.org/certification/Pablo-Aviles/javascript-algorithms-and-data-structures"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="emphasize-content"
+                    onClick={e => e.stopPropagation()}
+                  >
+                    Certificate
+                  </a>
+                  <p className="emphasize-grey subtitle">
+                    <span className="organization">freeCodeCamp</span>
+                    <span className="emphasize-dark-grey datetime">Aug 2022</span>
+                  </p>
+                </div>
               </div>
               <BigArrowDown className="arrow-freeCodeCamp" width={30} height={30} />
             </div>
@@ -233,10 +268,21 @@ export const Education: React.FC = () => {
             <div className="block-header" onClick={() => switchSectionState({ prop: 'fullStack' })}>
               <div className="block-header-title">
                 <h3 className="emphasize-content">Web Development Bootcamp (80H)</h3>
-                <p className="emphasize-grey subtitle">
-                  <span className="organization">Udemy</span>
-                  <span className="emphasize-dark-grey datetime">July 2022</span>
-                </p>
+                <div className="certificate-block">
+                  <a
+                    href="https://www.udemy.com/certificate/UC-9d849ce7-0aea-4172-b78d-ea3f0ae81ed9/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="emphasize-content"
+                    onClick={e => e.stopPropagation()}
+                  >
+                    Certificate
+                  </a>
+                  <p className="emphasize-grey subtitle">
+                    <span className="organization">Udemy</span>
+                    <span className="emphasize-dark-grey datetime">July 2022</span>
+                  </p>
+                </div>
               </div>
               <BigArrowDown className="arrow-fullStack" width={30} height={30} />
             </div>
