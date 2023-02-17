@@ -1,4 +1,4 @@
-import { FormSubPage } from './FormSubPage'
+import { ContactMe } from './ContactMe'
 import { IProjectsSubPages, IProfileInfoSubPages, IContactSubPages } from '../../interfaces'
 
 interface IProps {
@@ -6,5 +6,5 @@ interface IProps {
 }
 
 export const ContactPage: React.FC<IProps> = ({ subPage }: IProps) => {
-  return <FormSubPage />
+  return <ContactMe />
 }

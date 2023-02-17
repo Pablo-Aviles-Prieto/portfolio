@@ -6,15 +6,15 @@ export const formInputsErrorChecker = ({ name, value }: { name: IName; value: st
   }
 
   if (name === 'name' && !value.trim()) {
-    return { name, message: 'Name cant be empty' }
+    return { name, message: `Name can't be empty` }
   }
 
   if (name === 'subject' && !value.trim()) {
-    return { name, message: 'Subject cant be empty' }
+    return { name, message: `Subject can't be empty` }
   }
 
   if (name === 'message' && !value.trim()) {
-    return { name, message: 'Message cant be empty' }
+    return { name, message: `Message can't be empty` }
   }
 
   return null
