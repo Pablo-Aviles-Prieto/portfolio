@@ -1,3 +1,4 @@
+import { ProjectContainer } from './ProjectContainer'
 import { IProjectsSubPages, IProfileInfoSubPages, IContactSubPages } from '../../interfaces'
 
 interface IProps {
@@ -8,5 +9,5 @@ export const ProjectsPage: React.FC<IProps> = ({ subPage }: IProps) => {
   if (subPage === 'technologies') {
     return <h1>Technologies sub page</h1>
   }
-  return <h1>ProjectsPage</h1>
+  return <ProjectContainer />
 }
