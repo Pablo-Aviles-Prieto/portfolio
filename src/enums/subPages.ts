@@ -10,5 +10,7 @@ export enum projectsSubPages {
 }
 
 export enum contactSubPages {
-  introduction = 'Contact me'
+  introduction = 'Contact me',
+  linkedin = 'Linkedin',
+  github = 'Github'
 }

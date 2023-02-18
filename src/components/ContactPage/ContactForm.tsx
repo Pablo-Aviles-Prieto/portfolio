@@ -3,9 +3,45 @@ import { useForm } from '@formspree/react'
 import styled from 'styled-components'
 import { InputElement } from '../Form/InputElement'
 import { TextArea } from '../Form/TextArea'
+import { SpinnerSend } from './SpinnerSend'
 import { formInputsErrorChecker } from '../../utils'
 import { FlexContainer, GenericButton } from '../Styles'
+import { MessageSent } from '../Icons'
 import { IErrorInputsState, IInputsData, IHasError } from '../../interfaces'
+
+const ErrorSentMailContainer = styled.div`
+  text-align: center;
+  h2 {
+    text-decoration: underline;
+  }
+  p {
+    color: ${({ theme }) => theme.lightEmphasize};
+  }
+`
+
+const MailSentContainer = styled.div`
+  position: relative;
+  text-align: center;
+  padding-top: 305px;
+  h1,
+  p {
+    z-index: 1;
+    position: inherit;
+  }
+  h1 {
+    text-decoration: underline;
+  }
+  p {
+    color: ${({ theme }) => theme.lightEmphasize};
+  }
+  .mail-sent {
+    z-index: 0;
+    position: absolute;
+    width: 500px;
+    top: -92px;
+    left: calc(50% - (500px / 2));
+  }
+`
 
 const FormContainer = styled.form`
   input,
@@ -73,6 +109,34 @@ export const ContactForm: React.FC = () => {
       .catch(err => console.error(err))
   }
 
+  if (submitState.submitting) {
+    return (
+      <div style={{ textAlign: 'center', marginTop: '60px' }}>
+        <SpinnerSend />
+        <h3>Sending message...</h3>
+      </div>
+    )
+  }
+
+  if (submitState.succeeded) {
+    return (
+      <MailSentContainer>
+        <h1>Message succesfully sent!</h1>
+        <p>I&apos;ll be back at you as soon as possible, thank you.</p>
+        <MessageSent className="mail-sent" />
+      </MailSentContainer>
+    )
+  }
+
+  if (submitState.errors.length > 0) {
+    return (
+      <ErrorSentMailContainer>
+        <h2>There was an error sending the message</h2>
+        <p>Please, try again later</p>
+      </ErrorSentMailContainer>
+    )
+  }
+
   return (
     <FormContainer onSubmit={checkSubmitHandler}>
       <FlexContainer>
@@ -97,7 +161,12 @@ export const ContactForm: React.FC = () => {
         <SendButton type="submit">Send</SendButton>
       </div>
       {submitState.submitting && <p>Submitting (mail img loading?)</p>}
-      {submitState.succeeded && <p>Message sent, I&apos;ll be back at you as soon as possible. Thank you so much!!</p>}
+      {submitState.succeeded && (
+        <>
+          <h3>Message sent succesfully!</h3>
+          <p>I&apos;ll be back at you as soon as possible, thank you.</p>
+        </>
+      )}
     </FormContainer>
   )
 }

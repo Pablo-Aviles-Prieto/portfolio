@@ -154,6 +154,14 @@ export const WindowLayer: React.FC<IProps> = ({
   }, [subPage])
 
   const subPageHandler = (menuLine: ISubMenuObj) => {
+    if (menuLine.title === 'github') {
+      window.open('https://github.com/Pablo-Aviles-Prieto', '_blank')
+      return
+    }
+    if (menuLine.title === 'linkedin') {
+      window.open('https://www.linkedin.com/in/pablo-aviles-prieto/?locale=en_US', '_blank')
+      return
+    }
     setSubPage(menuLine.title)
     if (subPage === menuLine.title) return
     setSubPageContentClasses('right-section-content')
@@ -170,22 +178,20 @@ export const WindowLayer: React.FC<IProps> = ({
           </div>
         </div>
         <div className="left-section-content">
-          {subMenuData.map(menuLine => {
-            return (
-              <div
-                key={menuLine.title}
-                className={
-                  subPage === menuLine.title
-                    ? 'left-section-content-submenu menu__selected'
-                    : 'left-section-content-submenu'
-                }
-                onClick={() => subPageHandler(menuLine)}
-              >
-                <menuLine.SVG width={16} height={16} />
-                <p>{menuLine.content}</p>
-              </div>
-            )
-          })}
+          {subMenuData.map(menuLine => (
+            <div
+              key={menuLine.title}
+              className={
+                subPage === menuLine.title
+                  ? 'left-section-content-submenu menu__selected'
+                  : 'left-section-content-submenu'
+              }
+              onClick={() => subPageHandler(menuLine)}
+            >
+              <menuLine.SVG width={16} height={16} />
+              <p>{menuLine.content}</p>
+            </div>
+          ))}
         </div>
       </div>
       <div className="right-section">

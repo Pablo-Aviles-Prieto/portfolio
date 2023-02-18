@@ -39,8 +39,8 @@ export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, s
 
   const titleToRender = useMemo(() => {
     if (openedFile === 'none') return ''
-    if (openedFile === 'profileInfo') return 'Get to know me'
-    return openedFile === 'projects' ? 'Take a look to some previous works' : 'Want to exchange some words?'
+    if (openedFile === 'profileInfo') return 'Personal information'
+    return openedFile === 'projects' ? 'Some previous works' : 'Contact with me'
   }, [openedFile])
 
   return (
