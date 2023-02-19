@@ -1,9 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import styled from 'styled-components'
 import { Hamburger, Square, Close, Minimize } from '../../Icons'
-import { IOpenFile, ISubMenuObj, IProfileInfoSubPages, IProjectsSubPages, IContactSubPages } from '../../../interfaces'
+import { isExpandedProject } from '../../../utils'
+import {
+  IOpenFile,
+  ISubMenuObj,
+  IProfileInfoSubPages,
+  IProjectsSubPages,
+  IIsExpandedProject,
+  IContactSubPages
+} from '../../../interfaces'
 
-const WindowContainer = styled.div`
+const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
   display: flex;
   width: 0;
   height: 0;
@@ -14,17 +22,17 @@ const WindowContainer = styled.div`
   margin: 0 auto;
   max-width: 950px;
   border-radius: 20px;
-  overflow: hidden;
   box-shadow: 2px 4px 10px rgb(0 0 0 / 50%);
   font-family: 'Poppins';
   position: absolute;
   transition: all 0.4s ease-in;
   &.page__open {
     width: 85%;
-    height: 97%;
+    height: calc(97% - 30px);
     left: calc(50% - (950px / 2));
-    top: 0;
+    top: 40px;
     opacity: 1;
+    transform: ${({ isAnyExpanded }) => (isAnyExpanded ? 'scale(1)' : '')};
   }
   .left-section,
   .right-section {
@@ -66,6 +74,7 @@ const WindowContainer = styled.div`
   .right-section {
     width: 75%;
     overflow: auto;
+    overflow-x: hidden;
     &-header {
       justify-content: space-between;
       &__buttons {
@@ -120,6 +129,19 @@ const WindowContainer = styled.div`
   }
 `
 
+const BackDrop = styled.div<{ isAnyExpanded: boolean }>`
+  position: absolute;
+  top: ${({ isAnyExpanded }) => (isAnyExpanded ? '-40px' : '50%')};
+  left: ${({ isAnyExpanded }) => (isAnyExpanded ? '-2300px' : '50%')};
+  background-color: #00000047;
+  width: ${({ isAnyExpanded }) => (isAnyExpanded ? '4600px' : '0')};
+  height: ${({ isAnyExpanded }) => (isAnyExpanded ? '100vh' : '0')};
+  z-index: 2;
+  backdrop-filter: saturate(150%) blur(3px);
+  opacity: ${({ isAnyExpanded }) => (isAnyExpanded ? '1' : '0')};
+  transition: opacity 0.5s ease-in;
+`
+
 type ISubPage = IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
 
 interface IProps {
@@ -127,6 +149,8 @@ interface IProps {
   subMenuData: ISubMenuObj[]
   titlePage: string
   subPage: ISubPage
+  isExpanded: IIsExpandedProject
+  setIsExpanded: React.Dispatch<React.SetStateAction<IIsExpandedProject>>
   switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
   setSubPage: React.Dispatch<React.SetStateAction<ISubPage>>
   children: JSX.Element
@@ -137,6 +161,8 @@ export const WindowLayer: React.FC<IProps> = ({
   subMenuData,
   titlePage,
   subPage,
+  isExpanded,
+  setIsExpanded,
   switchOpenFileState,
   setSubPage,
   children
@@ -167,8 +193,10 @@ export const WindowLayer: React.FC<IProps> = ({
     setSubPageContentClasses('right-section-content')
   }
 
+  const isAnyExpanded: boolean = useMemo(() => Object.values(isExpanded).some(val => val), [isExpanded])
+
   return (
-    <WindowContainer className={isOpen ? 'page__open' : ''}>
+    <WindowContainer isAnyExpanded={isAnyExpanded} className={isOpen ? 'page__open' : ''}>
       <div className="left-section">
         <div className="left-section-header">
           <div />
@@ -194,7 +222,7 @@ export const WindowLayer: React.FC<IProps> = ({
           ))}
         </div>
       </div>
-      <div className="right-section">
+      <div className={isAnyExpanded ? 'right-section' : 'right-section  right-not-expanded'}>
         <div className="right-section-header">
           <div />
           <p>{titlePage}</p>
@@ -212,6 +240,7 @@ export const WindowLayer: React.FC<IProps> = ({
         </div>
         <div className={subPageContentClasses}>{children}</div>
       </div>
+      <BackDrop isAnyExpanded={isAnyExpanded} onClick={() => setIsExpanded(isExpandedProject)} />
     </WindowContainer>
   )
 }

@@ -35,12 +35,10 @@ const UbuntuContainerDiv = styled.div<{ PUBLIC_URI: string }>`
 ************************/
 
   .windows-layer {
-    position: absolute;
-    top: 36px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
+    background-image: ${({ PUBLIC_URI }) => `url(${PUBLIC_URI}/images/jammy-jellyfish-wallpaper.jpg)`};
+    background-size: cover;
+    width: 100%;
+    height: calc(100vh - 30px);
     overflow: hidden;
   }
 
@@ -49,23 +47,6 @@ const UbuntuContainerDiv = styled.div<{ PUBLIC_URI: string }>`
 *************************/
 
   .desktop {
-    height: 100vh;
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 0);
-
-    .background-image {
-      background-image: ${({ PUBLIC_URI }) => `url(${PUBLIC_URI}/images/jammy-jellyfish-wallpaper.jpg)`};
-      background-size: cover;
-      width: 100%;
-      height: 100vh;
-
-      .overlay {
-        width: 100%;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.6);
-      }
-    }
-
     /**********************
   ****** ACTION BAR *****
   **********************/
@@ -120,69 +101,8 @@ const UbuntuContainerDiv = styled.div<{ PUBLIC_URI: string }>`
           top: 0;
           left: 0px;
           width: 300px;
-          z-index: 20;
           font-size: 110%;
           -webkit-text-stroke: 0.5px black;
-        }
-      }
-    }
-
-    /****************************
-  ****** APPLICATION DOCK *****
-  ****************************/
-
-    .dock {
-      position: absolute;
-      top: calc(50% - (202px / 2));
-      width: 90px;
-      background-color: rgba(0, 0, 0, 0.7);
-      border-top-right-radius: 1em;
-      border-bottom-right-radius: 1em;
-      border: 1px solid #4c4c4c;
-      border-left: 0px;
-      padding: 20px;
-      z-index: 3;
-
-      .icon-container {
-        cursor: pointer;
-        position: relative;
-        display: flex;
-        justify-content: center;
-
-        .tooltip {
-          position: absolute;
-          top: 14px;
-          color: white;
-          font-weight: 100 !important;
-          left: 80px;
-          background-color: rgba(0, 0, 0, 0.4);
-          padding-left: 5px;
-          padding-right: 5px;
-          border-radius: 0.3em;
-          white-space: nowrap;
-          opacity: 0;
-          transition: opacity 0.25s ease-in-out;
-          z-index: 4;
-        }
-
-        .selected__page {
-          color: ${({ theme }) => theme.emphasizeColor};
-          &:hover {
-            color: ${({ theme }) => theme.lightEmphasize};
-          }
-        }
-
-        &:hover {
-          color: ${({ theme }) => theme.lightEmphasize};
-        }
-
-        &:hover .tooltip {
-          opacity: 1;
-          transition-delay: 0.2s;
-        }
-
-        &:not(:first-child) {
-          margin-top: 20px;
         }
       }
     }
@@ -200,7 +120,6 @@ interface IProps {
 export const UbuntuContainer: React.FC<IProps> = ({ switchOpenFileState, openFile, children }: IProps) => {
   return (
     <UbuntuContainerDiv PUBLIC_URI={PUBLIC_URI}>
-      <div className="windows-layer">{children}</div>
       <div className="desktop">
         <div className="action-bar">
           <span className="activities">Activities</span>
@@ -214,10 +133,10 @@ export const UbuntuContainer: React.FC<IProps> = ({ switchOpenFileState, openFil
           <span className="time float-center">{getDayAndHourHelper()}</span>
           <span className="float-right" />
         </div>
+      </div>
+      <div className="windows-layer">
         <Dock openFile={openFile} switchOpenFileState={switchOpenFileState} />
-        <div className="background-image">
-          <div className="overlay" style={{ opacity: 0 }} />
-        </div>
+        {children}
       </div>
     </UbuntuContainerDiv>
   )
