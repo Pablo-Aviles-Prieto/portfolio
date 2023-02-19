@@ -10,6 +10,8 @@ const CardContainer = styled.div<{
   contentHeight: number
   amountOfTopPixels: number
 }>`
+  /* --card-top: ${({ isExpanded, projectTitle, amountOfTopPixels }) =>
+    isExpanded[projectTitle] ? '50px' : `${amountOfTopPixels}px`}; */
   --card-top: ${({ amountOfTopPixels }) => `${amountOfTopPixels}px`};
 
   z-index: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '3' : '2')};
@@ -17,6 +19,7 @@ const CardContainer = styled.div<{
   left: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'calc(50% - (120% / 2))' : '0')};
   top: ${({ isExpanded, projectTitle, amountOfTopPixels }) =>
     isExpanded[projectTitle] ? '50px' : `${amountOfTopPixels}px`};
+  /* top: 50px; */
   width: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '120%' : '100%')};
   border-radius: 8px;
   overflow: hidden;

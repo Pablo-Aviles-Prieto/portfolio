@@ -28,10 +28,24 @@ export const ProjectsPage: React.FC<IProps> = ({ subPage, isExpanded, setIsExpan
           projectTitle="hotelMiranda"
           setIsExpanded={setIsExpanded}
         />
+        <ProjectCard renderIndex={3} isExpanded={isExpanded} projectTitle="scrapAmazon" setIsExpanded={setIsExpanded} />
+        <ProjectCard renderIndex={4} isExpanded={isExpanded} projectTitle="imgFinder" setIsExpanded={setIsExpanded} />
         <ProjectCard
-          renderIndex={3}
+          renderIndex={5}
           isExpanded={isExpanded}
-          projectTitle="imgFinder"
+          projectTitle="nextJSMeetups"
+          setIsExpanded={setIsExpanded}
+        />
+        <ProjectCard
+          renderIndex={6}
+          isExpanded={isExpanded}
+          projectTitle="paletteGenerator"
+          setIsExpanded={setIsExpanded}
+        />
+        <ProjectCard
+          renderIndex={7}
+          isExpanded={isExpanded}
+          projectTitle="oxygenShop"
           setIsExpanded={setIsExpanded}
           lastCard
         />
