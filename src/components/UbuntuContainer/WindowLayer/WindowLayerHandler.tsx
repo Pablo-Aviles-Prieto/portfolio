@@ -17,8 +17,10 @@ type ISubPage = IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
 export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, switchOpenFileState }: IProps) => {
   const [subPage, setSubPage] = useState<ISubPage>('introduction')
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isExpanded, setIsExpanded] = useState<boolean>(false)
 
   useEffect(() => {
+    setIsExpanded(false)
     if (introState) return
 
     setSubPage('introduction')
@@ -49,12 +51,15 @@ export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, s
       subMenuData={subMenu}
       titlePage={titleToRender}
       subPage={subPage}
+      isExpanded={isExpanded}
       setSubPage={setSubPage}
       switchOpenFileState={switchOpenFileState}
     >
       <>
         {openedFile === 'profileInfo' && <ProfileInfoPage subPage={subPage} />}
-        {openedFile === 'projects' && <ProjectsPage subPage={subPage} />}
+        {openedFile === 'projects' && (
+          <ProjectsPage isExpanded={isExpanded} setIsExpanded={setIsExpanded} subPage={subPage} />
+        )}
         {openedFile === 'contact' && <ContactPage subPage={subPage} />}
         {openedFile === 'none' && <div />}
       </>

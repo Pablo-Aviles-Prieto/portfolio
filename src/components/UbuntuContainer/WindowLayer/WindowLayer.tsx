@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Hamburger, Square, Close, Minimize } from '../../Icons'
 import { IOpenFile, ISubMenuObj, IProfileInfoSubPages, IProjectsSubPages, IContactSubPages } from '../../../interfaces'
 
-const WindowContainer = styled.div`
+const WindowContainer = styled.div<{ isExpanded: boolean }>`
   display: flex;
   width: 0;
   height: 0;
@@ -14,7 +14,6 @@ const WindowContainer = styled.div`
   margin: 0 auto;
   max-width: 950px;
   border-radius: 20px;
-  overflow: hidden;
   box-shadow: 2px 4px 10px rgb(0 0 0 / 50%);
   font-family: 'Poppins';
   position: absolute;
@@ -65,7 +64,21 @@ const WindowContainer = styled.div`
   }
   .right-section {
     width: 75%;
-    overflow: auto;
+    overflow: initial;
+    &.right-not-expanded {
+      animation: overflowAnimation 0.6s forwards;
+      @keyframes overflowAnimation {
+        0% {
+          overflow: initial;
+        }
+        95% {
+          overflow: initial;
+        }
+        100% {
+          overflow: auto;
+        }
+      }
+    }
     &-header {
       justify-content: space-between;
       &__buttons {
@@ -127,6 +140,7 @@ interface IProps {
   subMenuData: ISubMenuObj[]
   titlePage: string
   subPage: ISubPage
+  isExpanded: boolean
   switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
   setSubPage: React.Dispatch<React.SetStateAction<ISubPage>>
   children: JSX.Element
@@ -137,6 +151,7 @@ export const WindowLayer: React.FC<IProps> = ({
   subMenuData,
   titlePage,
   subPage,
+  isExpanded,
   switchOpenFileState,
   setSubPage,
   children
@@ -168,7 +183,7 @@ export const WindowLayer: React.FC<IProps> = ({
   }
 
   return (
-    <WindowContainer className={isOpen ? 'page__open' : ''}>
+    <WindowContainer isExpanded={isExpanded} className={isOpen ? 'page__open' : ''}>
       <div className="left-section">
         <div className="left-section-header">
           <div />
@@ -194,7 +209,7 @@ export const WindowLayer: React.FC<IProps> = ({
           ))}
         </div>
       </div>
-      <div className="right-section">
+      <div className={isExpanded ? 'right-section' : 'right-section  right-not-expanded'}>
         <div className="right-section-header">
           <div />
           <p>{titlePage}</p>
