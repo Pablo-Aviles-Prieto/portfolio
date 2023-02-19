@@ -73,22 +73,8 @@ const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
   }
   .right-section {
     width: 75%;
-    /* overflow: initial; */
     overflow: auto;
-    /* &.right-not-expanded {
-      animation: overflowAnimation 0.1s forwards;
-      @keyframes overflowAnimation {
-        0% {
-          overflow: initial;
-        }
-        95% {
-          overflow: initial;
-        }
-        100% {
-          overflow: auto;
-        }
-      }
-    } */
+    overflow-x: hidden;
     &-header {
       justify-content: space-between;
       &__buttons {
@@ -149,7 +135,7 @@ const BackDrop = styled.div<{ isAnyExpanded: boolean }>`
   left: ${({ isAnyExpanded }) => (isAnyExpanded ? '-2300px' : '50%')};
   background-color: #00000047;
   width: ${({ isAnyExpanded }) => (isAnyExpanded ? '4600px' : '0')};
-  height: ${({ isAnyExpanded }) => (isAnyExpanded ? '120vh' : '0')};
+  height: ${({ isAnyExpanded }) => (isAnyExpanded ? '100vh' : '0')};
   z-index: 2;
   backdrop-filter: saturate(150%) blur(3px);
   opacity: ${({ isAnyExpanded }) => (isAnyExpanded ? '1' : '0')};

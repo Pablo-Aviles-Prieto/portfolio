@@ -28,6 +28,13 @@ export const ProjectsPage: React.FC<IProps> = ({ subPage, isExpanded, setIsExpan
           projectTitle="hotelMiranda"
           setIsExpanded={setIsExpanded}
         />
+        <ProjectCard
+          renderIndex={3}
+          isExpanded={isExpanded}
+          projectTitle="imgFinder"
+          setIsExpanded={setIsExpanded}
+          lastCard
+        />
       </>
     </ProjectContainer>
   )
