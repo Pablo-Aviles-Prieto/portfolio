@@ -2,8 +2,14 @@ import { useState, useEffect, useMemo } from 'react'
 import { WindowLayer } from './WindowLayer'
 import { ProfileInfoPage } from '../../ProfileInfoPage/ProfileInfoPage'
 import { ProjectsPage } from '../../ProjectsPage/ProjectsPage'
-import { IOpenFile, IProfileInfoSubPages, IProjectsSubPages, IContactSubPages } from '../../../interfaces'
-import { profileSubMenu, projectsSubMenu, contactSubMenu } from '../../../utils'
+import {
+  IOpenFile,
+  IProfileInfoSubPages,
+  IProjectsSubPages,
+  IContactSubPages,
+  IIsExpandedProject
+} from '../../../interfaces'
+import { profileSubMenu, projectsSubMenu, contactSubMenu, isExpandedProject } from '../../../utils'
 import { ContactPage } from '../../ContactPage/ContactPage'
 
 interface IProps {
@@ -14,13 +20,15 @@ interface IProps {
 
 type ISubPage = IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
 
+type IIsExpanded = keyof typeof isExpandedProject
+
 export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, switchOpenFileState }: IProps) => {
   const [subPage, setSubPage] = useState<ISubPage>('introduction')
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [isExpanded, setIsExpanded] = useState<boolean>(false)
+  const [isExpanded, setIsExpanded] = useState<IIsExpandedProject>(isExpandedProject)
 
   useEffect(() => {
-    setIsExpanded(false)
+    setIsExpanded(isExpandedProject)
     if (introState) return
 
     setSubPage('introduction')
@@ -52,6 +60,7 @@ export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, s
       titlePage={titleToRender}
       subPage={subPage}
       isExpanded={isExpanded}
+      setIsExpanded={setIsExpanded}
       setSubPage={setSubPage}
       switchOpenFileState={switchOpenFileState}
     >

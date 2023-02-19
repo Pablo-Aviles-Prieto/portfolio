@@ -1,9 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import styled from 'styled-components'
 import { Hamburger, Square, Close, Minimize } from '../../Icons'
-import { IOpenFile, ISubMenuObj, IProfileInfoSubPages, IProjectsSubPages, IContactSubPages } from '../../../interfaces'
+import { isExpandedProject } from '../../../utils'
+import {
+  IOpenFile,
+  ISubMenuObj,
+  IProfileInfoSubPages,
+  IProjectsSubPages,
+  IIsExpandedProject,
+  IContactSubPages
+} from '../../../interfaces'
 
-const WindowContainer = styled.div<{ isExpanded: boolean }>`
+const WindowContainer = styled.div`
   display: flex;
   width: 0;
   height: 0;
@@ -20,9 +28,9 @@ const WindowContainer = styled.div<{ isExpanded: boolean }>`
   transition: all 0.4s ease-in;
   &.page__open {
     width: 85%;
-    height: 97%;
+    height: calc(97% - 30px);
     left: calc(50% - (950px / 2));
-    top: 0;
+    top: 40px;
     opacity: 1;
   }
   .left-section,
@@ -133,6 +141,17 @@ const WindowContainer = styled.div<{ isExpanded: boolean }>`
   }
 `
 
+const BackDrop = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #00000047;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  backdrop-filter: saturate(130%) blur(3px);
+`
+
 type ISubPage = IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
 
 interface IProps {
@@ -140,7 +159,8 @@ interface IProps {
   subMenuData: ISubMenuObj[]
   titlePage: string
   subPage: ISubPage
-  isExpanded: boolean
+  isExpanded: IIsExpandedProject
+  setIsExpanded: React.Dispatch<React.SetStateAction<IIsExpandedProject>>
   switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
   setSubPage: React.Dispatch<React.SetStateAction<ISubPage>>
   children: JSX.Element
@@ -152,6 +172,7 @@ export const WindowLayer: React.FC<IProps> = ({
   titlePage,
   subPage,
   isExpanded,
+  setIsExpanded,
   switchOpenFileState,
   setSubPage,
   children
@@ -182,51 +203,56 @@ export const WindowLayer: React.FC<IProps> = ({
     setSubPageContentClasses('right-section-content')
   }
 
+  const isAnyExpanded: boolean = useMemo(() => Object.values(isExpanded).some(val => val), [isExpanded])
+
   return (
-    <WindowContainer isExpanded={isExpanded} className={isOpen ? 'page__open' : ''}>
-      <div className="left-section">
-        <div className="left-section-header">
-          <div />
-          <p>Menu</p>
-          <div className="left-section-header__menu">
-            <Hamburger width={25} height={25} />
-          </div>
-        </div>
-        <div className="left-section-content">
-          {subMenuData.map(menuLine => (
-            <div
-              key={menuLine.title}
-              className={
-                subPage === menuLine.title
-                  ? 'left-section-content-submenu menu__selected'
-                  : 'left-section-content-submenu'
-              }
-              onClick={() => subPageHandler(menuLine)}
-            >
-              <menuLine.SVG width={16} height={16} />
-              <p>{menuLine.content}</p>
+    <>
+      <WindowContainer className={isOpen ? 'page__open' : ''}>
+        <div className="left-section">
+          <div className="left-section-header">
+            <div />
+            <p>Menu</p>
+            <div className="left-section-header__menu">
+              <Hamburger width={25} height={25} />
             </div>
-          ))}
-        </div>
-      </div>
-      <div className={isExpanded ? 'right-section' : 'right-section  right-not-expanded'}>
-        <div className="right-section-header">
-          <div />
-          <p>{titlePage}</p>
-          <div className="right-section-header__buttons">
-            <button type="button">
-              <Minimize className="button__minimize" width={25} height={25} />
-            </button>
-            <button type="button">
-              <Square className="button__maximize" width={19} height={19} />
-            </button>
-            <button type="button">
-              <Close className="button__exit" onClick={() => switchOpenFileState('none')} width={22} height={22} />
-            </button>
+          </div>
+          <div className="left-section-content">
+            {subMenuData.map(menuLine => (
+              <div
+                key={menuLine.title}
+                className={
+                  subPage === menuLine.title
+                    ? 'left-section-content-submenu menu__selected'
+                    : 'left-section-content-submenu'
+                }
+                onClick={() => subPageHandler(menuLine)}
+              >
+                <menuLine.SVG width={16} height={16} />
+                <p>{menuLine.content}</p>
+              </div>
+            ))}
           </div>
         </div>
-        <div className={subPageContentClasses}>{children}</div>
-      </div>
-    </WindowContainer>
+        <div className={isAnyExpanded ? 'right-section' : 'right-section  right-not-expanded'}>
+          <div className="right-section-header">
+            <div />
+            <p>{titlePage}</p>
+            <div className="right-section-header__buttons">
+              <button type="button">
+                <Minimize className="button__minimize" width={25} height={25} />
+              </button>
+              <button type="button">
+                <Square className="button__maximize" width={19} height={19} />
+              </button>
+              <button type="button">
+                <Close className="button__exit" onClick={() => switchOpenFileState('none')} width={22} height={22} />
+              </button>
+            </div>
+          </div>
+          <div className={subPageContentClasses}>{children}</div>
+        </div>
+      </WindowContainer>
+      {isAnyExpanded && <BackDrop onClick={() => setIsExpanded(isExpandedProject)} />}
+    </>
   )
 }

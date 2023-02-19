@@ -1,11 +1,11 @@
 import { ProjectContainer } from './ProjectContainer'
 import { ProjectCard } from './ProjectCard'
-import { IProjectsSubPages, IProfileInfoSubPages, IContactSubPages } from '../../interfaces'
+import { IProjectsSubPages, IProfileInfoSubPages, IContactSubPages, IIsExpandedProject } from '../../interfaces'
 
 interface IProps {
   subPage: IProjectsSubPages | IProfileInfoSubPages | IContactSubPages
-  isExpanded: boolean
-  setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>
+  isExpanded: IIsExpandedProject
+  setIsExpanded: React.Dispatch<React.SetStateAction<IIsExpandedProject>>
 }
 
 export const ProjectsPage: React.FC<IProps> = ({ subPage, isExpanded, setIsExpanded }: IProps) => {
@@ -15,8 +15,8 @@ export const ProjectsPage: React.FC<IProps> = ({ subPage, isExpanded, setIsExpan
   return (
     <ProjectContainer>
       <>
-        <ProjectCard isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
-        {/* <ProjectCard /> */}
+        <ProjectCard isExpanded={isExpanded} projectTitle="portfolio" setIsExpanded={setIsExpanded} />
+        <ProjectCard isExpanded={isExpanded} projectTitle="dashboardMiranda" setIsExpanded={setIsExpanded} />
       </>
     </ProjectContainer>
   )

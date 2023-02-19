@@ -1,17 +1,21 @@
 import styled from 'styled-components'
+import { isExpandedProject } from '../../utils'
 import { ImgContainer } from '../Styles'
+import { IIsExpandedProject } from '../../interfaces'
 
-const CardContainer = styled.div<{ isExpanded: boolean }>`
+const CardContainer = styled.div<{ isExpanded: IIsExpandedProject; projectTitle: keyof IIsExpandedProject }>`
+  z-index: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '3' : '2')};
   position: absolute;
-  left: ${({ isExpanded }) => (isExpanded ? '-281px' : '0')};
-  top: ${({ isExpanded }) => (isExpanded ? '50px' : '0')};
-  width: ${({ isExpanded }) => (isExpanded ? '150%' : '100%')};
+  left: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '-281px' : '0')};
+  top: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '50px' : '0')};
+  width: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '150%' : '100%')};
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 2px 4px 10px rgb(0 0 0 / 15%);
+  transition: z-index 0.1s ease-in;
   transition: all 0.5s ease-out;
   &:hover {
-    cursor: pointer;
+    cursor: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'cursor' : 'pointer')};
     box-shadow: 2px 4px 10px rgb(0 0 0 / 40%);
   }
   .content {
@@ -51,15 +55,26 @@ const PreviewImg = styled(ImgContainer)`
 const PUBLIC_URI = process.env.PUBLIC_URL || ''
 
 interface IProps {
-  isExpanded: boolean
-  setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>
+  isExpanded: IIsExpandedProject
+  projectTitle: keyof IIsExpandedProject
+  setIsExpanded: React.Dispatch<React.SetStateAction<IIsExpandedProject>>
 }
 
-export const ProjectCard: React.FC<IProps> = ({ isExpanded, setIsExpanded }: IProps) => {
+export const ProjectCard: React.FC<IProps> = ({ isExpanded, projectTitle, setIsExpanded }: IProps) => {
+  const switchIsExpanded = ({ title }: { title: keyof IIsExpandedProject }) => {
+    const newState = { ...isExpandedProject }
+    newState[title] = true
+    setIsExpanded(newState)
+  }
+
   return (
     <RelativeContainer>
-      <CardContainer isExpanded={isExpanded} onClick={() => setIsExpanded(prevState => !prevState)}>
-        <PreviewImg width="100%" height={isExpanded ? '300px' : '150px'}>
+      <CardContainer
+        isExpanded={isExpanded}
+        projectTitle={projectTitle}
+        onClick={() => switchIsExpanded({ title: projectTitle })}
+      >
+        <PreviewImg width="100%" height={isExpanded[projectTitle] ? '300px' : '150px'}>
           <img src={`${PUBLIC_URI}/images/jammy-jellyfish-wallpaper.jpg`} alt="Ubuntu folder" />
         </PreviewImg>
         <div className="content">
