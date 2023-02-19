@@ -15,8 +15,19 @@ export const ProjectsPage: React.FC<IProps> = ({ subPage, isExpanded, setIsExpan
   return (
     <ProjectContainer>
       <>
-        <ProjectCard isExpanded={isExpanded} projectTitle="portfolio" setIsExpanded={setIsExpanded} />
-        <ProjectCard isExpanded={isExpanded} projectTitle="dashboardMiranda" setIsExpanded={setIsExpanded} />
+        <ProjectCard renderIndex={0} isExpanded={isExpanded} projectTitle="portfolio" setIsExpanded={setIsExpanded} />
+        <ProjectCard
+          renderIndex={1}
+          isExpanded={isExpanded}
+          projectTitle="dashboardMiranda"
+          setIsExpanded={setIsExpanded}
+        />
+        <ProjectCard
+          renderIndex={2}
+          isExpanded={isExpanded}
+          projectTitle="hotelMiranda"
+          setIsExpanded={setIsExpanded}
+        />
       </>
     </ProjectContainer>
   )

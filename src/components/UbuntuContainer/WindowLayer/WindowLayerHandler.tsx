@@ -20,8 +20,6 @@ interface IProps {
 
 type ISubPage = IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
 
-type IIsExpanded = keyof typeof isExpandedProject
-
 export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, switchOpenFileState }: IProps) => {
   const [subPage, setSubPage] = useState<ISubPage>('introduction')
   const [isOpen, setIsOpen] = useState<boolean>(false)

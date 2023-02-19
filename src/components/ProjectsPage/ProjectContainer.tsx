@@ -5,6 +5,7 @@ const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 10px;
+  position: relative;
 `
 
 interface IProps {

@@ -1,6 +1,64 @@
 import { useState } from 'react'
+import styled from 'styled-components'
 import { MalePerson, CodingPC, Chat } from '../../Icons'
 import { IOpenFile } from '../../../interfaces'
+
+const DockContainer = styled.div`
+  &.dock {
+    position: absolute;
+    top: calc(50% - (202px / 2));
+    width: 90px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+    border: 1px solid #4c4c4c;
+    border-left: 0px;
+    padding: 20px;
+
+    .icon-container {
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      justify-content: center;
+
+      .tooltip {
+        position: absolute;
+        top: 14px;
+        color: white;
+        font-weight: 100 !important;
+        left: 80px;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-left: 5px;
+        padding-right: 5px;
+        border-radius: 0.3em;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.25s ease-in-out;
+        z-index: 4;
+      }
+
+      .selected__page {
+        color: ${({ theme }) => theme.emphasizeColor};
+        &:hover {
+          color: ${({ theme }) => theme.lightEmphasize};
+        }
+      }
+
+      &:hover {
+        color: ${({ theme }) => theme.lightEmphasize};
+      }
+
+      &:hover .tooltip {
+        opacity: 1;
+        transition-delay: 0.2s;
+      }
+
+      &:not(:first-child) {
+        margin-top: 20px;
+      }
+    }
+  }
+`
 
 interface IProps {
   switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
@@ -32,7 +90,7 @@ export const Dock: React.FC<IProps> = ({ switchOpenFileState, openFile }: IProps
   }
 
   return (
-    <div className="dock">
+    <DockContainer className="dock">
       <div className="icon-container">
         <MalePerson
           className={openFile === 'profileInfo' ? 'selected__page' : ''}
@@ -60,6 +118,6 @@ export const Dock: React.FC<IProps> = ({ switchOpenFileState, openFile }: IProps
         />
         <div className="tooltip">Contact me</div>
       </div>
-    </div>
+    </DockContainer>
   )
 }

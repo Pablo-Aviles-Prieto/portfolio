@@ -2,5 +2,6 @@ import { IIsExpandedProject } from '../interfaces'
 
 export const isExpandedProject: IIsExpandedProject = {
   portfolio: false,
-  dashboardMiranda: false
+  dashboardMiranda: false,
+  hotelMiranda: false
 }

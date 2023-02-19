@@ -11,7 +11,7 @@ import {
   IContactSubPages
 } from '../../../interfaces'
 
-const WindowContainer = styled.div`
+const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
   display: flex;
   width: 0;
   height: 0;
@@ -32,6 +32,7 @@ const WindowContainer = styled.div`
     left: calc(50% - (950px / 2));
     top: 40px;
     opacity: 1;
+    transform: ${({ isAnyExpanded }) => (isAnyExpanded ? 'scale(1)' : '')};
   }
   .left-section,
   .right-section {
@@ -72,9 +73,10 @@ const WindowContainer = styled.div`
   }
   .right-section {
     width: 75%;
-    overflow: initial;
-    &.right-not-expanded {
-      animation: overflowAnimation 0.6s forwards;
+    /* overflow: initial; */
+    overflow: auto;
+    /* &.right-not-expanded {
+      animation: overflowAnimation 0.1s forwards;
       @keyframes overflowAnimation {
         0% {
           overflow: initial;
@@ -86,7 +88,7 @@ const WindowContainer = styled.div`
           overflow: auto;
         }
       }
-    }
+    } */
     &-header {
       justify-content: space-between;
       &__buttons {
@@ -141,15 +143,17 @@ const WindowContainer = styled.div`
   }
 `
 
-const BackDrop = styled.div`
+const BackDrop = styled.div<{ isAnyExpanded: boolean }>`
   position: absolute;
-  top: 0;
-  left: 0;
+  top: ${({ isAnyExpanded }) => (isAnyExpanded ? '-40px' : '50%')};
+  left: ${({ isAnyExpanded }) => (isAnyExpanded ? '-2300px' : '50%')};
   background-color: #00000047;
-  width: 100%;
-  height: 100vh;
+  width: ${({ isAnyExpanded }) => (isAnyExpanded ? '4600px' : '0')};
+  height: ${({ isAnyExpanded }) => (isAnyExpanded ? '120vh' : '0')};
   z-index: 2;
-  backdrop-filter: saturate(130%) blur(3px);
+  backdrop-filter: saturate(150%) blur(3px);
+  opacity: ${({ isAnyExpanded }) => (isAnyExpanded ? '1' : '0')};
+  transition: opacity 0.5s ease-in;
 `
 
 type ISubPage = IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
@@ -206,53 +210,51 @@ export const WindowLayer: React.FC<IProps> = ({
   const isAnyExpanded: boolean = useMemo(() => Object.values(isExpanded).some(val => val), [isExpanded])
 
   return (
-    <>
-      <WindowContainer className={isOpen ? 'page__open' : ''}>
-        <div className="left-section">
-          <div className="left-section-header">
-            <div />
-            <p>Menu</p>
-            <div className="left-section-header__menu">
-              <Hamburger width={25} height={25} />
-            </div>
-          </div>
-          <div className="left-section-content">
-            {subMenuData.map(menuLine => (
-              <div
-                key={menuLine.title}
-                className={
-                  subPage === menuLine.title
-                    ? 'left-section-content-submenu menu__selected'
-                    : 'left-section-content-submenu'
-                }
-                onClick={() => subPageHandler(menuLine)}
-              >
-                <menuLine.SVG width={16} height={16} />
-                <p>{menuLine.content}</p>
-              </div>
-            ))}
+    <WindowContainer isAnyExpanded={isAnyExpanded} className={isOpen ? 'page__open' : ''}>
+      <div className="left-section">
+        <div className="left-section-header">
+          <div />
+          <p>Menu</p>
+          <div className="left-section-header__menu">
+            <Hamburger width={25} height={25} />
           </div>
         </div>
-        <div className={isAnyExpanded ? 'right-section' : 'right-section  right-not-expanded'}>
-          <div className="right-section-header">
-            <div />
-            <p>{titlePage}</p>
-            <div className="right-section-header__buttons">
-              <button type="button">
-                <Minimize className="button__minimize" width={25} height={25} />
-              </button>
-              <button type="button">
-                <Square className="button__maximize" width={19} height={19} />
-              </button>
-              <button type="button">
-                <Close className="button__exit" onClick={() => switchOpenFileState('none')} width={22} height={22} />
-              </button>
+        <div className="left-section-content">
+          {subMenuData.map(menuLine => (
+            <div
+              key={menuLine.title}
+              className={
+                subPage === menuLine.title
+                  ? 'left-section-content-submenu menu__selected'
+                  : 'left-section-content-submenu'
+              }
+              onClick={() => subPageHandler(menuLine)}
+            >
+              <menuLine.SVG width={16} height={16} />
+              <p>{menuLine.content}</p>
             </div>
-          </div>
-          <div className={subPageContentClasses}>{children}</div>
+          ))}
         </div>
-      </WindowContainer>
-      {isAnyExpanded && <BackDrop onClick={() => setIsExpanded(isExpandedProject)} />}
-    </>
+      </div>
+      <div className={isAnyExpanded ? 'right-section' : 'right-section  right-not-expanded'}>
+        <div className="right-section-header">
+          <div />
+          <p>{titlePage}</p>
+          <div className="right-section-header__buttons">
+            <button type="button">
+              <Minimize className="button__minimize" width={25} height={25} />
+            </button>
+            <button type="button">
+              <Square className="button__maximize" width={19} height={19} />
+            </button>
+            <button type="button">
+              <Close className="button__exit" onClick={() => switchOpenFileState('none')} width={22} height={22} />
+            </button>
+          </div>
+        </div>
+        <div className={subPageContentClasses}>{children}</div>
+      </div>
+      <BackDrop isAnyExpanded={isAnyExpanded} onClick={() => setIsExpanded(isExpandedProject)} />
+    </WindowContainer>
   )
 }
