@@ -1,8 +1,10 @@
-import { useMemo } from 'react'
+import { useMemo, Fragment } from 'react'
 import styled from 'styled-components'
-import { isExpandedProject } from '../../utils'
+import { isExpandedProject, technologiesSVG } from '../../utils'
 import { ImgContainer } from '../Styles'
-import { IIsExpandedProject } from '../../interfaces'
+import { technologies } from '../../enums/technologies'
+import { GithubRounded, Web } from '../Icons'
+import { IIsExpandedProject, IPreviousProjectObj } from '../../interfaces'
 
 const CardContainer = styled.div<{
   isExpanded: IIsExpandedProject
@@ -22,6 +24,9 @@ const CardContainer = styled.div<{
   overflow: hidden;
   box-shadow: 2px 4px 10px rgb(0 0 0 / 15%);
   transition: all 0.5s ease-out, z-index 0.1s ease-in;
+  .img-container {
+    cursor: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'cursor' : 'pointer')};
+  }
   &.expanded {
     animation: animationBottomTop 0.5s forwards, positionAbsoluteToFixed 0.5s forwards;
   }
@@ -29,7 +34,6 @@ const CardContainer = styled.div<{
     animation: animationTopBottom 0.5s forwards, positionFixedToAbsolute 0.5s forwards;
   }
   &:hover {
-    cursor: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'cursor' : 'pointer')};
     box-shadow: 2px 4px 10px rgb(0 0 0 / 40%);
   }
   .content {
@@ -48,12 +52,83 @@ const CardContainer = styled.div<{
     &-techs {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 10px;
+      margin: 20px 0;
+      padding: 0 20px;
+
+      .tech-container {
+        position: relative;
+        width: 25px;
+        height: 25px;
+      }
+
+      .tooltip {
+        position: absolute;
+        top: calc(100% + 5px);
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: ${({ theme }) => theme.blackBground};
+        color: white;
+        font-size: 14px;
+        padding: 5px;
+        border-radius: 5px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease-in-out;
+      }
+
+      .tech-container:hover .tooltip {
+        opacity: 1;
+        pointer-events: auto;
+      }
     }
     &-links {
       display: flex;
-      align-items: center;
+      align-items: end;
       justify-content: space-between;
+      font-size: 16px;
+      &-github,
+      &-webpage {
+        color: ${({ theme }) => theme.mainColor};
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      &-more-info {
+        cursor: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'cursor' : 'pointer')};
+      }
+      .links__block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+      a,
+      p {
+        position: relative;
+        text-decoration: none;
+        span {
+          color: ${({ theme }) => theme.lightEmphasize};
+        }
+        &:hover {
+          color: ${({ theme }) => theme.lightEmphasize};
+        }
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 50%;
+          width: 0;
+          height: 2px;
+          background-color: ${({ theme }) => theme.emphasizeColor};
+          border-radius: 30px;
+          transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+        &:hover::before {
+          width: 100%;
+          left: 0;
+          font-weight: 700;
+        }
+      }
     }
   }
   @keyframes animationTopBottom {
@@ -123,12 +198,13 @@ interface IProps {
   renderIndex: number
   isExpanded: IIsExpandedProject
   projectTitle: keyof IIsExpandedProject
+  prevProject: IPreviousProjectObj
   lastCard?: boolean
   setIsExpanded: React.Dispatch<React.SetStateAction<IIsExpandedProject>>
 }
 
 const PUBLIC_URI = process.env.PUBLIC_URL || ''
-const contentHeight = 125
+const contentHeight = 190
 const imageHeight = 200
 const marginBetweenCards = 20
 
@@ -136,6 +212,7 @@ export const ProjectCard: React.FC<IProps> = ({
   renderIndex,
   isExpanded,
   projectTitle,
+  prevProject,
   lastCard,
   setIsExpanded
 }: IProps) => {
@@ -153,6 +230,14 @@ export const ProjectCard: React.FC<IProps> = ({
     return amountOfTopPixels + (contentHeight + imageHeight + marginBetweenCards)
   }, [amountOfTopPixels])
 
+  const technologiesSVGRender = (projectTechs: Array<technologies>) => {
+    const allTechs = technologiesSVG
+    return projectTechs.map(projTechName => {
+      const selectedTech = allTechs.find(tech => tech.title === projTechName)
+      return selectedTech!.SVG
+    })
+  }
+
   return (
     <>
       <CardContainer
@@ -161,22 +246,56 @@ export const ProjectCard: React.FC<IProps> = ({
         projectTitle={projectTitle}
         contentHeight={contentHeight}
         amountOfTopPixels={amountOfTopPixels}
-        onClick={() => switchIsExpanded({ title: projectTitle })}
       >
-        <PreviewImg width="100%" height={isExpanded[projectTitle] ? '350px' : `${imageHeight}px`}>
+        <PreviewImg
+          onClick={() => switchIsExpanded({ title: projectTitle })}
+          className="img-container"
+          width="100%"
+          height={isExpanded[projectTitle] ? '350px' : `${imageHeight}px`}
+        >
           <img src={`${PUBLIC_URI}/images/jammy-jellyfish-wallpaper.jpg`} alt="Ubuntu folder" />
         </PreviewImg>
         <div className="content">
           <div className="content-title">
-            <h3>Title</h3>
-            <p>Subtitle</p>
+            <h3>{prevProject.titleText}</h3>
+            <p>{prevProject.subtitle}</p>
           </div>
           <div className="content-techs">
-            <p>Technologies</p>
+            {technologiesSVGRender(prevProject.technologies).map(TechComponent => (
+              <div key={TechComponent.name} className="tech-container">
+                <TechComponent width={25} height={25} />
+                <p className="tooltip">{TechComponent.name}</p>
+              </div>
+            ))}
           </div>
           <div className="content-links">
-            <p>Github repo</p>
-            <p>Go to page ??</p>
+            <p className="content-links-more-info" onClick={() => switchIsExpanded({ title: projectTitle })}>
+              💻 More info about the project
+            </p>
+            <div className="links__block">
+              <a
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => e.stopPropagation()}
+                className="content-links-github"
+                href={prevProject.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GithubRounded width={18} height={18} />
+                <span>Github repo 👀</span>
+              </a>
+              {prevProject.webpage && (
+                <a
+                  className="content-links-webpage"
+                  href={prevProject.webpage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => e.stopPropagation()}
+                >
+                  <Web width={18} height={18} />
+                  <span>Take a look to the project 👀</span>
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </CardContainer>

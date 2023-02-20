@@ -4,7 +4,7 @@ import { SVGProps } from 'react'
 export const ReactJS: React.FC<SVGProps<SVGSVGElement>> = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 500 500"
+    viewBox="50 50 400 400"
     // style={{
     //   enableBackground: 'new 0 0 500 500'
     // }}

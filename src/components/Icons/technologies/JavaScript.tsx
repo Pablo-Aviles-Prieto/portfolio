@@ -2,15 +2,7 @@
 import { SVGProps } from 'react'
 
 export const JavaScript: React.FC<SVGProps<SVGSVGElement>> = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 500 500"
-    // style={{
-    //   enableBackground: 'new 0 0 500 500'
-    // }}
-    xmlSpace="preserve"
-    {...props}
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="70 70 350 350" xmlSpace="preserve" {...props}>
     <path
       style={{
         fill: '#f7df1e'

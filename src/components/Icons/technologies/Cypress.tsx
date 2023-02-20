@@ -2,8 +2,7 @@
 import { SVGProps } from 'react'
 
 export const Cypress: React.FC<SVGProps<SVGSVGElement>> = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" {...props}>
-    <title>Cypress</title>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -15 270 270" preserveAspectRatio="xMidYMid" {...props}>
     <defs>
       <linearGradient x1="6.32%" y1="44.028%" x2="87.52%" y2="58.406%" id="a">
         <stop stopColor="#315C55" offset="0%" />
