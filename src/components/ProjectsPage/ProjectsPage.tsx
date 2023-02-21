@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export const ProjectsPage: React.FC<IProps> = ({ subPage, isExpanded, setIsExpanded }: IProps) => {
-  if (subPage === 'technologies') {
+  if (subPage === 'react') {
     return <h1>test</h1>
   }
 

@@ -48,6 +48,7 @@ const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
     width: 25%;
     border-right: 1px solid black;
     background-color: ${({ theme }) => theme.secondBground};
+    overflow: auto;
     &-header {
       justify-content: space-between;
       &__menu {
