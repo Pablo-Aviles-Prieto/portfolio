@@ -2,7 +2,7 @@ import { useMemo, FC } from 'react'
 import styled from 'styled-components'
 import { ContentLinksExpanded } from './ContentLinksExpanded'
 import { ContentLinks } from './ContentLinks'
-import { DownRightArrow } from '../Icons'
+import { DownRightArrow, Close } from '../Icons'
 import { isExpandedProject, technologiesSVG } from '../../utils'
 import { ImgContainer } from '../Styles'
 import { SlideContainer } from './SlideContainer'
@@ -25,7 +25,7 @@ const CardContainer = styled.div<{
   width: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '120%' : '100%')};
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 2px 4px 10px rgb(0 0 0 / 15%);
+  box-shadow: 2px 4px 10px rgb(0 0 0 / 25%);
   transition: all 0.5s ease-out, z-index 0.1s ease-in;
   .img-container {
     cursor: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'cursor' : 'pointer')};
@@ -38,12 +38,36 @@ const CardContainer = styled.div<{
     animation: animationTopBottom 0.5s forwards, positionFixedToAbsolute 0.5s forwards;
   }
   &:hover {
-    box-shadow: 2px 4px 10px rgb(0 0 0 / 40%);
+    box-shadow: 2px 4px 10px rgb(0 0 0 / 70%);
   }
   .content {
     padding: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '10px 30px' : '10px 20px')};
     background-color: ${({ theme }) => theme.mainBground};
-    height: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'auto' : `${contentHeight}px`)};
+    /* height: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'auto' : `${contentHeight}px`)}; */
+    height: auto;
+    &-close {
+      cursor: pointer;
+      position: absolute;
+      width: 35px;
+      height: 35px;
+      right: 10px;
+      top: 10px;
+      background-color: ${({ theme }) => theme.greyBground};
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      &:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+        svg {
+          transform: scale(1.1);
+          color: ${({ theme }) => theme.emphasizeColor};
+          transition: transform 0.3s ease;
+        }
+      }
+    }
     &-title {
       text-align: center;
       h3 {
@@ -286,6 +310,11 @@ export const ProjectCard: FC<IProps> = ({
           </PreviewImg>
         )}
         <div className="content">
+          {isExpanded[projectTitle] && (
+            <div className="content-close" onClick={() => setIsExpanded(isExpandedProject)}>
+              <Close width={25} height={25} />
+            </div>
+          )}
           <div className="content-title">
             <h3>{project.titleText}</h3>
             <p>{project.subtitle}</p>
