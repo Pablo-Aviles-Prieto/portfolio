@@ -6,7 +6,24 @@ const PUBLIC_URI = process.env.PUBLIC_URL || ''
 export const previousProjects: IPreviousProjectObj[] = [
   {
     index: 0,
-    imgsPath: [`${PUBLIC_URI}/images/jammy-jellyfish-wallpaper.jpg`],
+    images: [
+      {
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.png`,
+        description: 'Preview of the introduction on the portfolio page'
+      },
+      {
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/aboutme.png`,
+        description: 'Preview of the about me section'
+      },
+      {
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.png`,
+        description: 'Preview of the experience section'
+      },
+      {
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/sent-contact.png`,
+        description: 'Preview of the feedback on the form section after sending a message'
+      }
+    ],
     title: 'portfolio',
     titleText: 'Personal portfolio',
     subtitle: 'Personal portfolio themed as the Ubuntu 22.04 (Jammy Jellyfish)',
@@ -30,7 +47,24 @@ export const previousProjects: IPreviousProjectObj[] = [
   },
   {
     index: 1,
-    imgsPath: [`${PUBLIC_URI}/images/jammy-jellyfish-wallpaper.jpg`],
+    images: [
+      {
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/aboutme.png`,
+        description: 'Preview of the about me section'
+      },
+      {
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.png`,
+        description: 'Preview of the introduction on the portfolio page'
+      },
+      {
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.png`,
+        description: 'Preview of the experience section'
+      },
+      {
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/sent-contact.png`,
+        description: 'Preview of the feedback on the form section after sending a message'
+      }
+    ],
     title: 'dashboardMiranda',
     titleText: 'Hotel Miranda dashboard',
     subtitle: 'Personal portfolio themed as the Ubuntu 22.04 (Jammy Jellyfish)',
@@ -54,12 +88,28 @@ export const previousProjects: IPreviousProjectObj[] = [
   },
   {
     index: 2,
-    imgsPath: [`${PUBLIC_URI}/images/jammy-jellyfish-wallpaper.jpg`],
+    images: [
+      {
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.png`,
+        description: 'Preview of the experience section'
+      },
+      {
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.png`,
+        description: 'Preview of the introduction on the portfolio page'
+      },
+      {
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/aboutme.png`,
+        description: 'Preview of the about me section'
+      },
+      {
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/sent-contact.png`,
+        description: 'Preview of the feedback on the form section after sending a message'
+      }
+    ],
     title: 'hotelMiranda',
     titleText: 'Hotel Miranda',
     subtitle: 'Personal portfolio themed as the Ubuntu 22.04 (Jammy Jellyfish)',
     github: 'https://github.com/Pablo-Aviles-Prieto/portfolio',
-    webpage: 'https://www.pabloaviles.es',
     technologies: [
       technologies.redux,
       technologies.jest,

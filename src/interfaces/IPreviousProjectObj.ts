@@ -1,14 +1,19 @@
 import { IIsExpandedProject } from './IIsExpanedProject'
 import { technologies } from '../enums/technologies'
 
+export type IImages = {
+  path: string
+  description: string
+}
+
 export type IPreviousProjectObj = {
   index: number
-  imgsPath: string[]
+  images: IImages[]
   title: keyof IIsExpandedProject
   titleText: string
   subtitle: string
   github: string
-  webpage: string
+  webpage?: string
   technologies: Array<technologies>
   features: string[]
 }

@@ -1,5 +1,5 @@
 import { ProjectContainer } from './ProjectContainer'
-import { ProjectCard } from './ProjectCard'
+import { ProjectCardHandler } from './ProjectCardHandler'
 import { previousProjects } from '../../utils'
 import { IProjectsSubPages, IProfileInfoSubPages, IContactSubPages, IIsExpandedProject } from '../../interfaces'
 
@@ -11,20 +11,18 @@ interface IProps {
 
 export const ProjectsPage: React.FC<IProps> = ({ subPage, isExpanded, setIsExpanded }: IProps) => {
   if (subPage === 'technologies') {
-    return <h1>Technologies sub page</h1>
+    return <h1>test</h1>
   }
+
   return (
     <ProjectContainer>
       <>
         {previousProjects.map(project => (
-          <ProjectCard
+          <ProjectCardHandler
             key={project.index}
-            renderIndex={project.index}
+            project={project}
             isExpanded={isExpanded}
-            projectTitle={project.title}
             setIsExpanded={setIsExpanded}
-            prevProject={project}
-            lastCard={project.index === previousProjects.length - 1}
           />
         ))}
       </>
