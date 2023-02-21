@@ -81,7 +81,7 @@ const CardContainer = styled.div<{
       display: flex;
       align-items: center;
       gap: 10px;
-      margin: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '20px 0' : '20px 0 30px 0')};
+      margin: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '10px 0' : '20px 0 30px 0')};
 
       .tech-container {
         position: relative;
@@ -110,7 +110,7 @@ const CardContainer = styled.div<{
       }
     }
     &-features {
-      margin: 20px 0;
+      margin: 10px 0;
       h3 {
         font-size: 18px;
         font-weight: 400;

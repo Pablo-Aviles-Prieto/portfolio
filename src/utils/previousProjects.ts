@@ -8,19 +8,19 @@ export const previousProjects: IPreviousProjectObj[] = [
     index: 0,
     images: [
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.webp`,
         description: 'Preview of the introduction on the portfolio page'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/aboutme.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/aboutme.webp`,
         description: 'Preview of the about me section'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.webp`,
         description: 'Preview of the experience section'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/sent-contact.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/sent-contact.webp`,
         description: 'Preview of the feedback on the form section after sending a message'
       }
     ],
@@ -49,19 +49,19 @@ export const previousProjects: IPreviousProjectObj[] = [
     index: 1,
     images: [
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/aboutme.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/aboutme.webp`,
         description: 'Preview of the about me section'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.webp`,
         description: 'Preview of the introduction on the portfolio page'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.webp`,
         description: 'Preview of the experience section'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/sent-contact.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/sent-contact.webp`,
         description: 'Preview of the feedback on the form section after sending a message'
       }
     ],
@@ -89,19 +89,19 @@ export const previousProjects: IPreviousProjectObj[] = [
     index: 2,
     images: [
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.webp`,
         description: 'Preview of the experience section'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.webp`,
         description: 'Preview of the introduction on the portfolio page'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/aboutme.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/aboutme.webp`,
         description: 'Preview of the about me section'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/sent-contact.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/sent-contact.webp`,
         description: 'Preview of the feedback on the form section after sending a message'
       }
     ],
@@ -129,19 +129,19 @@ export const previousProjects: IPreviousProjectObj[] = [
     index: 3,
     images: [
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.webp`,
         description: 'Preview of the introduction on the portfolio page'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/aboutme.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/aboutme.webp`,
         description: 'Preview of the about me section'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.webp`,
         description: 'Preview of the experience section'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/sent-contact.png`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/sent-contact.webp`,
         description: 'Preview of the feedback on the form section after sending a message'
       }
     ],
