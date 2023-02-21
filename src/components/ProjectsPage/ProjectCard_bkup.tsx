@@ -1,12 +1,10 @@
-import { useMemo, FC } from 'react'
+import { useMemo, Fragment } from 'react'
 import styled from 'styled-components'
-import { ContentLinksExpanded } from './ContentLinksExpanded'
-import { ContentLinks } from './ContentLinks'
-import { DownRightArrow } from '../Icons'
 import { isExpandedProject, technologiesSVG } from '../../utils'
 import { ImgContainer } from '../Styles'
 import { SlideContainer } from './SlideContainer'
 import { technologies } from '../../enums/technologies'
+import { GithubRounded, Web } from '../Icons'
 import { IIsExpandedProject, IPreviousProjectObj } from '../../interfaces'
 
 const CardContainer = styled.div<{
@@ -32,7 +30,6 @@ const CardContainer = styled.div<{
   }
   &.expanded {
     animation: animationBottomTop 0.5s forwards, positionAbsoluteToFixed 0.5s forwards;
-    overflow: auto;
   }
   &.not-expanded {
     animation: animationTopBottom 0.5s forwards, positionFixedToAbsolute 0.5s forwards;
@@ -41,9 +38,9 @@ const CardContainer = styled.div<{
     box-shadow: 2px 4px 10px rgb(0 0 0 / 40%);
   }
   .content {
-    padding: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '10px 30px' : '10px 20px')};
+    padding: 10px;
     background-color: ${({ theme }) => theme.mainBground};
-    height: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'auto' : `${contentHeight}px`)};
+    height: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? `${contentHeight}px` : 'auto')};
     &-title {
       text-align: center;
       h3 {
@@ -57,7 +54,8 @@ const CardContainer = styled.div<{
       display: flex;
       align-items: center;
       gap: 10px;
-      margin: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '20px 0' : '20px 0 30px 0')};
+      margin: 20px 0;
+      padding: 0 20px;
 
       .tech-container {
         position: relative;
@@ -85,30 +83,11 @@ const CardContainer = styled.div<{
         pointer-events: auto;
       }
     }
-    &-features {
-      margin: 20px 0;
-      h3 {
-        font-size: 18px;
-        font-weight: 400;
-        color: ${({ theme }) => theme.emphasizeColor};
-      }
-      &-block {
-        padding-left: 195px;
-        &-line {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          svg {
-            color: ${({ theme }) => theme.lightEmphasize};
-          }
-        }
-      }
-    }
     &-links {
       display: flex;
       align-items: end;
       justify-content: space-between;
-      font-size: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '18px' : '16px')};
+      font-size: 16px;
       &-github,
       &-webpage {
         color: ${({ theme }) => theme.mainColor};
@@ -118,9 +97,6 @@ const CardContainer = styled.div<{
       }
       &-more-info {
         cursor: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'cursor' : 'pointer')};
-        display: flex;
-        align-items: center;
-        gap: 5px;
       }
       .links__block {
         display: flex;
@@ -131,6 +107,9 @@ const CardContainer = styled.div<{
       p {
         position: relative;
         text-decoration: none;
+        span {
+          color: ${({ theme }) => theme.lightEmphasize};
+        }
         &:hover {
           color: ${({ theme }) => theme.lightEmphasize};
         }
@@ -170,18 +149,15 @@ const CardContainer = styled.div<{
   @keyframes positionAbsoluteToFixed {
     0% {
       position: absolute;
-      max-height: auto;
     }
     49.9% {
       position: absolute;
     }
     50% {
       position: fixed;
-      max-height: auto;
     }
     100% {
       position: fixed;
-      max-height: 100%;
     }
   }
   @keyframes animationBottomTop {
@@ -201,7 +177,6 @@ const CardContainer = styled.div<{
   @keyframes positionFixedToAbsolute {
     0% {
       position: fixed;
-      max-height: auto;
     }
     49.9% {
       position: fixed;
@@ -211,7 +186,6 @@ const CardContainer = styled.div<{
     }
     100% {
       position: absolute;
-      max-height: auto;
     }
   }
 `
@@ -230,18 +204,18 @@ interface IProps {
   setIsExpanded: React.Dispatch<React.SetStateAction<IIsExpandedProject>>
 }
 
-const contentHeight = 200
+const contentHeight = 190
 const imageHeight = 250
 const marginBetweenCards = 20
 
-export const ProjectCard: FC<IProps> = ({
+export const ProjectCard: React.FC<IProps> = ({
   renderIndex,
   isExpanded,
   projectTitle,
   project,
   lastCard,
   setIsExpanded
-}) => {
+}: IProps) => {
   const switchIsExpanded = ({ title }: { title: keyof IIsExpandedProject }) => {
     const newState = { ...isExpandedProject }
     newState[title] = true
@@ -298,24 +272,35 @@ export const ProjectCard: FC<IProps> = ({
               </div>
             ))}
           </div>
-          {isExpanded[projectTitle] && (
-            <div className="content-features">
-              <h3>Features of the project:</h3>
-              <div className="content-features-block">
-                {project.features.map(feature => (
-                  <div className="content-features-block-line" key={feature}>
-                    <DownRightArrow width={20} height={20} />
-                    <p>{feature}</p>
-                  </div>
-                ))}
-              </div>
+          <div className="content-links">
+            <p className="content-links-more-info" onClick={() => switchIsExpanded({ title: projectTitle })}>
+              💻 More info about the project
+            </p>
+            <div className="links__block">
+              <a
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => e.stopPropagation()}
+                className="content-links-github"
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GithubRounded width={18} height={18} />
+                <span>Github repo 👀</span>
+              </a>
+              {project.webpage && (
+                <a
+                  className="content-links-webpage"
+                  href={project.webpage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => e.stopPropagation()}
+                >
+                  <Web width={18} height={18} />
+                  <span>Take a look to the project 👀</span>
+                </a>
+              )}
             </div>
-          )}
-          {isExpanded[projectTitle] ? (
-            <ContentLinksExpanded project={project} switchIsExpanded={switchIsExpanded} />
-          ) : (
-            <ContentLinks project={project} projectTitle={projectTitle} switchIsExpanded={switchIsExpanded} />
-          )}
+          </div>
         </div>
       </CardContainer>
       {lastCard && (
