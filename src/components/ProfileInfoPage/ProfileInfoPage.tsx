@@ -4,7 +4,11 @@ import { Education } from './Education'
 import { IProfileInfoSubPages, IProjectsSubPages, IContactSubPages } from '../../interfaces'
 
 interface IProps {
-  subPage: IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
+  subPage:
+    | IProfileInfoSubPages
+    | IProjectsSubPages
+    | IContactSubPages
+    | (IProfileInfoSubPages | IProjectsSubPages | IContactSubPages)[]
 }
 
 export const ProfileInfoPage: React.FC<IProps> = ({ subPage }: IProps) => {

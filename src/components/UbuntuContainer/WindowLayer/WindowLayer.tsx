@@ -10,6 +10,7 @@ import {
   IIsExpandedProject,
   IContactSubPages
 } from '../../../interfaces'
+import { technologies } from '../../../enums/technologies'
 
 const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
   display: flex;
@@ -48,6 +49,7 @@ const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
     width: 25%;
     border-right: 1px solid black;
     background-color: ${({ theme }) => theme.secondBground};
+    overflow: auto;
     &-header {
       justify-content: space-between;
       &__menu {
@@ -142,7 +144,11 @@ const BackDrop = styled.div<{ isAnyExpanded: boolean }>`
   transition: opacity 0.5s ease-in;
 `
 
-type ISubPage = IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
+type ISubPage =
+  | IProfileInfoSubPages
+  | IProjectsSubPages
+  | IContactSubPages
+  | (IProfileInfoSubPages | IProjectsSubPages | IContactSubPages)[]
 
 interface IProps {
   isOpen: boolean
@@ -153,6 +159,7 @@ interface IProps {
   setIsExpanded: React.Dispatch<React.SetStateAction<IIsExpandedProject>>
   switchOpenFileState: React.Dispatch<React.SetStateAction<IOpenFile>>
   setSubPage: React.Dispatch<React.SetStateAction<ISubPage>>
+  techArraySubPage: ({ tech }: { tech: IProfileInfoSubPages | IProjectsSubPages | IContactSubPages }) => void
   children: JSX.Element
 }
 
@@ -165,6 +172,7 @@ export const WindowLayer: React.FC<IProps> = ({
   setIsExpanded,
   switchOpenFileState,
   setSubPage,
+  techArraySubPage,
   children
 }: IProps) => {
   const [subPageContentClasses, setSubPageContentClasses] = useState<string>('right-section-content')
@@ -188,12 +196,25 @@ export const WindowLayer: React.FC<IProps> = ({
       window.open('https://www.linkedin.com/in/pablo-aviles-prieto/?locale=en_US', '_blank')
       return
     }
+    if (Object.keys(technologies).includes(menuLine.title)) {
+      techArraySubPage({ tech: menuLine.title })
+      setSubPageContentClasses('right-section-content')
+      return
+    }
     setSubPage(menuLine.title)
     if (subPage === menuLine.title) return
     setSubPageContentClasses('right-section-content')
   }
 
   const isAnyExpanded: boolean = useMemo(() => Object.values(isExpanded).some(val => val), [isExpanded])
+
+  const subPagesClasses = ({ menuLine }: { menuLine: ISubMenuObj }) => {
+    if (Array.isArray(subPage)) {
+      const subPageIsOpen = subPage.find(subPageTech => subPageTech === menuLine.title)
+      return subPageIsOpen ? 'left-section-content-submenu menu__selected' : 'left-section-content-submenu'
+    }
+    return subPage === menuLine.title ? 'left-section-content-submenu menu__selected' : 'left-section-content-submenu'
+  }
 
   return (
     <WindowContainer isAnyExpanded={isAnyExpanded} className={isOpen ? 'page__open' : ''}>
@@ -209,11 +230,7 @@ export const WindowLayer: React.FC<IProps> = ({
           {subMenuData.map(menuLine => (
             <div
               key={menuLine.title}
-              className={
-                subPage === menuLine.title
-                  ? 'left-section-content-submenu menu__selected'
-                  : 'left-section-content-submenu'
-              }
+              className={subPagesClasses({ menuLine })}
               onClick={() => subPageHandler(menuLine)}
             >
               <menuLine.SVG width={16} height={16} />

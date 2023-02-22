@@ -5,6 +5,7 @@ import { TypeLineAnimation } from './TypeAnimations'
 import { renderLinePropHelper, IRenderLines } from '../../utils/renderLinePropHelper'
 
 interface IProps {
+  introState: boolean
   switchIntroState: () => void
 }
 
@@ -134,19 +135,12 @@ const PromptContainer = styled.div<{ containerPromptWidth: number }>`
         opacity: 0;
       }
     }
-
-    /* @media (max-width: 600px) {
-      .Terminal {
-        max-height: 90%;
-        width: 95%;
-      }
-    } */
   }
 `
 
 const maxLinesOnPrompt = 18
 
-export const Prompt: React.FC<IProps> = ({ switchIntroState }: IProps) => {
+export const Prompt: React.FC<IProps> = ({ introState, switchIntroState }: IProps) => {
   const [typingLine, setTypingLine] = useState<number>(0)
   const [arrayToRender, setArrayToRender] = useState<(JSX.Element | undefined)[]>([])
 
@@ -190,6 +184,7 @@ export const Prompt: React.FC<IProps> = ({ switchIntroState }: IProps) => {
   )
 
   const arrayToRenderHelper = (line: number) => {
+    if (!introState) return
     const elementToRender = renderLineObjs[line]
     if (elementToRender === undefined) return
     const element = renderLinePropHelper(elementToRender)

@@ -67,7 +67,6 @@ const App: React.FC = () => {
   const [lightTheme, setLightTheme] = useState<boolean>(false)
   const [introState, setIntroState] = useState<boolean>(true)
   const [openFile, setOpenFile] = useState<IOpenFile>('none')
-  console.log('openFile app', openFile)
 
   const switchThemeHandler = () => {
     setLightTheme(prevState => !prevState)
@@ -75,6 +74,11 @@ const App: React.FC = () => {
 
   const switchIntroState = () => {
     setIntroState(false)
+    if (introState) {
+      setTimeout(() => {
+        setOpenFile('profileInfo')
+      }, 700)
+    }
   }
 
   return (
@@ -84,7 +88,7 @@ const App: React.FC = () => {
         <>
           <FolderBlock />
           <IntroContainer introState={introState}>
-            <Prompt switchIntroState={switchIntroState} />
+            <Prompt introState={introState} switchIntroState={switchIntroState} />
             <GenericButton onClick={switchIntroState}>Skip introduction</GenericButton>
           </IntroContainer>
           <WindowLayerHandler introState={introState} openedFile={openFile} switchOpenFileState={setOpenFile} />
