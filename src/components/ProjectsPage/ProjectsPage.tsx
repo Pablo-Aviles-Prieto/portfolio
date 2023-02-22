@@ -45,6 +45,9 @@ export const ProjectsPage: React.FC<IProps> = ({ subPage, isExpanded, setIsExpan
   return (
     <ProjectContainer>
       <>
+        <p style={{ textAlign: 'center', fontWeight: 700, fontSize: '18px' }}>
+          Showing <span style={{ color: '#ff8e00' }}>{projectsArray.length} projects</span>
+        </p>
         {projectsArray.map((project, i) => (
           <ProjectCardHandler
             key={project.index}

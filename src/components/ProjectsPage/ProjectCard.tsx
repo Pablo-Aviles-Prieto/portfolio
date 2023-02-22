@@ -257,6 +257,7 @@ interface IProps {
 const contentHeight = 200
 const imageHeight = 250
 const marginBetweenCards = 20
+const totalCardsParagraph = 40
 
 export const ProjectCard: FC<IProps> = ({
   renderIndex,
@@ -273,7 +274,7 @@ export const ProjectCard: FC<IProps> = ({
   }
 
   const amountOfTopPixels: number = useMemo(() => {
-    return renderIndex * (contentHeight + imageHeight + marginBetweenCards)
+    return renderIndex * (contentHeight + imageHeight + marginBetweenCards) + totalCardsParagraph
   }, [renderIndex])
 
   const lastSeparatorTopPixels: number = useMemo(() => {

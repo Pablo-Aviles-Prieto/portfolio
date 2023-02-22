@@ -67,6 +67,14 @@ const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
         &.menu__selected {
           background-color: ${({ theme }) => theme.emphasizeColor};
         }
+        &.tech__selected {
+          /* background-color: ${({ theme }) => theme.secondBground}; */
+          color: ${({ theme }) => theme.emphasizeColor};
+          font-weight: 700;
+          &:hover {
+            background-color: #8b4d00;
+          }
+        }
         &:hover {
           background-color: ${({ theme }) => theme.lightEmphasize};
         }
@@ -211,7 +219,7 @@ export const WindowLayer: React.FC<IProps> = ({
   const subPagesClasses = ({ menuLine }: { menuLine: ISubMenuObj }) => {
     if (Array.isArray(subPage)) {
       const subPageIsOpen = subPage.find(subPageTech => subPageTech === menuLine.title)
-      return subPageIsOpen ? 'left-section-content-submenu menu__selected' : 'left-section-content-submenu'
+      return subPageIsOpen ? 'left-section-content-submenu tech__selected' : 'left-section-content-submenu'
     }
     return subPage === menuLine.title ? 'left-section-content-submenu menu__selected' : 'left-section-content-submenu'
   }
