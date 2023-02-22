@@ -4,7 +4,6 @@ import { ContentLinksExpanded } from './ContentLinksExpanded'
 import { ContentLinks } from './ContentLinks'
 import { DownRightArrow, Close } from '../Icons'
 import { isExpandedProject, technologiesSVG } from '../../utils'
-import { ImgContainer } from '../Styles'
 import { SlideContainer } from './SlideContainer'
 import { technologies } from '../../enums/technologies'
 import { IIsExpandedProject, IPreviousProjectObj } from '../../interfaces'
@@ -240,9 +239,34 @@ const CardContainer = styled.div<{
   }
 `
 
-const PreviewImg = styled(ImgContainer)`
-  border-radius: 0px;
+const PreviewImg = styled.div<{ width: string; height: string }>`
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
+  overflow: hidden;
   transition: all 0.5s ease-out;
+  border-radius: 0px;
+  display: flex;
+  position: relative;
+  .img-overlay {
+    position: absolute;
+    width: 130%;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-40%);
+    display: flex;
+    &-right {
+      box-shadow: 17px 15px 10px rgb(255, 0, 0);
+      z-index: 5;
+      transform: translateX(-25%);
+      clip-path: polygon(2% 10%, 0 21%, 2% 33%, 0 45%, 2% 59%, 0 71%, 2% 84%, 0 100%, 0 100%, 100% 100%, 100% 0, 0 0);
+    }
+    img {
+      width: 50%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 `
 
 interface IProps {
@@ -307,7 +331,10 @@ export const ProjectCard: FC<IProps> = ({
             width="100%"
             height={`${imageHeight}px`}
           >
-            <img src={project.images[0].path} alt={project.images[0].description} />
+            <div className="img-overlay">
+              <img src={project.images[0].path} alt={project.images[0].description} />
+              <img className="img-overlay-right" src={project.images[1].path} alt={project.images[1].description} />
+            </div>
           </PreviewImg>
         )}
         <div className="content">

@@ -48,19 +48,19 @@ export const previousProjects: IPreviousProjectObj[] = [
     index: 1,
     images: [
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/aboutme.webp`,
-        description: 'Preview of the about me section'
-      },
-      {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.webp`,
+        path: `${PUBLIC_URI}/images/prev-projects/dashboardMiranda/main-page-dark.webp`,
         description: 'Preview of the introduction on the portfolio page'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.webp`,
+        path: `${PUBLIC_URI}/images/prev-projects/dashboardMiranda/bookings-list-light.webp`,
+        description: 'Preview of the about me section'
+      },
+      {
+        path: `${PUBLIC_URI}/images/prev-projects/dashboardMiranda/room-details-dark.webp`,
         description: 'Preview of the experience section'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/sent-contact.webp`,
+        path: `${PUBLIC_URI}/images/prev-projects/dashboardMiranda/users-list-light.webp`,
         description: 'Preview of the feedback on the form section after sending a message'
       }
     ],
