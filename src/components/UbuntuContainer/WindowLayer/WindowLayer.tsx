@@ -68,7 +68,6 @@ const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
           background-color: ${({ theme }) => theme.emphasizeColor};
         }
         &.tech__selected {
-          /* background-color: ${({ theme }) => theme.secondBground}; */
           color: ${({ theme }) => theme.emphasizeColor};
           font-weight: 700;
           &:hover {

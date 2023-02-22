@@ -39,6 +39,10 @@ export const ProjectsPage: React.FC<IProps> = ({ subPage, isExpanded, setIsExpan
         })
       })
     })
+    // In case all techs are removed, we show all the projects
+    if (newProjectsFiltered.length === 0) {
+      return setProjectsArray(previousProjects)
+    }
     setProjectsArray(newProjectsFiltered)
   }, [subPage])
 
