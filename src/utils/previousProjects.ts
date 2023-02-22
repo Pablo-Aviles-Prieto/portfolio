@@ -145,19 +145,12 @@ export const previousProjects: IPreviousProjectObj[] = [
         description: 'Preview of the feedback on the form section after sending a message'
       }
     ],
-    title: 'portfolio',
-    titleText: 'Personal portfolio',
+    title: 'imgFinder',
+    titleText: 'Img Finder',
     subtitle: 'Personal portfolio themed as the Ubuntu 22.04 (Jammy Jellyfish)',
     github: 'https://github.com/Pablo-Aviles-Prieto/portfolio',
     webpage: 'https://www.pabloaviles.es',
-    technologies: [
-      technologies.react,
-      technologies.typescript,
-      technologies.javascript,
-      technologies.html,
-      technologies.css,
-      technologies.git
-    ],
+    technologies: [technologies.react, technologies.typescript, technologies.git],
     features: [
       `Typing effect 🖊️ created with 'react-type-animation' library`,
       '🦋 Styled with styled-components 🦋',

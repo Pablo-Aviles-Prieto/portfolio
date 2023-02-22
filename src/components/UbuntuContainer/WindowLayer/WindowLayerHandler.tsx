@@ -9,6 +9,7 @@ import {
   IContactSubPages,
   IIsExpandedProject
 } from '../../../interfaces'
+import { technologies } from '../../../enums/technologies'
 import { profileSubMenu, projectsSubMenu, contactSubMenu, isExpandedProject } from '../../../utils'
 import { ContactPage } from '../../ContactPage/ContactPage'
 
@@ -18,7 +19,11 @@ interface IProps {
   introState: boolean
 }
 
-type ISubPage = IProfileInfoSubPages | IProjectsSubPages | IContactSubPages
+type ISubPage =
+  | IProfileInfoSubPages
+  | IProjectsSubPages
+  | IContactSubPages
+  | (IProfileInfoSubPages | IProjectsSubPages | IContactSubPages)[]
 
 export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, switchOpenFileState }: IProps) => {
   const [subPage, setSubPage] = useState<ISubPage>('introduction')
@@ -51,6 +56,24 @@ export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, s
     return openedFile === 'projects' ? 'Some previous works' : 'Contact with me'
   }, [openedFile])
 
+  const techArraySubPage = ({ tech }: { tech: IProfileInfoSubPages | IProjectsSubPages | IContactSubPages }) => {
+    if (tech === 'introduction') {
+      setSubPage(tech)
+      return
+    }
+    if (Object.keys(technologies).includes(tech)) {
+      setSubPage(prevState => {
+        const oldState = Array.isArray(prevState) ? [...prevState] : []
+        const indexOfTech = oldState.indexOf(tech)
+        if (indexOfTech !== -1) {
+          oldState.splice(indexOfTech, 1)
+          return oldState
+        }
+        return [...oldState, tech]
+      })
+    }
+  }
+
   return (
     <WindowLayer
       isOpen={isOpen}
@@ -60,6 +83,7 @@ export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, s
       isExpanded={isExpanded}
       setIsExpanded={setIsExpanded}
       setSubPage={setSubPage}
+      techArraySubPage={techArraySubPage}
       switchOpenFileState={switchOpenFileState}
     >
       <>
@@ -67,7 +91,7 @@ export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, s
         {openedFile === 'projects' && (
           <ProjectsPage isExpanded={isExpanded} setIsExpanded={setIsExpanded} subPage={subPage} />
         )}
-        {openedFile === 'contact' && <ContactPage subPage={subPage} />}
+        {openedFile === 'contact' && <ContactPage />}
         {openedFile === 'none' && <div />}
       </>
     </WindowLayer>
