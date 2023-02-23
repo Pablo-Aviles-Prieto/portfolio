@@ -21,6 +21,10 @@ const DockContainer = styled.div`
       display: flex;
       justify-content: center;
 
+      svg {
+        color: #fff;
+      }
+
       .tooltip {
         position: absolute;
         top: 14px;
