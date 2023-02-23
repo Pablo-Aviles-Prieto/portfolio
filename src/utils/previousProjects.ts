@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { technologies } from '../enums/technologies'
 import { IPreviousProjectObj } from '../interfaces'
 
@@ -8,7 +9,7 @@ export const previousProjects: IPreviousProjectObj[] = [
     index: 0,
     images: [
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.webp`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.webp`,
         description: 'Preview of the introduction on the portfolio page'
       },
       {
@@ -16,7 +17,7 @@ export const previousProjects: IPreviousProjectObj[] = [
         description: 'Preview of the about me section'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.webp`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.webp`,
         description: 'Preview of the experience section'
       },
       {
@@ -48,7 +49,7 @@ export const previousProjects: IPreviousProjectObj[] = [
     index: 1,
     images: [
       {
-        path: `${PUBLIC_URI}/images/prev-projects/dashboardMiranda/main-page-dark.webp`,
+        path: `${PUBLIC_URI}/images/prev-projects/dashboardMiranda/intro.webp`,
         description: 'Preview of the introduction on the portfolio page'
       },
       {
@@ -66,7 +67,8 @@ export const previousProjects: IPreviousProjectObj[] = [
     ],
     title: 'dashboardMiranda',
     titleText: 'Hotel Miranda dashboard',
-    subtitle: 'Personal portfolio themed as the Ubuntu 22.04 (Jammy Jellyfish)',
+    subtitle:
+      'Personal portfolio themed as the Ubuntu 22.04 (Jammy Jellyfish) test a long subtitle to check how it works',
     github: 'https://github.com/Pablo-Aviles-Prieto/portfolio',
     technologies: [
       technologies.node,
@@ -77,11 +79,11 @@ export const previousProjects: IPreviousProjectObj[] = [
       technologies.mysql
     ],
     features: [
-      `Typing effect 🖊️ created with 'react-type-animation' library`,
+      `Typing effect 🖊️ created with 'react-type-animation' library and a lot of love and hard work for sure, ain't easy sometimes to get things working ou yeah mama`,
       '🦋 Styled with styled-components 🦋',
-      'Dark 🌙 and light 💡 theme created with styled-components',
+      'Dark 🌙 and light 💡 theme created with styled-components heme created with styled-components heme created with styled-components',
       '🇬🇧🇪🇸 Languages',
-      'Animations handled by myself with CSS 🎥'
+      'Animations handled by myself with CSS heme created with styled-components heme created with styled-components heme created with styled-components heme created with sasd as das dasd asd as das da sdas da sdas MongoDB 🎥'
     ]
   },
   {

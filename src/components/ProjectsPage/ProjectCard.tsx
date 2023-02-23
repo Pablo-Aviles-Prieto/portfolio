@@ -1,86 +1,45 @@
-import { useMemo, FC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
-import { ContentLinksExpanded } from './ContentLinksExpanded'
-import { ContentLinks } from './ContentLinks'
-import { DownRightArrow, Close } from '../Icons'
-import { isExpandedProject, technologiesSVG } from '../../utils'
-import { SlideContainer } from './SlideContainer'
+import { ImgContainer } from '../Styles'
+import { DownRightArrow, GithubRounded, Web } from '../Icons'
+import { technologiesSVG } from '../../utils'
 import { technologies } from '../../enums/technologies'
 import { IIsExpandedProject, IPreviousProjectObj } from '../../interfaces'
 
 const CardContainer = styled.div<{
-  isExpanded: IIsExpandedProject
   projectTitle: keyof IIsExpandedProject
-  contentHeight: number
-  amountOfTopPixels: number
 }>`
-  --card-top: ${({ amountOfTopPixels }) => `${amountOfTopPixels}px`};
-
-  z-index: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '3' : '2')};
-  position: fixed;
-  left: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'calc(50% - (120% / 2))' : '0')};
-  top: ${({ isExpanded, projectTitle, amountOfTopPixels }) =>
-    isExpanded[projectTitle] ? '50px' : `${amountOfTopPixels}px`};
-  width: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '120%' : '100%')};
+  width: 100%;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 2px 4px 10px rgb(0 0 0 / 25%);
   transition: all 0.5s ease-out, z-index 0.1s ease-in;
-  .img-container {
-    cursor: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'cursor' : 'pointer')};
-  }
-  &.expanded {
-    animation: animationBottomTop 0.5s forwards, positionAbsoluteToFixed 0.5s forwards;
-    overflow: auto;
-  }
-  &.not-expanded {
-    animation: animationTopBottom 0.5s forwards, positionFixedToAbsolute 0.5s forwards;
-  }
+  margin-bottom: 40px;
   &:hover {
     box-shadow: 2px 4px 10px rgb(0 0 0 / 70%);
   }
   .content {
-    padding: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '10px 30px' : '10px 20px')};
+    padding: 10px 20px;
     background-color: ${({ theme }) => theme.mainBground};
-    /* height: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'auto' : `${contentHeight}px`)}; */
     height: auto;
-    &-close {
-      cursor: pointer;
-      position: absolute;
-      width: 35px;
-      height: 35px;
-      right: 10px;
-      top: 10px;
-      background-color: ${({ theme }) => theme.greyBground};
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      &:hover {
-        transform: scale(1.05);
-        transition: transform 0.3s ease;
-        svg {
-          transform: scale(1.1);
-          color: ${({ theme }) => theme.emphasizeColor};
-          transition: transform 0.3s ease;
-        }
-      }
-    }
     &-title {
-      text-align: center;
+      margin-bottom: 30px;
+      margin-top: 20px;
+      text-align: justify;
       h3 {
+        font-size: 36px;
         color: ${({ theme }) => theme.emphasizeColor};
       }
       p {
+        padding-left: 35px;
         color: ${({ theme }) => theme.greyLighter};
+        font-size: 17px;
       }
     }
     &-techs {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '10px 0' : '20px 0 30px 0')};
 
       .tech-container {
         position: relative;
@@ -116,39 +75,26 @@ const CardContainer = styled.div<{
         color: ${({ theme }) => theme.emphasizeColor};
       }
       &-block {
-        padding-left: 195px;
+        padding-left: 35px;
         &-line {
-          display: flex;
-          align-items: center;
-          gap: 8px;
+          position: relative;
           svg {
+            position: absolute;
+            top: 2px;
+            left: 0px;
             color: ${({ theme }) => theme.lightEmphasize};
           }
         }
       }
     }
     &-links {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      font-size: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '18px' : '16px')};
+      font-size: 18px;
       &-github,
       &-webpage {
         color: ${({ theme }) => theme.mainColor};
         display: flex;
         align-items: center;
         gap: 5px;
-      }
-      &-more-info {
-        cursor: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'cursor' : 'pointer')};
-        display: flex;
-        align-items: center;
-        gap: 5px;
-      }
-      .links__block {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
       }
       a,
       p {
@@ -174,6 +120,11 @@ const CardContainer = styled.div<{
           font-weight: 700;
         }
       }
+    }
+    &__grouped {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
     }
   }
   @keyframes animationTopBottom {
@@ -239,34 +190,9 @@ const CardContainer = styled.div<{
   }
 `
 
-const PreviewImg = styled.div<{ width: string; height: string }>`
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
-  overflow: hidden;
+const ImgPreview = styled(ImgContainer)`
   transition: all 0.5s ease-out;
   border-radius: 0px;
-  display: flex;
-  position: relative;
-  .img-overlay {
-    position: absolute;
-    width: 130%;
-    height: 100%;
-    top: 0;
-    left: 50%;
-    transform: translateX(-40%);
-    display: flex;
-    &-right {
-      box-shadow: 17px 15px 10px rgb(255, 0, 0);
-      z-index: 5;
-      transform: translateX(-25%);
-      clip-path: polygon(2% 10%, 0 21%, 2% 33%, 0 45%, 2% 59%, 0 71%, 2% 84%, 0 100%, 0 100%, 100% 100%, 100% 0, 0 0);
-    }
-    img {
-      width: 50%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
 `
 
 interface IProps {
@@ -278,11 +204,6 @@ interface IProps {
   setIsExpanded: React.Dispatch<React.SetStateAction<IIsExpandedProject>>
 }
 
-const contentHeight = 200
-const imageHeight = 250
-const marginBetweenCards = 20
-const totalCardsParagraph = 40
-
 export const ProjectCard: FC<IProps> = ({
   renderIndex,
   isExpanded,
@@ -291,20 +212,6 @@ export const ProjectCard: FC<IProps> = ({
   lastCard,
   setIsExpanded
 }) => {
-  const switchIsExpanded = ({ title }: { title: keyof IIsExpandedProject }) => {
-    const newState = { ...isExpandedProject }
-    newState[title] = true
-    setIsExpanded(newState)
-  }
-
-  const amountOfTopPixels: number = useMemo(() => {
-    return renderIndex * (contentHeight + imageHeight + marginBetweenCards) + totalCardsParagraph
-  }, [renderIndex])
-
-  const lastSeparatorTopPixels: number = useMemo(() => {
-    return amountOfTopPixels + (contentHeight + imageHeight + marginBetweenCards)
-  }, [amountOfTopPixels])
-
   const technologiesSVGRender = (projectTechs: Array<technologies>) => {
     const allTechs = technologiesSVG
     return projectTechs.map(projTechName => {
@@ -314,39 +221,34 @@ export const ProjectCard: FC<IProps> = ({
   }
 
   return (
-    <>
-      <CardContainer
-        className={isExpanded[projectTitle] ? 'expanded' : 'not-expanded'}
-        isExpanded={isExpanded}
-        projectTitle={projectTitle}
-        contentHeight={contentHeight}
-        amountOfTopPixels={amountOfTopPixels}
-      >
-        {isExpanded[projectTitle] ? (
-          <SlideContainer projectImages={project.images} />
-        ) : (
-          <PreviewImg
-            onClick={() => switchIsExpanded({ title: projectTitle })}
-            className="img-container"
-            width="100%"
-            height={`${imageHeight}px`}
+    <CardContainer projectTitle={projectTitle}>
+      <ImgPreview className="img-container" width="100%" height="250px">
+        <img src={project.images[0].path} alt={project.images[0].description} />
+      </ImgPreview>
+      <div className="content">
+        <div className="content-links content__grouped">
+          <a
+            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => e.stopPropagation()}
+            className="content-links-github"
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <div className="img-overlay">
-              <img src={project.images[0].path} alt={project.images[0].description} />
-              <img className="img-overlay-right" src={project.images[1].path} alt={project.images[1].description} />
-            </div>
-          </PreviewImg>
-        )}
-        <div className="content">
-          {isExpanded[projectTitle] && (
-            <div className="content-close" onClick={() => setIsExpanded(isExpandedProject)}>
-              <Close width={25} height={25} />
-            </div>
+            <GithubRounded width={18} height={18} />
+            <span>Github repo</span>
+          </a>
+          {project.webpage && (
+            <a
+              className="content-links-webpage"
+              href={project.webpage}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => e.stopPropagation()}
+            >
+              <Web width={18} height={18} />
+              <span>Project demo</span>
+            </a>
           )}
-          <div className="content-title">
-            <h3>{project.titleText}</h3>
-            <p>{project.subtitle}</p>
-          </div>
           <div className="content-techs">
             {technologiesSVGRender(project.technologies).map(TechComponent => (
               <div key={TechComponent.name} className="tech-container">
@@ -355,30 +257,27 @@ export const ProjectCard: FC<IProps> = ({
               </div>
             ))}
           </div>
-          {isExpanded[projectTitle] && (
-            <div className="content-features">
-              <h3>Features of the project:</h3>
-              <div className="content-features-block">
-                {project.features.map(feature => (
-                  <div className="content-features-block-line" key={feature}>
-                    <DownRightArrow width={20} height={20} />
-                    <p>{feature}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-          {isExpanded[projectTitle] ? (
-            <ContentLinksExpanded project={project} switchIsExpanded={switchIsExpanded} />
-          ) : (
-            <ContentLinks project={project} projectTitle={projectTitle} switchIsExpanded={switchIsExpanded} />
-          )}
         </div>
-      </CardContainer>
-      {lastCard && (
-        <div style={{ height: '1px', width: '100%', position: 'absolute', top: `${lastSeparatorTopPixels}px` }} />
-      )}
-    </>
+        <div className="content-title">
+          <h3>{project.titleText}</h3>
+          <p>{project.subtitle}</p>
+        </div>
+        <div className="content-features">
+          <h3>Features of the project:</h3>
+          <div className="content-features-block">
+            {project.features.map(feature => (
+              <div className="content-features-block-line" key={feature}>
+                <DownRightArrow width={20} height={20} />
+                <p>
+                  <span style={{ width: '25px', display: 'inline-block' }} />
+                  {feature}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </CardContainer>
   )
 }
 

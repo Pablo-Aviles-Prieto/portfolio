@@ -1,13 +1,12 @@
 import { FC } from 'react'
 import { GithubRounded, Web } from '../Icons'
-import { IPreviousProjectObj, IIsExpandedProject } from '../../interfaces'
+import { IPreviousProjectObj } from '../../interfaces'
 
 interface IProps {
   project: IPreviousProjectObj
-  switchIsExpanded: ({ title }: { title: keyof IIsExpandedProject }) => void
 }
 
-export const ContentLinksExpanded: FC<IProps> = ({ project, switchIsExpanded }) => {
+export const ContentLinksExpanded: FC<IProps> = ({ project }) => {
   return (
     <div className="content-links">
       <a

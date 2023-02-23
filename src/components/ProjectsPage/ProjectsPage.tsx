@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ProjectContainer } from './ProjectContainer'
+import styled from 'styled-components'
 import { ProjectCardHandler } from './ProjectCardHandler'
 import { previousProjects } from '../../utils'
 import {
@@ -10,6 +10,18 @@ import {
   IPreviousProjectObj
 } from '../../interfaces'
 import { technologies } from '../../enums/technologies'
+
+const ProjectContainer = styled.div`
+  .projects__count {
+    margin: 20px 0;
+    text-align: center;
+    font-weight: 700;
+    font-size: 18px;
+    span {
+      color: #ff8e00;
+    }
+  }
+`
 
 interface IProps {
   subPage:
@@ -49,8 +61,8 @@ export const ProjectsPage: React.FC<IProps> = ({ subPage, isExpanded, setIsExpan
   return (
     <ProjectContainer>
       <>
-        <p style={{ textAlign: 'center', fontWeight: 700, fontSize: '18px' }}>
-          Showing <span style={{ color: '#ff8e00' }}>{projectsArray.length} projects</span>
+        <p className="projects__count">
+          Showing <span>{projectsArray.length} projects</span>
         </p>
         {projectsArray.map((project, i) => (
           <ProjectCardHandler

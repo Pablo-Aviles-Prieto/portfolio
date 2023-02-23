@@ -3,9 +3,9 @@ import styled from 'styled-components'
 const GridContainer = styled.div`
   margin-top: 10px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 10px;
-  position: relative;
+  position: relative; */
 `
 
 interface IProps {
