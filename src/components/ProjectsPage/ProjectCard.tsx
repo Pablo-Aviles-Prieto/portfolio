@@ -16,7 +16,7 @@ const CardContainer = styled.div<{
   transition: all 0.5s ease-out, z-index 0.1s ease-in;
   margin-bottom: 40px;
   &:hover {
-    box-shadow: 2px 4px 10px rgb(0 0 0 / 70%);
+    box-shadow: 2px 4px 10px rgb(0 0 0 / 45%);
   }
   .content {
     padding: 10px 20px;

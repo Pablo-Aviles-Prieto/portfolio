@@ -4,8 +4,8 @@ export const LIGHT_THEME = {
   blackBground: '#F8F8F8',
   greyBground: '#F8F8F8',
   greyPerma: '#898989',
-  greyLighter: '#bcbcbc',
+  greyLighter: '#5e5e5e',
   mainColor: '#000',
-  emphasizeColor: '#ff8e00',
+  emphasizeColor: '#ea8200',
   lightEmphasize: '#ff9a1c'
 }
