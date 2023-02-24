@@ -18,7 +18,7 @@ const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
   height: 0;
   opacity: 0;
   left: 20px;
-  top: 270px;
+  top: 400px;
   background-color: ${({ theme }) => theme.mainBground};
   margin: 0 auto;
   max-width: 950px;
@@ -104,20 +104,20 @@ const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
           box-shadow: 0px 0px 1px 0px #41403a, 0px 1px 1px 0px #474642;
           border: none;
           margin-right: 6px;
-          color: white;
+          color: ${({ theme }) => theme.mainColor};
           &:focus {
             outline: none;
           }
         }
         .button__minimize {
           position: absolute;
-          bottom: -6px;
+          bottom: -5.5px;
           left: 0px;
         }
         .button__maximize {
           position: absolute;
-          bottom: 2px;
-          left: 3px;
+          bottom: 2.5px;
+          left: 3.5px;
         }
         .button__exit {
           position: absolute;
@@ -255,7 +255,7 @@ export const WindowLayer: React.FC<IProps> = ({
               <Minimize className="button__minimize" width={25} height={25} />
             </button>
             <button type="button">
-              <Square className="button__maximize" width={19} height={19} />
+              <Square className="button__maximize" width={18.5} height={18.5} />
             </button>
             <button type="button">
               <Close className="button__exit" onClick={() => switchOpenFileState('none')} width={22} height={22} />

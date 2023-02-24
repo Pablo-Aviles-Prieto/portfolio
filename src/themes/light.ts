@@ -1,7 +1,7 @@
 export const LIGHT_THEME = {
-  mainBground: '#F8F8F8',
-  secondBground: '#fff',
-  blackBground: '#F8F8F8',
+  mainBground: '#f0f0f0',
+  secondBground: '#dfdfdf',
+  blackBground: '#c7c5c5',
   greyBground: '#F8F8F8',
   greyPerma: '#898989',
   greyLighter: '#5e5e5e',

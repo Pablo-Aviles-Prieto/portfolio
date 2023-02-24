@@ -53,7 +53,7 @@ const CardContainer = styled.div<{
         left: 50%;
         transform: translateX(-50%);
         background-color: ${({ theme }) => theme.blackBground};
-        color: white;
+        color: ${({ theme }) => theme.mainColor};
         font-size: 14px;
         padding: 5px;
         border-radius: 5px;
@@ -82,7 +82,7 @@ const CardContainer = styled.div<{
             position: absolute;
             top: 2px;
             left: 0px;
-            color: ${({ theme }) => theme.lightEmphasize};
+            color: ${({ theme }) => theme.emphasizeColor};
           }
         }
       }
@@ -196,22 +196,11 @@ const ImgPreview = styled(ImgContainer)`
 `
 
 interface IProps {
-  renderIndex: number
-  isExpanded: IIsExpandedProject
   projectTitle: keyof IIsExpandedProject
   project: IPreviousProjectObj
-  lastCard?: boolean
-  setIsExpanded: React.Dispatch<React.SetStateAction<IIsExpandedProject>>
 }
 
-export const ProjectCard: FC<IProps> = ({
-  renderIndex,
-  isExpanded,
-  projectTitle,
-  project,
-  lastCard,
-  setIsExpanded
-}) => {
+export const ProjectCard: FC<IProps> = ({ projectTitle, project }) => {
   const technologiesSVGRender = (projectTechs: Array<technologies>) => {
     const allTechs = technologiesSVG
     return projectTechs.map(projTechName => {
@@ -279,8 +268,4 @@ export const ProjectCard: FC<IProps> = ({
       </div>
     </CardContainer>
   )
-}
-
-ProjectCard.defaultProps = {
-  lastCard: false
 }
