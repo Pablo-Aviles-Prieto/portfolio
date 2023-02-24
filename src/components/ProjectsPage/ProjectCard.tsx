@@ -18,6 +18,7 @@ const CardContainer = styled.div<{
   --card-top: ${({ amountOfTopPixels }) => `${amountOfTopPixels}px`};
 
   z-index: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '3' : '2')};
+  background-color: ${({ theme }) => theme.blackBground};
   position: fixed;
   left: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'calc(50% - (120% / 2))' : '0')};
   top: ${({ isExpanded, projectTitle, amountOfTopPixels }) =>
@@ -25,7 +26,7 @@ const CardContainer = styled.div<{
   width: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '120%' : '100%')};
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 2px 4px 10px rgb(0 0 0 / 25%);
+  box-shadow: 2px 4px 10px rgb(0 0 0 / 20%);
   transition: all 0.5s ease-out, z-index 0.1s ease-in;
   .img-container {
     cursor: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'cursor' : 'pointer')};
@@ -38,11 +39,10 @@ const CardContainer = styled.div<{
     animation: animationTopBottom 0.5s forwards, positionFixedToAbsolute 0.5s forwards;
   }
   &:hover {
-    box-shadow: 2px 4px 10px rgb(0 0 0 / 70%);
+    box-shadow: 2px 4px 10px rgb(204 204 204 / 5%);
   }
   .content {
     padding: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '10px 30px' : '10px 20px')};
-    background-color: ${({ theme }) => theme.mainBground};
     /* height: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'auto' : `${contentHeight}px`)}; */
     height: auto;
     &-close {

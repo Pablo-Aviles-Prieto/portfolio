@@ -11,7 +11,6 @@ export enum technologies {
   mongodb = 'MongoDB',
   mysql = 'MySQL',
   redux = 'Redux',
-  git = 'Git',
   jest = 'Jest',
   cypress = 'Cypress',
   playwright = 'Playwright',

@@ -34,8 +34,7 @@ export const previousProjects: IPreviousProjectObj[] = [
       technologies.typescript,
       technologies.javascript,
       technologies.html,
-      technologies.css,
-      technologies.git
+      technologies.css
     ],
     features: [
       `Typing effect 🖊️ created with 'react-type-animation' library`,
@@ -150,7 +149,7 @@ export const previousProjects: IPreviousProjectObj[] = [
     subtitle: 'Personal portfolio themed as the Ubuntu 22.04 (Jammy Jellyfish)',
     github: 'https://github.com/Pablo-Aviles-Prieto/portfolio',
     webpage: 'https://www.pabloaviles.es',
-    technologies: [technologies.react, technologies.typescript, technologies.git],
+    technologies: [technologies.react, technologies.typescript, technologies.cypress],
     features: [
       `Typing effect 🖊️ created with 'react-type-animation' library`,
       '🦋 Styled with styled-components 🦋',
