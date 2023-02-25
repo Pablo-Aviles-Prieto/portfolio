@@ -2,7 +2,7 @@ import { FC, useCallback } from 'react'
 import styled from 'styled-components'
 import { IOpenFile } from '../../interfaces'
 import { getDayAndHourHelper } from '../../utils'
-import { MalePerson, Computer, Chat, GithubRounded, LinkedinSquared, Light, Moon } from '../Icons'
+import { MalePerson, Computer, Chat, GithubRoundedHeader, LinkedinSquared, Light, Moon } from '../Icons'
 
 const ActionBarContainer = styled.div`
   display: flex;
@@ -98,7 +98,7 @@ export const ActionBar: FC<IProps> = ({ openFile, lightTheme, switchThemeHandler
       <div className="time">{getDayAndHourHelper()}</div>
       <div className="icons">
         <div className="icons-networks">
-          <GithubRounded
+          <GithubRoundedHeader
             onClick={() => window.open('https://github.com/Pablo-Aviles-Prieto', '_blank')}
             width={18}
             height={18}

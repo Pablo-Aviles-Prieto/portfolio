@@ -20,6 +20,7 @@ const DockContainer = styled.div`
       position: relative;
       display: flex;
       justify-content: center;
+      color: white;
 
       .tooltip {
         position: absolute;

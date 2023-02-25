@@ -19,6 +19,9 @@ const FolderBlockContainer = styled.div`
       color: #b85c01;
     }
   }
+  span {
+    color: white;
+  }
 `
 
 const PUBLIC_URI = process.env.PUBLIC_URL || ''

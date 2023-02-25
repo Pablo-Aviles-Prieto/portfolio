@@ -1,11 +1,12 @@
 export const LIGHT_THEME = {
-  mainBground: '#F8F8F8',
-  secondBground: '#fff',
-  blackBground: '#F8F8F8',
+  mainBground: '#f0f0f0',
+  secondBground: '#dfdfdf',
+  blackBground: '#c7c5c5',
   greyBground: '#F8F8F8',
   greyPerma: '#898989',
-  greyLighter: '#bcbcbc',
+  greyLighter: '#5e5e5e',
   mainColor: '#000',
-  emphasizeColor: '#ff8e00',
-  lightEmphasize: '#ff9a1c'
+  emphasizeColor: '#ea8200',
+  lightEmphasize: '#ff9a1c',
+  cardShadow: '2px 4px 10px rgb(0 0 0 / 40%);'
 }

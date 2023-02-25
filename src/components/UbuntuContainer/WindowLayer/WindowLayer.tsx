@@ -67,6 +67,15 @@ const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
         &.menu__selected {
           background-color: ${({ theme }) => theme.emphasizeColor};
         }
+        &.tech__selected {
+          p {
+            color: ${({ theme }) => theme.emphasizeColor};
+            font-weight: 700;
+          }
+          &:hover {
+            background-color: #8b4d00;
+          }
+        }
         &:hover {
           background-color: ${({ theme }) => theme.lightEmphasize};
         }
@@ -102,20 +111,20 @@ const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
           box-shadow: 0px 0px 1px 0px #41403a, 0px 1px 1px 0px #474642;
           border: none;
           margin-right: 6px;
-          color: white;
+          color: ${({ theme }) => theme.mainColor};
           &:focus {
             outline: none;
           }
         }
         .button__minimize {
           position: absolute;
-          bottom: -6px;
+          bottom: -5.5px;
           left: 0px;
         }
         .button__maximize {
           position: absolute;
-          bottom: 2px;
-          left: 3px;
+          bottom: 2.5px;
+          left: 3.5px;
         }
         .button__exit {
           position: absolute;
@@ -216,7 +225,7 @@ export const WindowLayer: React.FC<IProps> = ({
   const subPagesClasses = ({ menuLine }: { menuLine: ISubMenuObj }) => {
     if (Array.isArray(subPage)) {
       const subPageIsOpen = subPage.find(subPageTech => subPageTech === menuLine.title)
-      return subPageIsOpen ? 'left-section-content-submenu menu__selected' : 'left-section-content-submenu'
+      return subPageIsOpen ? 'left-section-content-submenu tech__selected' : 'left-section-content-submenu'
     }
     return subPage === menuLine.title ? 'left-section-content-submenu menu__selected' : 'left-section-content-submenu'
   }

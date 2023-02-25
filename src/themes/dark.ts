@@ -7,5 +7,6 @@ export const DARK_THEME = {
   greyLighter: '#bcbcbc',
   mainColor: '#fff',
   emphasizeColor: '#ff8e00',
-  lightEmphasize: '#ff9a1c'
+  lightEmphasize: '#ff9a1c',
+  cardShadow: '2px 4px 10px rgb(204 204 204 / 5%)'
 }

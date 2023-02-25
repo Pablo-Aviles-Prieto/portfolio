@@ -39,7 +39,7 @@ const CardContainer = styled.div<{
     animation: animationTopBottom 0.5s forwards, positionFixedToAbsolute 0.5s forwards;
   }
   &:hover {
-    box-shadow: 2px 4px 10px rgb(204 204 204 / 5%);
+    box-shadow: ${({ theme }) => theme.cardShadow};
   }
   .content {
     padding: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '10px 30px' : '10px 20px')};
@@ -56,13 +56,12 @@ const CardContainer = styled.div<{
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: ${({ theme }) => theme.mainColor};
       &:hover {
         transform: scale(1.05);
         transition: transform 0.3s ease;
         svg {
           transform: scale(1.1);
-          color: ${({ theme }) => theme.emphasizeColor};
           transition: transform 0.3s ease;
         }
       }
@@ -120,7 +119,7 @@ const CardContainer = styled.div<{
       h3 {
         font-size: 18px;
         font-weight: 400;
-        color: ${({ theme }) => theme.emphasizeColor};
+        color: #cd7303;
       }
       &-block {
         padding-left: 76px;
@@ -130,7 +129,7 @@ const CardContainer = styled.div<{
             position: absolute;
             top: 2px;
             left: 0px;
-            color: ${({ theme }) => theme.emphasizeColor};
+            color: #cd7303;
           }
         }
       }
@@ -158,7 +157,9 @@ const CardContainer = styled.div<{
         position: relative;
         text-decoration: none;
         &:hover {
-          color: ${({ theme }) => theme.lightEmphasize};
+          svg {
+            color: ${({ theme }) => theme.emphasizeColor};
+          }
         }
         &::before {
           content: '';
