@@ -80,7 +80,7 @@ export const previousProjects: IPreviousProjectObj[] = [
     ],
     features: [
       `Typing effect 🖊️ created with 'react-type-animation' library`,
-      '🦋 Styled with styled-components 🦋',
+      '🦋 Styled with styled-components 🦋 🦋 Styled with styled-components 🦋 🦋 Styled with styled-components 🦋 🦋 Styled with styled-components 🦋 🦋 Styled with styled-components 🦋 🦋 Styled with styled-components 🦋',
       'Dark 🌙 and light 💡 theme created with styled-components',
       '🇬🇧🇪🇸 Languages',
       'Animations handled by myself with CSS 🎥'

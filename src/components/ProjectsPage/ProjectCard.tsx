@@ -43,7 +43,6 @@ const CardContainer = styled.div<{
   }
   .content {
     padding: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '10px 30px' : '10px 20px')};
-    height: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'auto' : `${contentHeight}px`)};
     height: auto;
     &-close {
       cursor: pointer;
@@ -86,7 +85,7 @@ const CardContainer = styled.div<{
       gap: 10px;
       position: absolute;
       left: 0;
-      top: 209px;
+      top: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '459px' : '209px')};
       background-color: #000000c4;
       padding: 8px 17px;
 

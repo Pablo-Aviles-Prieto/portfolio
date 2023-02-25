@@ -24,17 +24,17 @@ const DockContainer = styled.div`
       .tooltip {
         position: absolute;
         top: 14px;
+        width: 0;
         color: white;
         font-weight: 100 !important;
-        left: 80px;
+        left: 0;
         background-color: rgba(0, 0, 0, 0.4);
-        padding-left: 5px;
-        padding-right: 5px;
+        padding: 0;
         border-radius: 0.3em;
         white-space: nowrap;
         opacity: 0;
-        transition: opacity 0.25s ease-in-out;
-        z-index: 4;
+        transition: opacity 0.3s ease-in-out, left 0.15s ease-in;
+        z-index: 1;
       }
 
       .selected__page {
@@ -50,7 +50,9 @@ const DockContainer = styled.div`
 
       &:hover .tooltip {
         opacity: 1;
-        transition-delay: 0.2s;
+        padding: 0 5px;
+        left: 80px;
+        width: auto;
       }
 
       &:not(:first-child) {
