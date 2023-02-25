@@ -3,7 +3,6 @@ import { SVGProps } from 'react'
 
 export const Computer: React.FC<SVGProps<SVGSVGElement>> = (props: SVGProps<SVGSVGElement>) => (
   <svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <title>computer-code-solid</title>
     <g data-name="Layer 2">
       <path fill="none" d="M0 0h48v48H0z" data-name="invisible box" />
       <g data-name="icons Q2">

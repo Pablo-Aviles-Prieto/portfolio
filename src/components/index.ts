@@ -8,3 +8,4 @@ export { WindowLayerHandler } from './UbuntuContainer/WindowLayer/WindowLayerHan
 export { ProfileInfoPage } from './ProfileInfoPage/ProfileInfoPage'
 export { ProjectsPage } from './ProjectsPage/ProjectsPage'
 export { ContactPage } from './ContactPage/ContactPage'
+export { ActionBar } from './ActionBar/ActionBar'

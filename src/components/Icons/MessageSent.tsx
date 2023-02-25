@@ -8,9 +8,6 @@ export const MessageSent: React.FC<SVGProps<SVGSVGElement>> = (props: SVGProps<S
     x={0}
     y={0}
     viewBox="0 0 2000 2000"
-    // style={{
-    //   enableBackground: 'new 0 0 2000 2000'
-    // }}
     xmlSpace="preserve"
     {...props}
   >
