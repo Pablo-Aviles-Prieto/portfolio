@@ -86,8 +86,8 @@ const App: React.FC = () => {
       <GlobalStyle introState={introState} />
       <UbuntuContainer
         lightTheme={lightTheme}
-        switchThemeHandler={switchThemeHandler}
         openFile={openFile}
+        switchThemeHandler={switchThemeHandler}
         switchOpenFileState={setOpenFile}
       >
         <>

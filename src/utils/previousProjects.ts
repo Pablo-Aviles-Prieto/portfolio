@@ -68,7 +68,7 @@ export const previousProjects: IPreviousProjectObj[] = [
     title: 'dashboardMiranda',
     titleText: 'Hotel Miranda dashboard',
     subtitle:
-      'Personal portfolio themed as the Ubuntu 22.04 (Jammy Jellyfish) test a long subtitle to check how it works',
+      'Personal portfolio themed as the Ubuntu 22.04 (Jammy Jellyfish)  themed as the Ubuntu 22.04 (Jammy Jellyfish)  themed as the Ubuntu 22.04',
     github: 'https://github.com/Pablo-Aviles-Prieto/portfolio',
     technologies: [
       technologies.node,
@@ -79,9 +79,9 @@ export const previousProjects: IPreviousProjectObj[] = [
       technologies.mysql
     ],
     features: [
-      `Typing effect 🖊️ created with 'react-type-animation' library and a lot of love and hard work for sure, ain't easy sometimes to get things working ou yeah mama`,
-      '🦋 Styled with styled-components 🦋',
-      'Dark 🌙 and light 💡 theme created with styled-components heme created with styled-components heme created with styled-components',
+      `Typing effect 🖊️ created with 'react-type-animation' library`,
+      '🦋 Styled with styled-components 🦋 🦋 Styled with styled-components 🦋 🦋 Styled with styled-components 🦋 🦋 Styled with styled-components 🦋 🦋 Styled with styled-components 🦋 🦋 Styled with styled-components 🦋',
+      'Dark 🌙 and light 💡 theme created with styled-components',
       '🇬🇧🇪🇸 Languages',
       'Animations handled by myself with CSS heme created with styled-components heme created with styled-components heme created with styled-components heme created with sasd as das dasd asd as das da sdas da sdas MongoDB 🎥'
     ]
@@ -151,7 +151,7 @@ export const previousProjects: IPreviousProjectObj[] = [
     subtitle: 'Personal portfolio themed as the Ubuntu 22.04 (Jammy Jellyfish)',
     github: 'https://github.com/Pablo-Aviles-Prieto/portfolio',
     webpage: 'https://www.pabloaviles.es',
-    technologies: [technologies.react, technologies.typescript],
+    technologies: [technologies.react, technologies.typescript, technologies.cypress],
     features: [
       `Typing effect 🖊️ created with 'react-type-animation' library`,
       '🦋 Styled with styled-components 🦋',

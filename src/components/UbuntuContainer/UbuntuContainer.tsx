@@ -9,18 +9,10 @@ const UbuntuContainerDiv = styled.div<{ PUBLIC_URI: string }>`
   [class*='entypo-']:before {
     font-family: 'entypo', sans-serif;
   }
-
   /* fontawesome */
   [class*='fontawesome-']:before {
     font-family: 'FontAwesome', sans-serif;
   }
-
-  .app {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-  }
-
   .windows-layer {
     background-image: ${({ PUBLIC_URI }) => `url(${PUBLIC_URI}/images/jammy-jellyfish-wallpaper.jpg)`};
     background-size: cover;

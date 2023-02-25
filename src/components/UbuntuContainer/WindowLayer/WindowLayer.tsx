@@ -42,7 +42,7 @@ const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
       height: 40px;
       display: flex;
       align-items: center;
-      padding: 0 15px;
+      padding: 0 10px;
     }
   }
   .left-section {
@@ -68,8 +68,10 @@ const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
           background-color: ${({ theme }) => theme.emphasizeColor};
         }
         &.tech__selected {
-          color: ${({ theme }) => theme.emphasizeColor};
-          font-weight: 700;
+          p {
+            color: ${({ theme }) => theme.emphasizeColor};
+            font-weight: 700;
+          }
           &:hover {
             background-color: #8b4d00;
           }
@@ -86,8 +88,13 @@ const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
     overflow-x: hidden;
     &-header {
       justify-content: space-between;
+      &__first-block {
+        min-width: 150px;
+      }
       &__buttons {
+        min-width: 150px;
         display: flex;
+        justify-content: end;
         button {
           position: relative;
           width: 25px;
@@ -227,7 +234,7 @@ export const WindowLayer: React.FC<IProps> = ({
     <WindowContainer isAnyExpanded={isAnyExpanded} className={isOpen ? 'page__open' : ''}>
       <div className="left-section">
         <div className="left-section-header">
-          <div />
+          <div className="left-section-header__first-block" />
           <p>Menu</p>
           <div className="left-section-header__menu">
             <Hamburger width={25} height={25} />
@@ -248,7 +255,7 @@ export const WindowLayer: React.FC<IProps> = ({
       </div>
       <div className={isAnyExpanded ? 'right-section' : 'right-section  right-not-expanded'}>
         <div className="right-section-header">
-          <div />
+          <div className="right-section-header__first-block" />
           <p>{titlePage}</p>
           <div className="right-section-header__buttons">
             <button type="button">

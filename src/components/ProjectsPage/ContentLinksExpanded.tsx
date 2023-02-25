@@ -27,7 +27,7 @@ export const ContentLinksExpanded: FC<IProps> = ({ project }) => {
           rel="noopener noreferrer"
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => e.stopPropagation()}
         >
-          <span>Take a look to the project</span>
+          <span>Project demo</span>
           <Web width={18} height={18} />
         </a>
       )}

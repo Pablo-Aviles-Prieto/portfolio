@@ -1,4 +1,5 @@
 import { ProjectCard } from './ProjectCard'
+import { previousProjects } from '../../utils'
 import { IIsExpandedProject, IPreviousProjectObj } from '../../interfaces'
 
 interface IProps {
@@ -9,5 +10,14 @@ interface IProps {
 }
 
 export const ProjectCardHandler: React.FC<IProps> = ({ project, renderIndex, isExpanded, setIsExpanded }: IProps) => {
-  return <ProjectCard projectTitle={project.title} project={project} />
+  return (
+    <ProjectCard
+      renderIndex={renderIndex}
+      isExpanded={isExpanded}
+      projectTitle={project.title}
+      setIsExpanded={setIsExpanded}
+      project={project}
+      lastCard={project.index === previousProjects.length - 1}
+    />
+  )
 }

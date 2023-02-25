@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
+// import { ProjectContainer } from './ProjectContainer'
 import { ProjectCardHandler } from './ProjectCardHandler'
 import { previousProjects } from '../../utils'
 import {
@@ -12,6 +13,7 @@ import {
 import { technologies } from '../../enums/technologies'
 
 const ProjectContainer = styled.div`
+  position: relative;
   .projects__count {
     margin: 20px 0;
     text-align: center;
