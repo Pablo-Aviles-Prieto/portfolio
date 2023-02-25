@@ -44,7 +44,7 @@ export const Cypress: React.FC<SVGProps<SVGSVGElement>> = (props: SVGProps<SVGSV
     />
     <path
       d="M241.488 69.047C250.491 86.585 256 107.185 256 128.27c0 49.2-27.671 91.916-68.253 113.343l-8.768-15.548c35.19-18.352 59.227-55.258 59.227-97.795 0-18.46-4.513-35.691-12.513-50.973l15.795-8.251Z"
-      fill="url(#d)"
+      fill="currentColor"
     />
   </svg>
 )

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { technologies } from '../enums/technologies'
 import { IPreviousProjectObj } from '../interfaces'
 
@@ -66,7 +67,8 @@ export const previousProjects: IPreviousProjectObj[] = [
     ],
     title: 'dashboardMiranda',
     titleText: 'Hotel Miranda dashboard',
-    subtitle: 'Personal portfolio themed as the Ubuntu 22.04 (Jammy Jellyfish)',
+    subtitle:
+      'Personal portfolio themed as the Ubuntu 22.04 (Jammy Jellyfish)  themed as the Ubuntu 22.04 (Jammy Jellyfish)  themed as the Ubuntu 22.04',
     github: 'https://github.com/Pablo-Aviles-Prieto/portfolio',
     technologies: [
       technologies.node,

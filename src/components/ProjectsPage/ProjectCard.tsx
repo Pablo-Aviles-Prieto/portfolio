@@ -69,10 +69,11 @@ const CardContainer = styled.div<{
       }
     }
     &-title {
-      font-size: 17px;
+      margin-top: 10px;
+      font-size: 16px;
       h3 {
-        font-size: 32px;
-        text-align: center;
+        line-height: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '41px' : `auto`)};
+        font-size: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '37px' : `32px`)};
         color: ${({ theme }) => theme.emphasizeColor};
       }
       p {
@@ -83,7 +84,11 @@ const CardContainer = styled.div<{
       display: flex;
       align-items: center;
       gap: 10px;
-      margin: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '10px 0' : '20px 0 30px 0')};
+      position: absolute;
+      left: 0;
+      top: 209px;
+      background-color: #000000c4;
+      padding: 8px 17px;
 
       .tech-container {
         position: relative;
@@ -96,7 +101,7 @@ const CardContainer = styled.div<{
         top: calc(100% + 5px);
         left: 50%;
         transform: translateX(-50%);
-        background-color: ${({ theme }) => theme.blackBground};
+        background-color: ${({ theme }) => theme.mainBground};
         color: white;
         font-size: 14px;
         padding: 5px;
@@ -112,29 +117,30 @@ const CardContainer = styled.div<{
       }
     }
     &-features {
-      margin: 10px 0;
+      margin: 15px 0;
       h3 {
         font-size: 18px;
         font-weight: 400;
         color: ${({ theme }) => theme.emphasizeColor};
       }
       &-block {
-        padding-left: 195px;
+        padding-left: 76px;
         &-line {
-          display: flex;
-          align-items: center;
-          gap: 8px;
+          position: relative;
           svg {
-            color: ${({ theme }) => theme.lightEmphasize};
+            position: absolute;
+            top: 2px;
+            left: 0px;
+            color: ${({ theme }) => theme.emphasizeColor};
           }
         }
       }
     }
     &-links {
       display: flex;
-      align-items: end;
       justify-content: space-between;
       font-size: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '18px' : '16px')};
+      margin: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '0' : '7px 0 14px 0')};
       &-github,
       &-webpage {
         color: ${({ theme }) => theme.mainColor};
@@ -147,10 +153,6 @@ const CardContainer = styled.div<{
         display: flex;
         align-items: center;
         gap: 5px;
-      }
-      .links__block {
-        display: flex;
-        flex-direction: column;
       }
       a,
       p {
@@ -255,7 +257,7 @@ interface IProps {
   setIsExpanded: React.Dispatch<React.SetStateAction<IIsExpandedProject>>
 }
 
-const contentHeight = 200
+const contentHeight = 158
 const imageHeight = 250
 const marginBetweenCards = 20
 
@@ -311,6 +313,11 @@ export const ProjectCard: FC<IProps> = ({
           </PreviewImg>
         )}
         <div className="content">
+          {isExpanded[projectTitle] ? (
+            <div />
+          ) : (
+            <ContentLinks project={project} projectTitle={projectTitle} switchIsExpanded={switchIsExpanded} />
+          )}
           {isExpanded[projectTitle] && (
             <div className="content-close" onClick={() => setIsExpanded(isExpandedProject)}>
               <Close width={25} height={25} />
@@ -318,7 +325,14 @@ export const ProjectCard: FC<IProps> = ({
           )}
           <div className="content-title">
             <h3>{project.titleText}</h3>
-            <p>{project.subtitle}</p>
+            {isExpanded[projectTitle] ? (
+              <p>
+                <span style={{ width: '76px', display: 'inline-block' }} />
+                {project.subtitle}
+              </p>
+            ) : (
+              <p>{project.subtitle}</p>
+            )}
           </div>
           <div className="content-techs">
             {technologiesSVGRender(project.technologies).map(TechComponent => (
@@ -335,7 +349,10 @@ export const ProjectCard: FC<IProps> = ({
                 {project.features.map(feature => (
                   <div className="content-features-block-line" key={feature}>
                     <DownRightArrow width={20} height={20} />
-                    <p>{feature}</p>
+                    <p>
+                      <span style={{ width: '25px', display: 'inline-block' }} />
+                      {feature}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -344,7 +361,7 @@ export const ProjectCard: FC<IProps> = ({
           {isExpanded[projectTitle] ? (
             <ContentLinksExpanded project={project} switchIsExpanded={switchIsExpanded} />
           ) : (
-            <ContentLinks project={project} projectTitle={projectTitle} switchIsExpanded={switchIsExpanded} />
+            <div />
           )}
         </div>
       </CardContainer>
