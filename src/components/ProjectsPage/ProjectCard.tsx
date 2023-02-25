@@ -43,7 +43,7 @@ const CardContainer = styled.div<{
   }
   .content {
     padding: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '10px 30px' : '10px 20px')};
-    /* height: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'auto' : `${contentHeight}px`)}; */
+    height: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'auto' : `${contentHeight}px`)};
     height: auto;
     &-close {
       cursor: pointer;
@@ -69,8 +69,10 @@ const CardContainer = styled.div<{
       }
     }
     &-title {
-      text-align: center;
+      font-size: 17px;
       h3 {
+        font-size: 32px;
+        text-align: center;
         color: ${({ theme }) => theme.emphasizeColor};
       }
       p {
@@ -149,7 +151,6 @@ const CardContainer = styled.div<{
       .links__block {
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
       }
       a,
       p {

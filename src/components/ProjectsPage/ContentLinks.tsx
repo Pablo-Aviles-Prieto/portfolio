@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { GithubRounded, Web, Plus } from '../Icons'
+import { GithubRounded, Web, Info } from '../Icons'
 import { IPreviousProjectObj, IIsExpandedProject } from '../../interfaces'
 
 interface IProps {
@@ -11,10 +11,6 @@ interface IProps {
 export const ContentLinks: FC<IProps> = ({ project, projectTitle, switchIsExpanded }) => {
   return (
     <div className="content-links">
-      <p className="content-links-more-info" onClick={() => switchIsExpanded({ title: projectTitle })}>
-        <Plus width={20} height={20} />
-        <span>More info about the project</span>
-      </p>
       <div className="links__block">
         <a
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => e.stopPropagation()}
@@ -23,8 +19,8 @@ export const ContentLinks: FC<IProps> = ({ project, projectTitle, switchIsExpand
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span>Github repo</span>
           <GithubRounded width={18} height={18} />
+          <span>Github repo</span>
         </a>
         {project.webpage && (
           <a
@@ -34,11 +30,15 @@ export const ContentLinks: FC<IProps> = ({ project, projectTitle, switchIsExpand
             rel="noopener noreferrer"
             onClick={(e: React.MouseEvent<HTMLAnchorElement>) => e.stopPropagation()}
           >
-            <span>Take a look to the project</span>
             <Web width={18} height={18} />
+            <span>Project demo</span>
           </a>
         )}
       </div>
+      <p className="content-links-more-info" onClick={() => switchIsExpanded({ title: projectTitle })}>
+        <span>More info about the project</span>
+        <Info width={20} height={20} />
+      </p>
     </div>
   )
 }
