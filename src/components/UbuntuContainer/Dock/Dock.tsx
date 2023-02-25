@@ -50,7 +50,9 @@ const DockContainer = styled.div`
       }
 
       &:hover {
-        color: ${({ theme }) => theme.lightEmphasize};
+        svg {
+          color: ${({ theme }) => theme.lightEmphasize};
+        }
       }
 
       &:hover .tooltip {
