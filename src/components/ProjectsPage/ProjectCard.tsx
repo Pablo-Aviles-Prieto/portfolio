@@ -34,6 +34,7 @@ const CardContainer = styled.div<{
   &.expanded {
     animation: animationBottomTop 0.5s forwards, positionAbsoluteToFixed 0.5s forwards;
     overflow: auto;
+    overflow-x: hidden;
   }
   &.not-expanded {
     animation: animationTopBottom 0.5s forwards, positionFixedToAbsolute 0.5s forwards;
@@ -83,7 +84,8 @@ const CardContainer = styled.div<{
       align-items: center;
       gap: 10px;
       position: absolute;
-      left: 0;
+      left: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? 'auto' : '0')};
+      right: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '0' : 'auto')};
       top: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '459px' : '209px')};
       background-color: #000000c4;
       padding: 8px 17px;
@@ -92,6 +94,9 @@ const CardContainer = styled.div<{
         position: relative;
         width: 25px;
         height: 25px;
+        svg {
+          color: white;
+        }
       }
 
       .tooltip {
@@ -100,7 +105,7 @@ const CardContainer = styled.div<{
         left: 50%;
         transform: translateX(-50%);
         background-color: ${({ theme }) => theme.mainBground};
-        color: white;
+        color: ${({ theme }) => theme.mainColor};
         font-size: 14px;
         padding: 5px;
         border-radius: 5px;
@@ -260,6 +265,7 @@ interface IProps {
 const contentHeight = 158
 const imageHeight = 250
 const marginBetweenCards = 20
+const firstCardTopMargin = 45
 
 export const ProjectCard: FC<IProps> = ({
   renderIndex,
@@ -276,7 +282,7 @@ export const ProjectCard: FC<IProps> = ({
   }
 
   const amountOfTopPixels: number = useMemo(() => {
-    return renderIndex * (contentHeight + imageHeight + marginBetweenCards)
+    return renderIndex * (contentHeight + imageHeight + marginBetweenCards) + firstCardTopMargin
   }, [renderIndex])
 
   const lastSeparatorTopPixels: number = useMemo(() => {
