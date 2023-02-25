@@ -16,7 +16,6 @@ const CardContainer = styled.div<{
   amountOfTopPixels: number
 }>`
   --card-top: ${({ amountOfTopPixels }) => `${amountOfTopPixels}px`};
-
   z-index: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '3' : '2')};
   background-color: ${({ theme }) => theme.blackBground};
   position: fixed;
@@ -89,7 +88,6 @@ const CardContainer = styled.div<{
       top: ${({ isExpanded, projectTitle }) => (isExpanded[projectTitle] ? '459px' : '209px')};
       background-color: #000000c4;
       padding: 8px 17px;
-
       .tech-container {
         position: relative;
         width: 25px;
@@ -98,7 +96,6 @@ const CardContainer = styled.div<{
           color: white;
         }
       }
-
       .tooltip {
         position: absolute;
         top: calc(100% + 5px);
@@ -113,7 +110,6 @@ const CardContainer = styled.div<{
         pointer-events: none;
         transition: opacity 0.2s ease-in-out;
       }
-
       .tech-container:hover .tooltip {
         opacity: 1;
         pointer-events: auto;
@@ -364,11 +360,7 @@ export const ProjectCard: FC<IProps> = ({
               </div>
             </div>
           )}
-          {isExpanded[projectTitle] ? (
-            <ContentLinksExpanded project={project} switchIsExpanded={switchIsExpanded} />
-          ) : (
-            <div />
-          )}
+          {isExpanded[projectTitle] ? <ContentLinksExpanded project={project} /> : <div />}
         </div>
       </CardContainer>
       {lastCard && (

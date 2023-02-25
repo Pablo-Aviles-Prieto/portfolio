@@ -18,7 +18,7 @@ const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
   height: 0;
   opacity: 0;
   left: 20px;
-  top: 270px;
+  top: 400px;
   background-color: ${({ theme }) => theme.mainBground};
   margin: 0 auto;
   max-width: 950px;
@@ -262,7 +262,7 @@ export const WindowLayer: React.FC<IProps> = ({
               <Minimize className="button__minimize" width={25} height={25} />
             </button>
             <button type="button">
-              <Square className="button__maximize" width={19} height={19} />
+              <Square className="button__maximize" width={18.5} height={18.5} />
             </button>
             <button type="button">
               <Close className="button__exit" onClick={() => switchOpenFileState('none')} width={22} height={22} />

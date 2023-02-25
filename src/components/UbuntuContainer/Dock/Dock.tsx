@@ -22,6 +22,10 @@ const DockContainer = styled.div`
       justify-content: center;
       color: white;
 
+      svg {
+        color: #fff;
+      }
+
       .tooltip {
         position: absolute;
         top: 14px;

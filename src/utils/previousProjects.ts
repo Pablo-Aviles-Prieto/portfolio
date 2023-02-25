@@ -9,7 +9,7 @@ export const previousProjects: IPreviousProjectObj[] = [
     index: 0,
     images: [
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.webp`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.webp`,
         description: 'Preview of the introduction on the portfolio page'
       },
       {
@@ -17,7 +17,7 @@ export const previousProjects: IPreviousProjectObj[] = [
         description: 'Preview of the about me section'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.webp`,
+        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.webp`,
         description: 'Preview of the experience section'
       },
       {
@@ -49,19 +49,19 @@ export const previousProjects: IPreviousProjectObj[] = [
     index: 1,
     images: [
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/aboutme.webp`,
-        description: 'Preview of the about me section'
-      },
-      {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.webp`,
+        path: `${PUBLIC_URI}/images/prev-projects/dashboardMiranda/intro.webp`,
         description: 'Preview of the introduction on the portfolio page'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.webp`,
+        path: `${PUBLIC_URI}/images/prev-projects/dashboardMiranda/bookings-list-light.webp`,
+        description: 'Preview of the about me section'
+      },
+      {
+        path: `${PUBLIC_URI}/images/prev-projects/dashboardMiranda/room-details-dark.webp`,
         description: 'Preview of the experience section'
       },
       {
-        path: `${PUBLIC_URI}/images/prev-projects/portfolio/sent-contact.webp`,
+        path: `${PUBLIC_URI}/images/prev-projects/dashboardMiranda/users-list-light.webp`,
         description: 'Preview of the feedback on the form section after sending a message'
       }
     ],
@@ -83,7 +83,7 @@ export const previousProjects: IPreviousProjectObj[] = [
       '🦋 Styled with styled-components 🦋 🦋 Styled with styled-components 🦋 🦋 Styled with styled-components 🦋 🦋 Styled with styled-components 🦋 🦋 Styled with styled-components 🦋 🦋 Styled with styled-components 🦋',
       'Dark 🌙 and light 💡 theme created with styled-components',
       '🇬🇧🇪🇸 Languages',
-      'Animations handled by myself with CSS 🎥'
+      'Animations handled by myself with CSS heme created with styled-components heme created with styled-components heme created with styled-components heme created with sasd as das dasd asd as das da sdas da sdas MongoDB 🎥'
     ]
   },
   {
