@@ -11,5 +11,7 @@ export const DARK_THEME = {
   darkEmphasize: '#ca7100',
   experienceBorder: '#ff8e0091',
   techHover: '#8b4d00',
+  scrollBarColor: '#eb8100',
+  featureContent: '#cd7303',
   cardShadow: '2px 4px 10px rgb(204 204 204 / 5%)'
 }

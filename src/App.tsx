@@ -36,7 +36,7 @@ const GlobalStyle = createGlobalStyle<{ introState: boolean }>`
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
     list-style: none;
-    scrollbar-color: #eb8100 ${({ theme }) => theme.secondBground};
+    scrollbar-color: ${({ theme }) => theme.scrollBarColor} ${({ theme }) => theme.secondBground};
     scrollbar-width: auto;
     ::-webkit-scrollbar-track {
 	    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -51,7 +51,7 @@ const GlobalStyle = createGlobalStyle<{ introState: boolean }>`
     ::-webkit-scrollbar-thumb {
       border-radius: 10px;
 	    box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	    background-color: #eb8100;
+	    background-color: ${({ theme }) => theme.scrollBarColor};
     }
   }
   body {

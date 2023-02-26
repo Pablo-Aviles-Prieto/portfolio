@@ -120,7 +120,7 @@ const CardContainer = styled.div<{
       h3 {
         font-size: 18px;
         font-weight: 400;
-        color: #cd7303;
+        color: ${({ theme }) => theme.featureContent};
       }
       &-block {
         padding-left: 76px;
@@ -130,7 +130,7 @@ const CardContainer = styled.div<{
             position: absolute;
             top: 2px;
             left: 0px;
-            color: #cd7303;
+            color: ${({ theme }) => theme.featureContent};
           }
         }
       }
