@@ -6,7 +6,7 @@ export const LIGHT_THEME = {
   greyPerma: '#898989',
   greyLighter: '#5e5e5e',
   mainColor: '#000',
-  emphasizeColor: '#ea8200',
-  lightEmphasize: '#ff9a1c',
+  emphasizeColor: '#0173b7',
+  lightEmphasize: '#009fff',
   cardShadow: '2px 4px 10px rgb(0 0 0 / 40%);'
 }
