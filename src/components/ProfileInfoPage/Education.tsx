@@ -32,6 +32,9 @@ const ContentContainer = styled.div<{ openedSection: IOpenedSectionState }>`
       display: inline-flex;
       align-items: center;
       gap: 20px;
+      svg {
+        color: ${({ theme }) => theme.emphasizeColor};
+      }
       .arrow-oxygen {
         transition: transform 0.5s ease;
         transform: ${({ openedSection }) => (openedSection.oxygen === 'close' ? 'rotate(0deg)' : 'rotate(180deg)')};
@@ -75,7 +78,7 @@ const ContentContainer = styled.div<{ openedSection: IOpenedSectionState }>`
           text-decoration: none;
           color: ${({ theme }) => theme.mainColor};
           &:hover {
-            color: #ca7100;
+            color: ${({ theme }) => theme.darkEmphasize};
           }
         }
       }
@@ -117,7 +120,8 @@ const ContentContainer = styled.div<{ openedSection: IOpenedSectionState }>`
     }
     &__separator {
       width: 70%;
-      border-bottom: 1px solid #ca7100;
+      border-bottom: 1px solid;
+      border-color: ${({ theme }) => theme.darkEmphasize};
       margin-left: calc(50% - (70% / 2));
     }
     &:first-of-type {
@@ -131,7 +135,7 @@ const ContentContainer = styled.div<{ openedSection: IOpenedSectionState }>`
     }
   }
   .emphasize-content {
-    color: #ca7100;
+    color: ${({ theme }) => theme.darkEmphasize};
   }
   .emphasize-grey {
     color: ${({ theme }) => theme.greyLighter};

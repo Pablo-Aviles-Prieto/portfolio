@@ -18,7 +18,8 @@ const ContentContainer = styled.div`
       padding-bottom: 35px;
     }
     &-left {
-      border-right: 2px solid #ff8e0091;
+      border-right: 2px solid;
+      border-color: ${({ theme }) => theme.experienceBorder};
       width: 210px;
       padding-right: 20px;
       text-align: right;

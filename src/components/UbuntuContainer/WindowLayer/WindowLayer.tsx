@@ -73,7 +73,7 @@ const WindowContainer = styled.div<{ isAnyExpanded: boolean }>`
             font-weight: 700;
           }
           &:hover {
-            background-color: #8b4d00;
+            background-color: ${({ theme }) => theme.techHover};
           }
         }
         &:hover {

@@ -8,5 +8,8 @@ export const LIGHT_THEME = {
   mainColor: '#000',
   emphasizeColor: '#0173b7',
   lightEmphasize: '#009fff',
+  darkEmphasize: '#0584b6',
+  experienceBorder: '#0173b791',
+  techHover: '#009fff99',
   cardShadow: '2px 4px 10px rgb(0 0 0 / 40%);'
 }

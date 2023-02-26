@@ -20,7 +20,7 @@ const ProjectContainer = styled.div`
     font-weight: 700;
     font-size: 18px;
     span {
-      color: #ff8e00;
+      color: ${({ theme }) => theme.emphasizeColor};
     }
   }
 `
