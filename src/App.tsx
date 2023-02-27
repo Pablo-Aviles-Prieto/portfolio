@@ -27,6 +27,10 @@ const IntroContainer = styled.div<{ introState: boolean }>`
   }
 `
 
+const SkipBtn = styled(GenericButton)`
+  color: ${({ theme }) => theme.mainBground};
+`
+
 const GlobalStyle = createGlobalStyle<{ introState: boolean }>`
   * {
     box-sizing: border-box;
@@ -94,7 +98,7 @@ const App: React.FC = () => {
           <FolderBlock />
           <IntroContainer introState={introState}>
             <Prompt introState={introState} switchIntroState={switchIntroState} />
-            <GenericButton onClick={switchIntroState}>Skip introduction</GenericButton>
+            <SkipBtn onClick={switchIntroState}>Skip introduction</SkipBtn>
           </IntroContainer>
           <WindowLayerHandler introState={introState} openedFile={openFile} switchOpenFileState={setOpenFile} />
         </>
