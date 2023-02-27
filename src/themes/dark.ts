@@ -13,5 +13,11 @@ export const DARK_THEME = {
   techHover: '#8b4d00',
   scrollBarColor: '#eb8100',
   featureContent: '#cd7303',
-  cardShadow: '2px 4px 10px rgb(204 204 204 / 5%)'
+  cardShadow: '2px 4px 10px rgb(204 204 204 / 5%)',
+  bgroundSpinner: '#291503',
+  gradientSpinner: 'linear-gradient(to bottom, #904e03, transparent)',
+  boxShadowSpinner: '0 0 50px #fd920518',
+  innerBoxShadowSpinner: '0 0 50px inset #fd920518',
+  spinnerBall: '#ec7f02',
+  spinnerBallShadow: '0 0 10px #ac5c00, 0 0 20px #ac5c00, 0 0 30px #ac5c00, 0 0 40px #ac5c00, 0 0 50px #ac5c00'
 }

@@ -14,8 +14,8 @@ const SpinnerContainer = styled.div`
 
     position: relative;
     border-radius: 50%;
-    background-color: #291503;
-    box-shadow: 0 0 50px #fd920518;
+    background-color: ${({ theme }) => theme.bgroundSpinner};
+    box-shadow: ${({ theme }) => theme.boxShadowSpinner};
 
     animation: spinner 2s linear infinite;
   }
@@ -35,7 +35,7 @@ const SpinnerContainer = styled.div`
     width: 50%;
     height: 100%;
 
-    background: linear-gradient(to bottom, #904e03, transparent);
+    background: ${({ theme }) => theme.gradientSpinner};
     background-size: 100% 80%;
     background-repeat: no-repeat;
 
@@ -52,7 +52,7 @@ const SpinnerContainer = styled.div`
     left: var(--thickness);
     border-radius: 50%;
     background-color: ${({ theme }) => theme.mainBground};
-    box-shadow: 0 0 50px inset #fd920518;
+    box-shadow: ${({ theme }) => theme.innerBoxShadowSpinner};
   }
   .spinner-ball {
     width: var(--thickness);
@@ -64,19 +64,10 @@ const SpinnerContainer = styled.div`
     left: 50%;
     transform: translateX(-50%);
 
-    background-color: #ec7f02;
+    background-color: ${({ theme }) => theme.spinnerBall};
     border-radius: 50%;
-    box-shadow: 0 0 10px #ac5c00, 0 0 20px #ac5c00, 0 0 30px #ac5c00, 0 0 40px #ac5c00, 0 0 50px #ac5c00;
+    box-shadow: ${({ theme }) => theme.spinnerBallShadow};
   }
-
-  /* .spinner-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #022a31;
-  } */
 `
 
 export const SpinnerSend: React.FC = () => {

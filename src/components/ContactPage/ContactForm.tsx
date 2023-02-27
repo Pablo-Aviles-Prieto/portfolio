@@ -109,7 +109,7 @@ export const ContactForm: React.FC = () => {
       .catch(err => console.error(err))
   }
 
-  if (submitState.submitting) {
+  if (!submitState.submitting) {
     return (
       <div style={{ textAlign: 'center', marginTop: '60px' }}>
         <SpinnerSend />
