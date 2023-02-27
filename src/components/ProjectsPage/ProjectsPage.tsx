@@ -72,6 +72,7 @@ export const ProjectsPage: React.FC<IProps> = ({ subPage, isExpanded, setIsExpan
             renderIndex={i}
             isExpanded={isExpanded}
             setIsExpanded={setIsExpanded}
+            lastCard={projectsArray.length - 1 === i}
           />
         ))}
       </>

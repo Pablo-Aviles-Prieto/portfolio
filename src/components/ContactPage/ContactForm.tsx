@@ -54,6 +54,7 @@ const FormContainer = styled.form`
 const SendButton = styled(GenericButton)`
   box-shadow: 2px 4px 10px rgb(0 0 0 / 20%);
   width: 30%;
+  color: ${({ theme }) => theme.mainBground};
 `
 
 const { REACT_APP_FORMSPREE_ID } = process.env
@@ -109,7 +110,7 @@ export const ContactForm: React.FC = () => {
       .catch(err => console.error(err))
   }
 
-  if (!submitState.submitting) {
+  if (submitState.submitting) {
     return (
       <div style={{ textAlign: 'center', marginTop: '60px' }}>
         <SpinnerSend />
@@ -160,13 +161,6 @@ export const ContactForm: React.FC = () => {
       <div style={{ textAlign: 'center' }}>
         <SendButton type="submit">Send</SendButton>
       </div>
-      {submitState.submitting && <p>Submitting (mail img loading?)</p>}
-      {submitState.succeeded && (
-        <>
-          <h3>Message sent succesfully!</h3>
-          <p>I&apos;ll be back at you as soon as possible, thank you.</p>
-        </>
-      )}
     </FormContainer>
   )
 }
