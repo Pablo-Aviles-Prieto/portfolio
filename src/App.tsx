@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
+import { I18nextProvider } from 'react-i18next'
+import i18n from './utils/i18n'
 import { Prompt, UbuntuContainer, FolderBlock, WindowLayerHandler } from './components'
 import { LIGHT_THEME, DARK_THEME } from './themes'
 import { GenericButton } from './components/Styles'
@@ -87,22 +89,24 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={lightTheme ? LIGHT_THEME : DARK_THEME}>
-      <GlobalStyle introState={introState} />
-      <UbuntuContainer
-        lightTheme={lightTheme}
-        openFile={openFile}
-        switchThemeHandler={switchThemeHandler}
-        switchOpenFileState={setOpenFile}
-      >
-        <>
-          <FolderBlock />
-          <IntroContainer introState={introState}>
-            <Prompt introState={introState} switchIntroState={switchIntroState} />
-            <SkipBtn onClick={switchIntroState}>Skip introduction</SkipBtn>
-          </IntroContainer>
-          <WindowLayerHandler introState={introState} openedFile={openFile} switchOpenFileState={setOpenFile} />
-        </>
-      </UbuntuContainer>
+      <I18nextProvider i18n={i18n}>
+        <GlobalStyle introState={introState} />
+        <UbuntuContainer
+          lightTheme={lightTheme}
+          openFile={openFile}
+          switchThemeHandler={switchThemeHandler}
+          switchOpenFileState={setOpenFile}
+        >
+          <>
+            <FolderBlock />
+            <IntroContainer introState={introState}>
+              <Prompt introState={introState} switchIntroState={switchIntroState} />
+              <SkipBtn onClick={switchIntroState}>Skip introduction</SkipBtn>
+            </IntroContainer>
+            <WindowLayerHandler introState={introState} openedFile={openFile} switchOpenFileState={setOpenFile} />
+          </>
+        </UbuntuContainer>
+      </I18nextProvider>
     </ThemeProvider>
   )
 }

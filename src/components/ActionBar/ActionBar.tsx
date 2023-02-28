@@ -1,5 +1,6 @@
 import { FC, useCallback } from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import { IOpenFile } from '../../interfaces'
 import { getDayAndHourHelper } from '../../utils'
 import { MalePerson, Computer, Chat, GithubRoundedHeader, LinkedinSquared, Light, Moon } from '../Icons'
@@ -61,6 +62,13 @@ type IProps = {
 }
 
 export const ActionBar: FC<IProps> = ({ openFile, lightTheme, switchThemeHandler }) => {
+  const { i18n } = useTranslation()
+
+  const changeLanguageHandler = (language: string) => {
+    // eslint-disable-next-line no-void
+    void i18n.changeLanguage(language)
+  }
+
   const activityToRender: () => JSX.Element = useCallback(() => {
     if (openFile === 'profileInfo') {
       return (
@@ -110,6 +118,19 @@ export const ActionBar: FC<IProps> = ({ openFile, lightTheme, switchThemeHandler
           />
         </div>
         <div className="icons-page">
+          <button
+            style={{ height: '18px' }}
+            type="button"
+            onClick={() => {
+              if (i18n.language === 'en') {
+                changeLanguageHandler('es')
+                return
+              }
+              changeLanguageHandler('en')
+            }}
+          >
+            Language: {i18n.language}
+          </button>
           {lightTheme ? (
             <Moon width={18} height={18} onClick={switchThemeHandler} />
           ) : (
