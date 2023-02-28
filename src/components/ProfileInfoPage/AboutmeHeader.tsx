@@ -54,9 +54,7 @@ const DetailsContainer = styled.div`
 const PUBLIC_URI = process.env.PUBLIC_URL || ''
 
 export const AboutmeHeader: React.FC = () => {
-  const { t } = useTranslation('aboutMe')
-
-  console.log('function i18n', t('info', { name: 'Name Wapens' }))
+  const { t, i18n } = useTranslation('aboutMe')
 
   return (
     <ProfileContainer>
@@ -77,10 +75,8 @@ export const AboutmeHeader: React.FC = () => {
           <span>r</span>
         </h1>
         <div className="description-block">
-          <p>
-            🤗 Hi there, <span className="emphasize-text">I&apos;m Pablo Avilés</span>, Tech enthusiast. 👋
-          </p>
-          <p>Been working in the IT world for more than 4 years. Now completely focused on web development.</p>
+          <p dangerouslySetInnerHTML={{ __html: t('title') }} />
+          <p>{t('titleDescription')}</p>
         </div>
       </DetailsContainer>
     </ProfileContainer>
