@@ -54,7 +54,7 @@ const DetailsContainer = styled.div`
 const PUBLIC_URI = process.env.PUBLIC_URL || ''
 
 export const AboutmeHeader: React.FC = () => {
-  const { t, i18n } = useTranslation('aboutMe')
+  const { t } = useTranslation('aboutMe')
 
   return (
     <ProfileContainer>

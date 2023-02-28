@@ -1,4 +1,9 @@
 {
   "title": "🤗 Hi there, <span class='emphasize-text'>I&apos;m Pablo Avilés</span>, Tech enthusiast. 👋",
-  "titleDescription": "I've been working in the IT world for more than 4 years. Now completely focused on web development."
+  "titleDescription": "I've been working in the IT world for more than 4 years. Now completely focused on web development.",
+  "contentDescription": "Since <span class='emphasize-content'>early age</span> I&apos;ve been curious with all that surrounds the <span class='emphasize-content'>computer world</span>, from trying to understand how the hardware interacted with each other until understanding how <span class='emphasize-content'>systems communicated</span> through the <span class='emphasize-content'>web</span> and different methods.",
+  "contentGaming": "After graduate as Higher Technician in Computer Network Systems Management and <span class='emphasize-content'>work</span> for some years as <span class='emphasize-content'>IT Support Specialist</span>, I could work and live from my passion and hobby, competing in <span class='emphasize-content'>esports</span> at the Spanish and European top level. <span class='notation'>Good old days 😊</span>",
+  "contentDev": "<span class='emphasize-content'>Now</span>, after more than a year into <span class='emphasize-content'>web development</span>. I thrive to be better <span class='emphasize-content'>working hard</span> day after day 💪 with all the <span class='emphasize-content'>passion</span> and <span class='emphasize-content'>motivation</span> I have for the dev world.",
+  "contentFinalPart1": "I guess I am and always have been a",
+  "contentFinalPart2": "for technologies 🤓"
 }

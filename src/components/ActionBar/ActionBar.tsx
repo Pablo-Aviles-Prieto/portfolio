@@ -119,6 +119,7 @@ export const ActionBar: FC<IProps> = ({ openFile, lightTheme, switchThemeHandler
         </div>
         <div className="icons-page">
           <button
+            style={{ height: '18px' }}
             type="button"
             onClick={() => {
               if (i18n.language === 'en') {
