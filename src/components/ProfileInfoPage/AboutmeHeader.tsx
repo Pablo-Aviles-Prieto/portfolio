@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import { ImgContainer } from '../Styles'
 
 const ProfileContainer = styled.div`
@@ -53,6 +54,10 @@ const DetailsContainer = styled.div`
 const PUBLIC_URI = process.env.PUBLIC_URL || ''
 
 export const AboutmeHeader: React.FC = () => {
+  const { t } = useTranslation('aboutMe')
+
+  console.log('function i18n', t('info', { name: 'Name Wapens' }))
+
   return (
     <ProfileContainer>
       <PhotoContainer width="250px" height="250px">
