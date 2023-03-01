@@ -72,9 +72,21 @@ export const Experience: React.FC = () => {
       <ContentContainer>
         <div className="block">
           <div className="block-left">
+            <p className="emphasize-content">Flat 101</p>
+            <p>
+              <span className="block-left-period">Mar 2023 - now</span>
+            </p>
+          </div>
+          <div className="block-right">
+            <p className="block-right-title">Frontend Developer</p>
+            <p>Working on different React projects meeting customer requirements.</p>
+          </div>
+        </div>
+        <div className="block">
+          <div className="block-left">
             <p className="emphasize-content">OXYGEN</p>
             <p>
-              <span className="block-left-period">Sep 2022 - now</span>
+              <span className="block-left-period">Sep 2022 - Feb 2023</span>
             </p>
           </div>
           <div className="block-right">
