@@ -1,4 +1,17 @@
 {
-  "welcome": "Welcome",
-  "greeting": "Hello, {{name}}!"
+  "title": "Work experience",
+  "flatTitle": "Frontend Developer",
+  "flatContent": "Working on different React projects meeting customer requirements.",
+  "oxygenTitle": "Full Stack Web Developer",
+  "oxygenContent1": "Developing in both the backend and frontend for the Hotel Miranda project:",
+  "oxygenContent2": "- Internal dashboard for employees:",
+  "oxygenContent3": "- Public website for customers:",
+  "oxygenContent4": "<span class='emphasize-white'>Full responsive</span> website, built with <span class='emphasize-white'>#HTML5, #CSS3, #JavaScript</span> and <span class='emphasize-white'>#Sass</span> using <span class='emphasize-white'>#BEM</span> methodology.",
+  "indraTitle": "IT Support Specialist",
+  "indraContent": "Remote technical support orientated to networking and systems to companies in two Internet Service Providers (Mundo-r and Telecable).",
+  "esportsJob": "Esports player",
+  "esportsTitle": "Professional esports player",
+  "esportsContent1": "Professional esports player for Saski Baskonia SAD, Gamecore, S.L. and Arctic Gaming, S.L. companies.",
+  "convergysTitle": "IT Support Technician",
+  "convergysContent": "Remote technical support to companies and individuals troubleshooting hardware and software incidents for Dell computers, laptops and servers."
 }

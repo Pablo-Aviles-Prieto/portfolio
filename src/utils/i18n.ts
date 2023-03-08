@@ -6,6 +6,8 @@ import enExperience from '../locales/en/experience.json'
 import esExperience from '../locales/es/experience.json'
 import enProfileInfo from '../locales/en/profileInfo.json'
 import esProfileInfo from '../locales/es/profileInfo.json'
+import enDictionary from '../locales/en/dictionary.json'
+import esDictionary from '../locales/es/dictionary.json'
 
 export const defaultNS = 'ns1'
 
@@ -13,12 +15,14 @@ export const resources = {
   en: {
     profileInfo: enProfileInfo,
     aboutMe: enAboutMe,
-    experience: enExperience
+    experience: enExperience,
+    dictionary: enDictionary
   },
   es: {
     profileInfo: esProfileInfo,
     aboutMe: esAboutMe,
-    experience: esExperience
+    experience: esExperience,
+    dictionary: esDictionary
   }
 } as const
 

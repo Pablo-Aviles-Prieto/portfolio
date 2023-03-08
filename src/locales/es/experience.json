@@ -1,4 +1,17 @@
 {
-  "welcome": "Welcome",
-  "greeting": "Hello, {{name}}!"
+  "title": "Experiencia previa",
+  "flatTitle": "Desarrollador Frontend",
+  "flatContent": "Trabajando en múltiples proyectos con React, adaptándonos a los requerimientos de los clientes.",
+  "oxygenTitle": "Desarrollador Web Full Stack",
+  "oxygenContent1": "Desarrollando tanto en el backend como en el frontend el proyecto Hotel Miranda:",
+  "oxygenContent2": "- Dashboard interno para empleados:",
+  "oxygenContent3": "- Web pública para clientes:",
+  "oxygenContent4": "Web <span class='emphasize-white'>100% responsive</span>, realizada con <span class='emphasize-white'>#HTML5, #CSS3, #JavaScript</span> y <span class='emphasize-white'>#Sass</span> usando metedología <span class='emphasize-white'>#BEM</span>.",
+  "indraTitle": "Soporte Técnico Especialista",
+  "indraContent": "Soporte técnico, en remoto, de redes y sistemas para las grandes cuentas de dos proveedores de internet (Mundo-r y Telecable).",
+  "esportsJob": "Jugador de esports",
+  "esportsTitle": "Jugador profesional de esports",
+  "esportsContent1": "Jugador profesional de esports para las empresas Saski Baskonia SAD, Gamecore, S.L. y Arctic Gaming, S.L.",
+  "convergysTitle": "Soporte Técnico",
+  "convergysContent": "Soporte técnico, en remoto, a compañías y particulares, resolviendo incidencias de hardware y software en ordenadores, portátiles y servidores de la empresa Dell."
 }

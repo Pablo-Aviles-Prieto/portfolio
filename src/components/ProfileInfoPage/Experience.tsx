@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 const HeaderContainer = styled.div`
   text-align: center;
@@ -64,22 +65,25 @@ const ContentContainer = styled.div`
 `
 
 export const Experience: React.FC = () => {
+  const { t } = useTranslation('experience')
+  const { t: tDictionary } = useTranslation('dictionary')
+
   return (
     <>
       <HeaderContainer>
-        <h1>Work experience</h1>
+        <h1>{t('title')}</h1>
       </HeaderContainer>
       <ContentContainer>
         <div className="block">
           <div className="block-left">
             <p className="emphasize-content">Flat 101</p>
             <p>
-              <span className="block-left-period">Mar 2023 - now</span>
+              <span className="block-left-period">Mar 2023 - {tDictionary('now')}</span>
             </p>
           </div>
           <div className="block-right">
-            <p className="block-right-title">Frontend Developer</p>
-            <p>Working on different React projects meeting customer requirements.</p>
+            <p className="block-right-title">{t('flatTitle')}</p>
+            <p>{t('flatContent')}</p>
           </div>
         </div>
         <div className="block">
@@ -90,9 +94,9 @@ export const Experience: React.FC = () => {
             </p>
           </div>
           <div className="block-right">
-            <p className="block-right-title">Full Stack Web Developer</p>
-            <p>Developing in both the backend and frontend for the Hotel Miranda project:</p>
-            <p>- Internal dashboard for employees: </p>
+            <p className="block-right-title">{t('oxygenTitle')}</p>
+            <p>{t('oxygenContent1')}</p>
+            <p>{t('oxygenContent2')}</p>
             <p className="emphasize-white identation-block">
               <span className="identation-block-symbol">+</span> SPA: #ReactJS, #TypeScript, #JavaScript,
               #Styled-Componentes, #Jest, #Cypress
@@ -101,15 +105,10 @@ export const Experience: React.FC = () => {
               <span className="identation-block-symbol">+</span> REST API: #NodeJS, #ExrpressJS, #TypeScript,
               #JavaScript, #MongoDB, #JWT, #Jest, #SuperTest
             </p>
-            <p>- Public website for customers:</p>{' '}
+            <p>{t('oxygenContent3')}</p>
             <div className="identation-block">
               <span className="identation-block-symbol">+</span>
-              <p>
-                <span className="emphasize-white">Full responsive</span> website, built with{' '}
-                <span className="emphasize-white">#HTML5, #CSS3, #JavaScript</span> and{' '}
-                <span className="emphasize-white">#Sass</span> using <span className="emphasize-white">#BEM </span>
-                methodology.
-              </p>
+              <p dangerouslySetInnerHTML={{ __html: t('oxygenContent4') }} />
             </div>
           </div>
         </div>
@@ -121,38 +120,32 @@ export const Experience: React.FC = () => {
             </p>
           </div>
           <div className="block-right">
-            <p className="block-right-title">IT Support Specialist</p>
-            <p>
-              Remote technical support orientated to networking and systems to companies in two Internet Service
-              Providers (mundo-r and Telecable).
-            </p>
+            <p className="block-right-title">{t('indraTitle')}</p>
+            <p>{t('indraContent')}</p>
           </div>
         </div>
         <div className="block">
           <div className="block-left">
-            <p className="emphasize-content">Esports player</p>
+            <p className="emphasize-content">{t('esportsJob')}</p>
             <p>
-              <span className="block-left-period">Mar 2016 - June 2019</span>
+              <span className="block-left-period">Mar 2016 - {tDictionary('june')} 2019</span>
             </p>
           </div>
           <div className="block-right">
-            <p className="block-right-title">Professional esports player</p>
-            <p>Professional esports player for Saski Baskonia SAD, Gamecore, S.L. and Arctic Gaming, S.L. companies.</p>
+            <p className="block-right-title">{t('esportsTitle')}</p>
+            <p>{t('esportsContent1')}</p>
           </div>
         </div>
         <div className="block">
           <div className="block-left">
             <p className="emphasize-content">Convergys</p>
             <p>
-              <span className="block-left-period">Sep 2015 - June 2016</span>
+              <span className="block-left-period">Sep 2015 - {tDictionary('june')} 2016</span>
             </p>
           </div>
           <div className="block-right">
-            <p className="block-right-title">IT Support Technician</p>
-            <p>
-              Remote technical support to companies and individuals troubleshooting hardware and software incidents for
-              Dell computers, laptops and servers.
-            </p>
+            <p className="block-right-title">{t('convergysTitle')}</p>
+            <p>{t('convergysContent')}</p>
           </div>
         </div>
       </ContentContainer>
