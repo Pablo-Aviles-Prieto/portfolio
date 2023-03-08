@@ -9,12 +9,14 @@ declare module 'react-i18next' {
       aboutMe: (typeof resources)['en']['aboutMe']
       experience: (typeof resources)['en']['experience']
       dictionary: (typeof resources)['en']['dictionary']
+      education: (typeof resources)['en']['education']
     }
     es: {
       profileInfo: (typeof resources)['es']['profileInfo']
       aboutMe: (typeof resources)['es']['aboutMe']
       experience: (typeof resources)['es']['experience']
-      dictionary: (typeof resources)['en']['dictionary']
+      dictionary: (typeof resources)['es']['dictionary']
+      education: (typeof resources)['es']['education']
     }
   }
 

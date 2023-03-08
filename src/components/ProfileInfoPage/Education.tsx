@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import { BigArrowDown } from '../Icons'
 
 type ICloseOpen = 'close' | 'open'
@@ -155,6 +156,8 @@ const openedSectionState: IOpenedSectionState = {
 
 export const Education: React.FC = () => {
   const [openedSection, setOpenedSection] = useState<IOpenedSectionState>(openedSectionState)
+  const { t } = useTranslation('education')
+  const { t: tDictionary } = useTranslation('dictionary')
 
   const switchSectionState = ({ prop }: { prop: keyof IOpenedSectionState }) => {
     setOpenedSection(prevState => {
@@ -166,7 +169,7 @@ export const Education: React.FC = () => {
   return (
     <>
       <HeaderContainer>
-        <h1>Education</h1>
+        <h1>{t('title')}</h1>
       </HeaderContainer>
       <ContentContainer openedSection={openedSection}>
         <div className="block">
@@ -183,10 +186,10 @@ export const Education: React.FC = () => {
             </div>
           </div>
           <div className="block-content content__oxygen">
-            <p>· Advanced concepts on HTML5, CSS3 and how to structure it</p>
-            <p>· Advanced concepts on ReactJS (with Redux), JavaScript and NodeJS (with ExpressJS)</p>
-            <p>· Core concepts on Unit and E2E testing using Jest, Cypress, SuperTest and Playwright</p>
-            <p>· Working under Scrum methodology implemented on sprints</p>
+            <p>{t('oxygenContent1')}</p>
+            <p>{t('oxygenContent2')}</p>
+            <p>{t('oxygenContent3')}</p>
+            <p>{t('oxygenContent4')}</p>
           </div>
           <div className="block__separator" />
         </div>
@@ -194,7 +197,7 @@ export const Education: React.FC = () => {
           <div className="block__txt-right">
             <div className="block-header" onClick={() => switchSectionState({ prop: 'react' })}>
               <div className="block-header-title">
-                <h3 className="emphasize-content">React Full Course (49H)</h3>
+                <h3 className="emphasize-content">{t('reactTitle')} (49H)</h3>
                 <div className="certificate-block">
                   <a
                     href="https://www.udemy.com/certificate/UC-886c1d14-97a6-4638-8a27-089b481d3c12/"
@@ -203,7 +206,7 @@ export const Education: React.FC = () => {
                     className="emphasize-content"
                     onClick={e => e.stopPropagation()}
                   >
-                    Certificate
+                    {tDictionary('certificate')}
                   </a>
                   <p className="emphasize-grey subtitle">
                     <span className="organization">Udemy</span>
@@ -215,22 +218,13 @@ export const Education: React.FC = () => {
             </div>
           </div>
           <div className="block-content content__react">
-            <p>
-              · Core and advanced concepts about ReactJS (components, props, hooks and custom hooks, life cycle,
-              routing...)
-            </p>
-            <p>
-              · Usage of multiple styling libraries like Styled Compontents, MaterialUI, NextUI, React Transition Group
-              and CSS Modules
-            </p>
-            <p>· How to work with stores such as React context and Redux</p>
-            <p>
-              · In depth use of Redux along toolkit and rematch libraries. Working with thunks (API requests and side
-              effects)
-            </p>
-            <p>· Core concepts about TypeScript</p>
-            <p>· Core concepts of NextJS framework</p>
-            <p>· Introduction to Unit and E2E testing with Jest and React testing library</p>
+            <p>· {t('reactContent1')}</p>
+            <p>· {t('reactContent2')}</p>
+            <p>· {t('reactContent3')}</p>
+            <p>· {t('reactContent4')}</p>
+            <p>· {t('reactContent5')}</p>
+            <p>· {t('reactContent6')}</p>
+            <p>· {t('reactContent7')}</p>
           </div>
           <div className="block__separator" />
         </div>
@@ -238,7 +232,7 @@ export const Education: React.FC = () => {
           <div className="block__txt-right">
             <div className="block-header" onClick={() => switchSectionState({ prop: 'freeCodeCamp' })}>
               <div className="block-header-title">
-                <h3 className="emphasize-content">JavaScript Algorithms and Data Structures (300H)</h3>
+                <h3 className="emphasize-content">{t('freeCodeTitle')} (300H)</h3>
                 <div className="certificate-block">
                   <a
                     // eslint-disable-next-line max-len
@@ -248,11 +242,11 @@ export const Education: React.FC = () => {
                     className="emphasize-content"
                     onClick={e => e.stopPropagation()}
                   >
-                    Certificate
+                    {tDictionary('certificate')}
                   </a>
                   <p className="emphasize-grey subtitle">
                     <span className="organization">freeCodeCamp</span>
-                    <span className="emphasize-dark-grey datetime">Aug 2022</span>
+                    <span className="emphasize-dark-grey datetime">{tDictionary('aug')} 2022</span>
                   </p>
                 </div>
               </div>
@@ -260,10 +254,7 @@ export const Education: React.FC = () => {
             </div>
           </div>
           <div className="block-content content__freeCodeCamp">
-            <p>
-              · Fundamentals of JavaScript along two important programming styles or paradigms: Object Oriented
-              Programming (OOP) and Functional Programming (FP)
-            </p>
+            <p style={{ textAlign: 'justify' }}>· {t('freeCodeContent')}</p>
           </div>
           <div className="block__separator" />
         </div>
@@ -271,7 +262,7 @@ export const Education: React.FC = () => {
           <div className="block__txt-right">
             <div className="block-header" onClick={() => switchSectionState({ prop: 'fullStack' })}>
               <div className="block-header-title">
-                <h3 className="emphasize-content">Web Development Bootcamp (80H)</h3>
+                <h3 className="emphasize-content">{t('fullStackUdemyTitle')} (80H)</h3>
                 <div className="certificate-block">
                   <a
                     href="https://www.udemy.com/certificate/UC-9d849ce7-0aea-4172-b78d-ea3f0ae81ed9/"
@@ -280,11 +271,11 @@ export const Education: React.FC = () => {
                     className="emphasize-content"
                     onClick={e => e.stopPropagation()}
                   >
-                    Certificate
+                    {tDictionary('certificate')}
                   </a>
                   <p className="emphasize-grey subtitle">
                     <span className="organization">Udemy</span>
-                    <span className="emphasize-dark-grey datetime">July 2022</span>
+                    <span className="emphasize-dark-grey datetime">{tDictionary('july')} 2022</span>
                   </p>
                 </div>
               </div>
@@ -292,14 +283,11 @@ export const Education: React.FC = () => {
             </div>
           </div>
           <div className="block-content content__fullStack">
-            <p>· Core concepts on HTML5, CSS3, JavaScript ES6+ and how to structure and manage it</p>
-            <p>· Backend development using template engines and building REST APIs with NodeJS & ExpressJS</p>
-            <p>· Working with MySQL,MongoDB (Mongoose) and Firabase databases</p>
-            <p>
-              · Dived into more advanced concepts like authentication, website security, coding patterns, file uploads
-              and management, user input validation, etc
-            </p>
-            <p>· Usage of multiple third-party packages and services like Stripe, Google, etc</p>
+            <p>· {t('fullStackUdemyContent1')}</p>
+            <p>· {t('fullStackUdemyContent2')}</p>
+            <p>· {t('fullStackUdemyContent3')}</p>
+            <p>· {t('fullStackUdemyContent4')}</p>
+            <p>· {t('fullStackUdemyContent5')}</p>
           </div>
           <div className="block__separator" />
         </div>
@@ -307,7 +295,7 @@ export const Education: React.FC = () => {
           <div className="block__txt-right">
             <div className="block-header" onClick={() => switchSectionState({ prop: 'fp2' })}>
               <div className="block-header-title">
-                <h3 className="emphasize-content">Computer Network Systems Management (FPII)</h3>
+                <h3 className="emphasize-content">{t('fp2Title')} (FPII)</h3>
                 <p className="emphasize-grey subtitle">
                   <span className="organization">IES Fernando Wirtz</span>
                   <span className="emphasize-dark-grey datetime">2012-2014</span>
@@ -317,11 +305,11 @@ export const Education: React.FC = () => {
             </div>
           </div>
           <div className="block-content content__fp2">
-            <p>· Operating systems implementation and management</p>
-            <p>· Network services and Internet of Things (IoT)</p>
-            <p>· Web applications implementation</p>
-            <p>· Database management systems administration</p>
-            <p>· In depth knowledge about MySQL</p>
+            <p>· {t('fp2Content1')}</p>
+            <p>· {t('fp2Content2')} (IoT)</p>
+            <p>· {t('fp2Content3')}</p>
+            <p>· {t('fp2Content4')}</p>
+            <p>· {t('fp2Content5')}</p>
           </div>
           <div className="block__separator" />
         </div>
