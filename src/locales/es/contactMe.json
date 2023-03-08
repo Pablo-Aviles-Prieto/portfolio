@@ -1,0 +1,12 @@
+{
+  "getInTouch": "¿Quieres contactarme?",
+  "formDesc": "¡Rellena el formulario y te contactaré lo antes posible!",
+  "sendingMsg": "Enviando mensaje...",
+  "msgSent": "¡Mensaje enviado correctamente!",
+  "msgSent2": "Te contactaré lo antes posible, gracias.",
+  "errorMsg": "Hubo un error enviando el mensaje",
+  "errorMsg2": "Por favor, inténtalo de nuevo más tarde",
+  "inputName": "Nombre",
+  "inputSubject": "Motivo",
+  "inputMsg": "Mensaje"
+}

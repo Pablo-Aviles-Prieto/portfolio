@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { WindowLayer } from './WindowLayer'
 import { ProfileInfoPage } from '../../ProfileInfoPage/ProfileInfoPage'
 import { ProjectsPage } from '../../ProjectsPage/ProjectsPage'
@@ -10,7 +11,15 @@ import {
   IIsExpandedProject
 } from '../../../interfaces'
 import { technologies } from '../../../enums/technologies'
-import { profileSubMenu, projectsSubMenu, contactSubMenu, isExpandedProject } from '../../../utils'
+import {
+  enProfileSubMenu,
+  esProfileSubMenu,
+  enProjectsSubMenu,
+  esProjectsSubMenu,
+  enContactSubMenu,
+  esContactSubMenu,
+  isExpandedProject
+} from '../../../utils'
 import { ContactPage } from '../../ContactPage/ContactPage'
 
 interface IProps {
@@ -29,6 +38,7 @@ export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, s
   const [subPage, setSubPage] = useState<ISubPage>('introduction')
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isExpanded, setIsExpanded] = useState<IIsExpandedProject>(isExpandedProject)
+  const { language: i18language } = useTranslation().i18n
 
   useEffect(() => {
     setIsExpanded(isExpandedProject)
@@ -46,14 +56,24 @@ export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, s
 
   const subMenu = useMemo(() => {
     if (openedFile === 'none') return []
-    if (openedFile === 'profileInfo') return profileSubMenu
-    return openedFile === 'projects' ? projectsSubMenu : contactSubMenu
-  }, [openedFile])
+    if (openedFile === 'profileInfo') {
+      return i18language === 'en' ? enProfileSubMenu : esProfileSubMenu
+    }
+    if (openedFile === 'projects') {
+      return i18language === 'en' ? enProjectsSubMenu : esProjectsSubMenu
+    }
+    return i18language === 'en' ? enContactSubMenu : esContactSubMenu
+  }, [openedFile, i18language])
 
   const titleToRender = useMemo(() => {
     if (openedFile === 'none') return ''
-    if (openedFile === 'profileInfo') return 'Personal information'
-    return openedFile === 'projects' ? 'Some previous works' : 'Contact with me'
+    if (openedFile === 'profileInfo') {
+      return i18language === 'en' ? 'Personal information' : 'Información personal'
+    }
+    if (openedFile === 'projects') {
+      return i18language === 'en' ? 'Some previous works' : 'Trabajos anteriores'
+    }
+    return i18language === 'en' ? 'Contact with me' : 'Contacta conmigo'
   }, [openedFile])
 
   const techArraySubPage = ({ tech }: { tech: IProfileInfoSubPages | IProjectsSubPages | IContactSubPages }) => {

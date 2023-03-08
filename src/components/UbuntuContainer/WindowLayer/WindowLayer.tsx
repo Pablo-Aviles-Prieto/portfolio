@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import { Hamburger, Square, Close, Minimize } from '../../Icons'
 import { isExpandedProject } from '../../../utils'
 import {
@@ -190,6 +191,7 @@ export const WindowLayer: React.FC<IProps> = ({
   children
 }: IProps) => {
   const [subPageContentClasses, setSubPageContentClasses] = useState<string>('right-section-content')
+  const { i18n } = useTranslation()
 
   useEffect(() => {
     const idTimeout = setTimeout(() => {
@@ -235,7 +237,7 @@ export const WindowLayer: React.FC<IProps> = ({
       <div className="left-section">
         <div className="left-section-header">
           <div className="left-section-header__first-block" />
-          <p>Menu</p>
+          <p>{i18n.language === 'en' ? 'Menu' : 'Menú'}</p>
           <div className="left-section-header__menu">
             <Hamburger width={25} height={25} />
           </div>

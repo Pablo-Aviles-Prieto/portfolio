@@ -10,6 +10,7 @@ declare module 'react-i18next' {
       experience: (typeof resources)['en']['experience']
       dictionary: (typeof resources)['en']['dictionary']
       education: (typeof resources)['en']['education']
+      contactMe: (typeof resources)['en']['contactMe']
     }
     es: {
       profileInfo: (typeof resources)['es']['profileInfo']
@@ -17,6 +18,7 @@ declare module 'react-i18next' {
       experience: (typeof resources)['es']['experience']
       dictionary: (typeof resources)['es']['dictionary']
       education: (typeof resources)['es']['education']
+      contactMe: (typeof resources)['es']['contactMe']
     }
   }
 

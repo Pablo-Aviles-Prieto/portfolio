@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import { ContactForm } from './ContactForm'
 
 const PageContainer = styled.div`
@@ -14,11 +15,13 @@ const PageContainer = styled.div`
 `
 
 export const ContactMe: React.FC = () => {
+  const { t } = useTranslation('contactMe')
+
   return (
     <PageContainer>
       <div className="title">
-        <h1>Want to get in touch?</h1>
-        <p>You can fill the form and I&apos;ll get back at you as soon as possible!</p>
+        <h1>{t('getInTouch')}</h1>
+        <p>{t('formDesc')}</p>
       </div>
       <ContactForm />
     </PageContainer>

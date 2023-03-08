@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useForm } from '@formspree/react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import { InputElement } from '../Form/InputElement'
 import { TextArea } from '../Form/TextArea'
 import { SpinnerSend } from './SpinnerSend'
@@ -71,6 +72,8 @@ export const errorInputsState: IErrorInputsState = {
 export const ContactForm: React.FC = () => {
   const [errorInputs, setErrorInputs] = useState<IErrorInputsState>(errorInputsState)
   const [submitState, handleSubmitPromise] = useForm(formSpreeID)
+  const { t } = useTranslation('contactMe')
+  const { t: tDictionary } = useTranslation('dictionary')
 
   const checkSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -114,7 +117,7 @@ export const ContactForm: React.FC = () => {
     return (
       <div style={{ textAlign: 'center', marginTop: '60px' }}>
         <SpinnerSend />
-        <h3>Sending message...</h3>
+        <h3>{t('sendingMsg')}</h3>
       </div>
     )
   }
@@ -122,8 +125,8 @@ export const ContactForm: React.FC = () => {
   if (submitState.succeeded) {
     return (
       <MailSentContainer>
-        <h1>Message succesfully sent!</h1>
-        <p>I&apos;ll be back at you as soon as possible, thank you.</p>
+        <h1>{t('msgSent')}</h1>
+        <p>{t('msgSent2')}</p>
         <MessageSent className="mail-sent" />
       </MailSentContainer>
     )
@@ -132,8 +135,8 @@ export const ContactForm: React.FC = () => {
   if (submitState.errors.length > 0) {
     return (
       <ErrorSentMailContainer>
-        <h2>There was an error sending the message</h2>
-        <p>Please, try again later</p>
+        <h2>{t('errorMsg')}</h2>
+        <p>{t('errorMsg2')}</p>
       </ErrorSentMailContainer>
     )
   }
@@ -141,17 +144,17 @@ export const ContactForm: React.FC = () => {
   return (
     <FormContainer onSubmit={checkSubmitHandler}>
       <FlexContainer>
-        <InputElement title="name" label="Name" width="100%">
+        <InputElement title="name" label={t('inputName')} width="100%">
           {errorInputs.name ? <p className="error-input">{errorInputs.name}</p> : <div className="error-input" />}
         </InputElement>
         <InputElement title="email" label="Email" width="100%">
           {errorInputs.email ? <p className="error-input">{errorInputs.email}</p> : <div className="error-input" />}
         </InputElement>
       </FlexContainer>
-      <InputElement title="subject" label="Subject">
+      <InputElement title="subject" label={t('inputSubject')}>
         {errorInputs.subject ? <p className="error-input">{errorInputs.subject}</p> : <div className="error-input" />}
       </InputElement>
-      <TextArea title="message" label="Message">
+      <TextArea title="message" label={t('inputMsg')}>
         {errorInputs.message ? (
           <p className="error-input tarea">{errorInputs.message}</p>
         ) : (
@@ -159,7 +162,7 @@ export const ContactForm: React.FC = () => {
         )}
       </TextArea>
       <div style={{ textAlign: 'center' }}>
-        <SendButton type="submit">Send</SendButton>
+        <SendButton type="submit">{tDictionary('send')}</SendButton>
       </div>
     </FormContainer>
   )

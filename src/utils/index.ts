@@ -1,8 +1,13 @@
 export { renderLinePropHelper } from './renderLinePropHelper'
 export { getDayAndHourHelper } from './getDayAndHourHelper'
-export { profileSubMenu } from './pagesSubMenus'
-export { projectsSubMenu } from './pagesSubMenus'
-export { contactSubMenu } from './pagesSubMenus'
+export {
+  enProfileSubMenu,
+  esProfileSubMenu,
+  enProjectsSubMenu,
+  esProjectsSubMenu,
+  enContactSubMenu,
+  esContactSubMenu
+} from './pagesSubMenus'
 export { formInputsErrorChecker } from './formInputsErrorChecker'
 export { errorInputsState } from './errorInputsState'
 export { isExpandedProject } from './expandedProjects'

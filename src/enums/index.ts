@@ -1,4 +1,9 @@
-export { projectsSubPages } from './subPages'
-export { contactSubPages } from './subPages'
-export { profileInfoSubPages } from './subPages'
+export {
+  enProjectsSubPages,
+  esProjectsSubPages,
+  enContactSubPages,
+  esContactSubPages,
+  enProfileInfoSubPages,
+  esProfileInfoSubPages
+} from './subPages'
 export { possibleFiles } from './possibleFiles'

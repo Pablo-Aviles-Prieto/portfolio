@@ -1,0 +1,12 @@
+{
+  "getInTouch": "Want to get in touch?",
+  "formDesc": "Fill the form and I'll get back at you as soon as possible!",
+  "sendingMsg": "Sending message...",
+  "msgSent": "Message succesfully sent!",
+  "msgSent2": "I'll be back at you as soon as possible, thank you.",
+  "errorMsg": "There was an error sending the message",
+  "errorMsg2": "Please, try again later",
+  "inputName": "Name",
+  "inputSubject": "Subject",
+  "inputMsg": "Message"
+}
