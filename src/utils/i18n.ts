@@ -16,7 +16,6 @@ import enCommon from '../locales/en/common.json'
 import esCommon from '../locales/es/common.json'
 
 export const defaultNS = 'ns1'
-
 export const resources = {
   en: {
     dictionary: enDictionary,
