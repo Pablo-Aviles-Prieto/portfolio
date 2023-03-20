@@ -11,6 +11,7 @@ declare module 'react-i18next' {
       dictionary: (typeof resources)['en']['dictionary']
       education: (typeof resources)['en']['education']
       contactMe: (typeof resources)['en']['contactMe']
+      common: (typeof resources)['en']['common']
     }
     es: {
       profileInfo: (typeof resources)['es']['profileInfo']
@@ -19,6 +20,7 @@ declare module 'react-i18next' {
       dictionary: (typeof resources)['es']['dictionary']
       education: (typeof resources)['es']['education']
       contactMe: (typeof resources)['es']['contactMe']
+      common: (typeof resources)['es']['common']
     }
   }
 

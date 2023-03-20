@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import { MalePerson, CodingPC, Chat } from '../../Icons'
 import { IOpenFile } from '../../../interfaces'
 
@@ -76,6 +77,7 @@ interface IProps {
 
 export const Dock: React.FC<IProps> = ({ switchOpenFileState, openFile }: IProps) => {
   const [timeoutEntryPage, setTimeoutEntryPage] = useState<NodeJS.Timeout | undefined>(undefined)
+  const { t } = useTranslation('common')
 
   const openFileHandler = (fileType: IOpenFile) => {
     if (timeoutEntryPage) clearTimeout(timeoutEntryPage)
@@ -107,7 +109,7 @@ export const Dock: React.FC<IProps> = ({ switchOpenFileState, openFile }: IProps
           height={50}
           onClick={() => openFileHandler('profileInfo')}
         />
-        <div className="tooltip">About me</div>
+        <div className="tooltip">{t('aboutMe')}</div>
       </div>
       <div className="icon-container">
         <CodingPC
@@ -116,7 +118,7 @@ export const Dock: React.FC<IProps> = ({ switchOpenFileState, openFile }: IProps
           height={50}
           onClick={() => openFileHandler('projects')}
         />
-        <div className="tooltip">Previous works</div>
+        <div className="tooltip">{t('prevWorks.default')}</div>
       </div>
       <div className="icon-container">
         <Chat
@@ -125,7 +127,7 @@ export const Dock: React.FC<IProps> = ({ switchOpenFileState, openFile }: IProps
           height={50}
           onClick={() => openFileHandler('contact')}
         />
-        <div className="tooltip">Contact me</div>
+        <div className="tooltip">{t('contactMe')}</div>
       </div>
     </DockContainer>
   )
