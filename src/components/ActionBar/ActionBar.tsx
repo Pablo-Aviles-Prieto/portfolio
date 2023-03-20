@@ -63,6 +63,7 @@ type IProps = {
 
 export const ActionBar: FC<IProps> = ({ openFile, lightTheme, switchThemeHandler }) => {
   const { i18n } = useTranslation()
+  const { t } = useTranslation('common')
 
   const changeLanguageHandler = (language: string) => {
     // eslint-disable-next-line no-void
@@ -74,7 +75,7 @@ export const ActionBar: FC<IProps> = ({ openFile, lightTheme, switchThemeHandler
       return (
         <div className="activities-info">
           <MalePerson width={18} height={18} />
-          <p>About me</p>
+          <p>{t('aboutMe')}</p>
         </div>
       )
     }
@@ -82,7 +83,7 @@ export const ActionBar: FC<IProps> = ({ openFile, lightTheme, switchThemeHandler
       return (
         <div className="activities-info">
           <Computer width={18} height={18} />
-          <p>Previous projects</p>
+          <p>{t('prevWorks.projects')}</p>
         </div>
       )
     }
@@ -90,7 +91,7 @@ export const ActionBar: FC<IProps> = ({ openFile, lightTheme, switchThemeHandler
       return (
         <div className="activities-info">
           <Chat width={18} height={18} />
-          <p>Contact me</p>
+          <p>{t('contactMe')}</p>
         </div>
       )
     }
@@ -100,7 +101,7 @@ export const ActionBar: FC<IProps> = ({ openFile, lightTheme, switchThemeHandler
   return (
     <ActionBarContainer>
       <div className="activities">
-        <p>Activities</p>
+        <p>{t('activities')}</p>
         {activityToRender()}
       </div>
       <div className="time">{getDayAndHourHelper()}</div>
@@ -129,7 +130,7 @@ export const ActionBar: FC<IProps> = ({ openFile, lightTheme, switchThemeHandler
               changeLanguageHandler('en')
             }}
           >
-            Language: {i18n.language}
+            {t('language')}: {i18n.language}
           </button>
           {lightTheme ? (
             <Moon width={18} height={18} onClick={switchThemeHandler} />

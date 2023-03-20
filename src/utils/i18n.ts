@@ -12,6 +12,8 @@ import enEducation from '../locales/en/education.json'
 import esEducation from '../locales/es/education.json'
 import enContactMe from '../locales/en/contactMe.json'
 import esContactMe from '../locales/es/contactMe.json'
+import enCommon from '../locales/en/common.json'
+import esCommon from '../locales/es/common.json'
 
 export const defaultNS = 'ns1'
 
@@ -22,7 +24,8 @@ export const resources = {
     aboutMe: enAboutMe,
     experience: enExperience,
     education: enEducation,
-    contactMe: enContactMe
+    contactMe: enContactMe,
+    common: enCommon
   },
   es: {
     dictionary: esDictionary,
@@ -30,7 +33,8 @@ export const resources = {
     aboutMe: esAboutMe,
     experience: esExperience,
     education: esEducation,
-    contactMe: esContactMe
+    contactMe: esContactMe,
+    common: esCommon
   }
 } as const
 
