@@ -12,6 +12,7 @@ declare module 'react-i18next' {
       education: (typeof resources)['en']['education']
       contactMe: (typeof resources)['en']['contactMe']
       common: (typeof resources)['en']['common']
+      prevProjects: (typeof resources)['en']['prevProjects']
     }
     es: {
       profileInfo: (typeof resources)['es']['profileInfo']
@@ -21,6 +22,7 @@ declare module 'react-i18next' {
       education: (typeof resources)['es']['education']
       contactMe: (typeof resources)['es']['contactMe']
       common: (typeof resources)['es']['common']
+      prevProjects: (typeof resources)['es']['prevProjects']
     }
   }
 

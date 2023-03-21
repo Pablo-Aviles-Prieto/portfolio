@@ -4,7 +4,7 @@ import { IPreviousProjectObj } from '../interfaces'
 
 const PUBLIC_URI = process.env.PUBLIC_URL || ''
 
-export const previousProjects: IPreviousProjectObj[] = [
+export const previousProjectsES: IPreviousProjectObj[] = [
   {
     index: 0,
     images: [
@@ -26,7 +26,7 @@ export const previousProjects: IPreviousProjectObj[] = [
       }
     ],
     title: 'portfolio',
-    titleText: 'Personal portfolio',
+    titleText: 'Portfolio personal',
     subtitle: 'Personal portfolio themed as the Ubuntu 22.04 (Jammy Jellyfish)',
     github: 'https://github.com/Pablo-Aviles-Prieto/portfolio',
     webpage: 'https://www.pabloaviles.es',

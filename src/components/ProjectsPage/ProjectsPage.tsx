@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { ProjectCardHandler } from './ProjectCardHandler'
-import { previousProjects } from '../../utils'
+import { previousProjectsEN, previousProjectsES } from '../../utils'
 import {
   IProjectsSubPages,
   IProfileInfoSubPages,
@@ -37,14 +37,16 @@ interface IProps {
 
 export const ProjectsPage: React.FC<IProps> = ({ subPage, isExpanded, setIsExpanded }: IProps) => {
   const [projectsArray, setProjectsArray] = useState<IPreviousProjectObj[]>([])
+  const { language: i18nLanguage } = useTranslation().i18n
 
   useEffect(() => {
+    const previousProjectsData = i18nLanguage === 'en' ? previousProjectsEN : previousProjectsES
     if (subPage === 'introduction') {
-      setProjectsArray(previousProjects)
+      setProjectsArray(previousProjectsData)
       return
     }
     if (!Array.isArray(subPage)) return
-    const newProjectsFiltered = previousProjects.filter(project => {
+    const newProjectsFiltered = previousProjectsData.filter(project => {
       // project.technologies are values of technologies enum
       return project.technologies.find(projectTech => {
         // subPage are keys of technologies enum
@@ -55,10 +57,10 @@ export const ProjectsPage: React.FC<IProps> = ({ subPage, isExpanded, setIsExpan
     })
     // In case all techs are removed, we show all the projects
     if (newProjectsFiltered.length === 0) {
-      return setProjectsArray(previousProjects)
+      return setProjectsArray(previousProjectsData)
     }
     setProjectsArray(newProjectsFiltered)
-  }, [subPage])
+  }, [subPage, i18nLanguage])
 
   return (
     <ProjectContainer>

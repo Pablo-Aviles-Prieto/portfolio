@@ -1,5 +1,6 @@
 import { useMemo, FC } from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import { ContentLinksExpanded } from './ContentLinksExpanded'
 import { ContentLinks } from './ContentLinks'
 import { DownRightArrow, Close } from '../Icons'
@@ -271,6 +272,8 @@ export const ProjectCard: FC<IProps> = ({
   lastCard,
   setIsExpanded
 }) => {
+  const { t } = useTranslation('common')
+
   const switchIsExpanded = ({ title }: { title: keyof IIsExpandedProject }) => {
     const newState = { ...isExpandedProject }
     newState[title] = true

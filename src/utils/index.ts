@@ -11,5 +11,6 @@ export {
 export { formInputsErrorChecker } from './formInputsErrorChecker'
 export { errorInputsState } from './errorInputsState'
 export { isExpandedProject } from './expandedProjects'
-export { previousProjects } from './previousProjects'
+export { previousProjectsEN } from './previousProjectsEN'
+export { previousProjectsES } from './previousProjectsES'
 export { technologiesSVG } from './technologiesSVG'

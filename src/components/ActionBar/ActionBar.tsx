@@ -113,7 +113,7 @@ export const ActionBar: FC<IProps> = ({ openFile, lightTheme, switchThemeHandler
             height={18}
           />
           <LinkedinSquared
-            onClick={() => window.open('https://www.linkedin.com/in/pablo-aviles-prieto/?locale=en_US', '_blank')}
+            onClick={() => window.open('https://www.linkedin.com/in/pablo-aviles-prieto/', '_blank')}
             width={18}
             height={18}
           />
