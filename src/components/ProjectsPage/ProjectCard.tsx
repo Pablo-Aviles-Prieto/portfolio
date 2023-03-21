@@ -349,7 +349,7 @@ export const ProjectCard: FC<IProps> = ({
           </div>
           {isExpanded[projectTitle] && (
             <div className="content-features">
-              <h3>Features of the project:</h3>
+              <h3>{t('projFeatures')}:</h3>
               <div className="content-features-block">
                 {project.features.map(feature => (
                   <div className="content-features-block-line" key={feature}>

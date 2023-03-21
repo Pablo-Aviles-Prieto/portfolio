@@ -4,5 +4,9 @@
   "contactMe": "Contact me",
   "activities": "Activities",
   "language": "Language",
-  "showingProjects": "Showing <1>{{count}} projects</1>"
+  "showingProjects": "Showing <1>{{count}} projects</1>",
+  "projFeatures": "Features of the project",
+  "githubRepo": "Github repo",
+  "projectDemo": "Project demo",
+  "checkFeatures": "Check the features"
 }

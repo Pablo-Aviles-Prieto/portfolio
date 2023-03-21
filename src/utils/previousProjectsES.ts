@@ -10,26 +10,25 @@ export const previousProjectsES: IPreviousProjectObj[] = [
     images: [
       {
         path: `${PUBLIC_URI}/images/prev-projects/portfolio/experience.webp`,
-        description: 'Preview of the introduction on the portfolio page'
+        description: 'Visualización de la introducción del portfolio personal'
       },
       {
         path: `${PUBLIC_URI}/images/prev-projects/portfolio/aboutme.webp`,
-        description: 'Preview of the about me section'
+        description: 'Visualización de la sección "Sobre mí"'
       },
       {
         path: `${PUBLIC_URI}/images/prev-projects/portfolio/intro.webp`,
-        description: 'Preview of the experience section'
+        description: 'Visualización de la sección de experiencia laboral'
       },
       {
         path: `${PUBLIC_URI}/images/prev-projects/portfolio/sent-contact.webp`,
-        description: 'Preview of the feedback on the form section after sending a message'
+        description: 'Visualización de la respuesta en la sección de "Contáctame" tras enviar un mensaje'
       }
     ],
     title: 'portfolio',
     titleText: 'Portfolio personal',
-    subtitle: 'Personal portfolio themed as the Ubuntu 22.04 (Jammy Jellyfish)',
+    subtitle: 'Portfolio personal basado en el tema de Ubuntu 22.04 (Jammy Jellyfish)',
     github: 'https://github.com/Pablo-Aviles-Prieto/portfolio',
-    webpage: 'https://www.pabloaviles.es',
     technologies: [
       technologies.react,
       technologies.typescript,
@@ -38,11 +37,11 @@ export const previousProjectsES: IPreviousProjectObj[] = [
       technologies.css
     ],
     features: [
-      `Typing effect 🖊️ created with 'react-type-animation' library`,
-      '🦋 Styled with styled-components 🦋',
-      'Dark 🌙 and light 💡 theme created with styled-components',
-      '🇬🇧🇪🇸 Languages',
-      'Animations handled by myself with CSS 🎥'
+      `Efecto de escritura 🖊️ creado con la librería 'react-type-animation'`,
+      `🦋 Estilado con 'styled-components' 🦋`,
+      `Tema oscuro 🌙 y claro 💡 creado con 'styled-components'`,
+      `'react-i18next' para manejar los idiomas 🇬🇧🇪🇸`,
+      'Animaciones en CSS propias 🎥'
     ]
   },
   {

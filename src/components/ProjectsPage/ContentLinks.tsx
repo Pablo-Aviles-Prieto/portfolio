@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import { GithubRounded, Web, Info } from '../Icons'
 import { IPreviousProjectObj, IIsExpandedProject } from '../../interfaces'
 
@@ -9,6 +10,8 @@ interface IProps {
 }
 
 export const ContentLinks: FC<IProps> = ({ project, projectTitle, switchIsExpanded }) => {
+  const { t } = useTranslation('common')
+
   return (
     <div className="content-links">
       <a
@@ -19,7 +22,7 @@ export const ContentLinks: FC<IProps> = ({ project, projectTitle, switchIsExpand
         rel="noopener noreferrer"
       >
         <GithubRounded width={18} height={18} />
-        <span>Github repo</span>
+        <span>{t('githubRepo')}</span>
       </a>
       {project.webpage ? (
         <a
@@ -30,13 +33,13 @@ export const ContentLinks: FC<IProps> = ({ project, projectTitle, switchIsExpand
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => e.stopPropagation()}
         >
           <Web width={18} height={18} />
-          <span>Project demo</span>
+          <span>{t('projectDemo')}</span>
         </a>
       ) : (
         <div />
       )}
       <p className="content-links-more-info" onClick={() => switchIsExpanded({ title: projectTitle })}>
-        <span>Check the features</span>
+        <span>{t('checkFeatures')}</span>
         <Info width={20} height={20} />
       </p>
     </div>

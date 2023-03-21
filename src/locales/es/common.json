@@ -4,5 +4,9 @@
   "contactMe": "Contáctame",
   "activities": "Actividades",
   "language": "Idioma",
-  "showingProjects": "Mostrando <1>{{count}} proyectos</1>"
+  "showingProjects": "Mostrando <1>{{count}} proyectos</1>",
+  "projFeatures": "Características/funcionalidades del proyecto",
+  "githubRepo": "Repo en github",
+  "projectDemo": "Demo del proyecto",
+  "checkFeatures": "¡Échale un vistazo!"
 }
