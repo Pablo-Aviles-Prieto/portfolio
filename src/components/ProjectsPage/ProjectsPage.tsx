@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { Trans } from 'react-i18next'
 import { ProjectCardHandler } from './ProjectCardHandler'
 import { previousProjects } from '../../utils'
 import {
@@ -63,7 +64,11 @@ export const ProjectsPage: React.FC<IProps> = ({ subPage, isExpanded, setIsExpan
     <ProjectContainer>
       <>
         <p className="projects__count">
-          Showing <span>{projectsArray.length} projects</span>
+          <Trans
+            i18nKey="common:showingProjects"
+            values={{ count: projectsArray.length }}
+            components={{ 1: <span /> }}
+          />
         </p>
         {projectsArray.map((project, i) => (
           <ProjectCardHandler

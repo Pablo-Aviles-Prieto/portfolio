@@ -3,5 +3,6 @@
   "prevWorks": { "default": "Previous works", "projects": "Previous projects" },
   "contactMe": "Contact me",
   "activities": "Activities",
-  "language": "Language"
+  "language": "Language",
+  "showingProjects": "Showing <1>{{count}} projects</1>"
 }

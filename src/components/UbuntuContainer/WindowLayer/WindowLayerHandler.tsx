@@ -74,7 +74,7 @@ export const WindowLayerHandler: React.FC<IProps> = ({ introState, openedFile, s
       return i18language === 'en' ? 'Some previous works' : 'Trabajos anteriores'
     }
     return i18language === 'en' ? 'Contact with me' : 'Contacta conmigo'
-  }, [openedFile])
+  }, [openedFile, i18language])
 
   const techArraySubPage = ({ tech }: { tech: IProfileInfoSubPages | IProjectsSubPages | IContactSubPages }) => {
     if (tech === 'introduction') {

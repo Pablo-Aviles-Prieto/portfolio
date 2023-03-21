@@ -3,5 +3,6 @@
   "prevWorks": { "default": "Trab. anteriores", "projects": "Trab. anteriores" },
   "contactMe": "Contáctame",
   "activities": "Actividades",
-  "language": "Idioma"
+  "language": "Idioma",
+  "showingProjects": "Mostrando <1>{{count}} proyectos</1>"
 }
