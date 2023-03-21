@@ -29,7 +29,6 @@ export const previousProjectsEN: IPreviousProjectObj[] = [
     titleText: 'Personal portfolio',
     subtitle: 'Personal portfolio themed as the Ubuntu 22.04 (Jammy Jellyfish)',
     github: 'https://github.com/Pablo-Aviles-Prieto/portfolio',
-    webpage: 'https://www.pabloaviles.es',
     technologies: [
       technologies.react,
       technologies.typescript,
@@ -39,10 +38,10 @@ export const previousProjectsEN: IPreviousProjectObj[] = [
     ],
     features: [
       `Typing effect 🖊️ created with 'react-type-animation' library`,
-      '🦋 Styled with styled-components 🦋',
-      'Dark 🌙 and light 💡 theme created with styled-components',
-      '🇬🇧🇪🇸 Languages',
-      'Animations handled by myself with CSS 🎥'
+      `🦋 Styled with 'styled-components' 🦋`,
+      `Dark 🌙 and light 💡 theme created with 'styled-components'`,
+      `'react-i18next' to support 🇬🇧🇪🇸 languages`,
+      'Handmade CSS animations 🎥'
     ]
   },
   {
